@@ -38,7 +38,7 @@ public:
 	/*
 	* POST: Devuelve si la casilla esta oculta.
 	*/
-	bool estaCubierta();
+	bool estaOculta();
 
 	/*Pre: La casilla debe estar oculta.
 	* POST: Descubre la casilla.
