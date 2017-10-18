@@ -10,7 +10,7 @@ private:
 	uint columnas;
 public:
 	/*
-	* PRE: Las filas y las columnas deben ser valores mayores a cero.
+	* PRE: Las filas y las columnas deben ser valores mayores a filasMinimas y columnasMinimas.
 	* POST: Crea un tablero con determinadas filas y columnas. Dentro de cada espacio del tablero habra una
 	* 		Casilla, con su respectivo estado.
 	*/
