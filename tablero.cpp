@@ -13,3 +13,15 @@ Tablero::Tablero(uint filas, uint columnas) {
 
 	int* tablero = new Casila [filas][columnas];
 }
+
+unsigned int Tablero:: ObtenerFilas(){
+	return this->filas;
+}
+
+unsigned int Tablero:: ObtenerColumnas(){
+	return this->columnas;
+}
+Tablero:: ~Tablero(){
+	delete tablero[];
+}
+
