@@ -1,55 +1,59 @@
-#include "casilla.h"
+#include "Casilla.h"
 using namespace std;
 
-Casilla::Casilla(int x, int y) {
-	this->fila = x;
-	this->columna = y;
+Casilla::Casilla(int fila, int columna) {
+	this->fila = fila;
+	this->columna = columna;
 	this->minasCercanas = 0;
 	this->tieneMina = false;
-	this->cubierta = true;
-	this->marcada = false;
+	this->estaOculta = true;
+	this->TieneBandera = false;
 }
 
-int Casilla::mostrarFila() {
+int Casilla::obtenerFila() {
 	return this->fila;
 }
 
 
-int Casilla::mostrarColumna() {
+int Casilla::obtenerColumna() {
 	return this->columna;
 }
 
 
-bool Casilla::estaCubierta() {
-	return (this->cubierta == true);
+bool Casilla::estaOculta() {
+	return this->estaOculta;
 }
 
 
-void Casilla::descubrir() {
-	if(this->cubierta)
-		this->cubierta = false;
+void Casilla::descubrirCasilla() {
+	if(this->EstaOculta){
+		this->estaOculta = false;
+	}
+	else{
+		throw std:: string("La casilla ya esta Descubierta");
+	}
 }
 
 
-bool Casilla::estaMarcada() {
-	return (this->marcada == true);
+bool Casilla::tieneBandera() {
+	return this->tieneBandera;
 }
 
 
-void Casilla::marcar() {
-	if(!this->marcada)
-		this->marcada = true;
+void Casilla::colocarBandera() {
+	if(!this->tieneBandera)
+		this->tieneBandera = true;
 	else
-		this->marcada = false;
+		this->tieneBandera = false;
 }
 
 
-void Casilla::mostrar() {
-	if(this->cubierta) {
-		if(this->marcada)
-			cout << MARCADA;
+void Casilla::mostrarCasilla() {
+	if(this->estaOculta) {
+		if(this->tieneBandera)
+			cout << BANDERA;
 		else
-			cout << CUBIERTA;
+			cout << OCULTA;
 	}
 	else {
 		if(this->tieneMina)
