@@ -1,15 +1,15 @@
-#include "tablero.h"
+#include "Tablero.h"
+#include "Casilla.h"
+
+const int filasMinimas=15;
+const int columnasMinimas=15;
 
 Tablero::Tablero(uint filas, uint columnas) {
-
+	if(filas < filasMinimas || columnasMinimas < 15){
+		throw std:: string("El tablero debe ser de un minimo de 15")
+	}
 	this->filas = filas;
 	this->columnas = columnas;
 
-	int** tablero = new int*[filas];
-	for (uint i = 0; i < filas; i++) {
-		tablero[i] = new int[columnas];
-		for (uint j = 0; j < columnas; j++) {
-			Casilla casilla(i, j);
-		}
-	}
+	int* tablero = new Casila [filas][columnas];
 }
