@@ -28,12 +28,12 @@ public:
 	/*
 	* POST: Devuelve la fila de la casilla.
 	*/
-	int ObtenerFila();
+	int obtenerFila();
 
 	/*
 	* POST: Devuelve la columna de la casilla.
 	*/
-	int ObtenerColumna();
+	int obtenerColumna();
 
 	/*
 	* POST: Devuelve si la casilla esta oculta.
