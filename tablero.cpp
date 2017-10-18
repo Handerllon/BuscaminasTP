@@ -4,7 +4,10 @@
 const int filasMinimas=15;
 const int columnasMinimas=15;
 
-Tablero::Tablero(uint filas, uint columnas) {
+Tablero::Tablero() {
+	int* tablero = new Casila [filasMinimas][columnasMinimas];
+
+Tablero::Tablero(unsigned int filas, unsigned int columnas) {
 	if(filas < filasMinimas || columnas < columnasMinimas){
 		throw std:: string("El tablero debe ser de un minimo de 15")
 	}
