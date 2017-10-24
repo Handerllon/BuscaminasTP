@@ -1,30 +1,46 @@
-#include "Tablero.h"
-#include "Casilla.h"
+#include "tablero.h"
 
-const int filasMinimas=15;
-const int columnasMinimas=15;
+Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
+	this->filas=cantidadFilas;
+	this->columnas=cantidadColumnas;
 
-Tablero::Tablero() {
-	int* tablero = new Casila [filasMinimas][columnasMinimas];
-
-Tablero::Tablero(unsigned int filas, unsigned int columnas) {
-	if(filas < filasMinimas || columnas < columnasMinimas){
-		throw std:: string("El tablero debe ser de un minimo de 15")
+	this->tablero= new Casilla* [cantidadFilas];
+	for(unsigned int i=0; i<cantidadFilas; i++){
+		this->tablero[i]= new Casilla[cantidadColumnas];
 	}
-	this->filas = filas;
-	this->columnas = columnas;
-
-	int* tablero = new Casila [filas][columnas];
+	Casilla actual;
+	for(unsigned int i=0; i<cantidadFilas; i++){
+		for(unsigned int j=0; j<cantidadColumnas; j++){
+			actual=this->tablero[i][j];
+			actual.cambiarCoordenadas(i,j);
+		}
+	}
 }
 
-unsigned int Tablero:: ObtenerFilas(){
+unsigned int Tablero::obtenerCantidadFilas(){
+
 	return this->filas;
 }
 
-unsigned int Tablero:: ObtenerColumnas(){
+unsigned int Tablero::obtenerCantidadColumnas(){
+
 	return this->columnas;
 }
-Tablero:: ~Tablero(){
-	delete tablero[];
+
+Casilla Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada){
+
+	return tablero[filaDeseada][columnaDeseada];
 }
 
+Tablero::~Tablero(){
+
+	unsigned int totalFilas=this->obtenerCantidadFilas();
+	unsigned int totalColumnas=this->obtenerCantidadColumnas();
+
+	for(unsigned int i=0; i<totalFilas; i++){
+
+		delete []tablero[i];
+	}
+
+	delete[]tablero;
+}
