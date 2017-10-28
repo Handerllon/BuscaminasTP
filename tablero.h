@@ -33,10 +33,10 @@ public:
 	unsigned int obtenerCantidadColumnas();
 
 	/*
-	 * PRE:recibe la fila y columna de la casilla que se quiere obtener
+	 * PRE: recibe la fila y columna de la casilla que se quiere obtener
 	 * POST: devuelve la casilla de la posicion filaDeseada y columnaDeseada.
 	 */
-	Casilla obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada);
+	Casilla* obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada);
 
 
 	/*
