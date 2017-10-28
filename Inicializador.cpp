@@ -50,7 +50,7 @@ void Inicializador::setDificultad(){
     std::cout<<"Puede elegir entre Facil, Intermedio o Dificil (F/I/D respectivamente)"<<std::endl;
     std::cin>>dificultadElegida;
     while (not caracterValido){
-        if ((dificultadElegida='F') || (dificultadElegida='I') || (dificultadElegida='D')){
+        if ((dificultadElegida=='F') || (dificultadElegida=='I') || (dificultadElegida=='D')){
             caracterValido=true;
             dificultad=dificultadElegida;
         }
