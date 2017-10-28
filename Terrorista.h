@@ -3,6 +3,7 @@
 #define TERRORISTA_H
 
 #include "tablero.h"
+#include "Inicializador.h"
 #include <stdlib.h>  
 #include <time.h>    
 
