@@ -29,24 +29,29 @@ unsigned int Jugador::getIdentificador(){
 
 }
 
+/*
+Todos los couts han sido comentados, despues si son necesarios se les saca el comentario
+Estaban ahi papra que el jugador eliga casillero y jugada, al igual que la verificacion de la 
+jugada
+*/
 void Jugador::jugada(Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida,tipoDeJugada;
 
     bool jugadaValida=false
 
-    cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
+    //cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
     cin>>filaElegida;
 
-    cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
+    //cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
     cin>>columnaElegida;
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
     while (not jugadaValida){
 
-        cout>>"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
-        cout>>"(1) Descubrir casillero">>endl>>"(2) Colocar bandera">>endl>>"(3) Quitar bandera">>endl;
+        //cout>>"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
+        //cout>>"(1) Descubrir casillero">>endl>>"(2) Colocar bandera">>endl>>"(3) Quitar bandera">>endl;
         cin<<tipoDeJugada;
 
         if (tipoDeJugada==1){
@@ -62,7 +67,7 @@ void Jugador::jugada(Tablero* tablero){
             jugadaValida=true;
         }
         else{
-            cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
+            //cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
         }
     }
 }
