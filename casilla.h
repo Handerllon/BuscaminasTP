@@ -1,70 +1,117 @@
+
 #ifndef CASILLA_H_
 #define CASILLA_H_
 
-#include <iostream>
 
 char const MINA = 'M';
 char const OCULTA = 'X';
 char const BANDERA = 'B';
 
-// Cada casilla individual del tablero del buscaminas.
-class Casilla {
+class Casilla{
+
+
 private:
-	int fila;
-	int columna;
-	int minasCercanas;
-	bool tieneMina;
-	bool estaOculta;
-	bool tieneBandera;
+	unsigned int fila;
+
+	unsigned int columna;
+
+	unsigned int minasCercanas;
+
+	bool estaMinado;
+
+	bool estaConBandera;
+
+	bool estaEscondido;
 
 public:
 	/*
-	* PRE: La fila y la columna ingresada deben estar entre 0 y Tablero->ObtenerFilas / Tablero->ObtenerColumnas
-	* POST: Devuelve una casilla ubicada en la posicion ('x','y') del tablero.
-	*       Estara cubierta, desmarcada, sin mina, y con el valor 'minasCercanas' en cero.
-	*/
-	Casilla(int fila, int columna);
+	 * POST: crea un casillero con sus coordenadas en 0, escondido,
+	 *  sin bandera y sin estar minado.
+	 */
+	Casilla();
+
 
 	/*
-	* POST: Devuelve la fila de la casilla.
-	*/
-	int obtenerFila();
+	 * PRE: La fila y la columna ingresada deben estar entre 0 y Tablero->ObtenerFilas / Tablero->ObtenerColumnas
+	 * POST: Devuelve una casilla ubicada en la posicion ('x','y') del tablero.
+	 *       Estara cubierta, desmarcada, sin mina, y con el valor 'minasCercanas' en cero.
+	 */
+	Casilla(unsigned int filaActual, unsigned int columnaActual);
+
 
 	/*
-	* POST: Devuelve la columna de la casilla.
-	*/
-	int obtenerColumna();
+	 * PRE: La nueva fila y nueva columna estan entre 0 y tablero->obtenerFilas / obtenerColumnas
+	 * POST:cambia el valor de la fila a 'nuevaFila' y el valor de la columna a 'nuevaColumna'
+	 */
+	void cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColumna);
+
 
 	/*
-	* POST: Devuelve si la casilla esta oculta.
-	*/
-	bool estaOculta();
+	 * devuelve TRUE si la casilla esta Minada o FALSE en caso contrario.
+	 */
+	bool tieneMina();
 
-	/*Pre: La casilla debe estar oculta.
-	* POST: Descubre la casilla.
-	*/
-	void descubrirCasilla();
 
 	/*
-	* POST: Devuelve si la casilla esta o no marcada.
-	*/
+	 * devuelve TRUE si la casilla posee una Bandera o FALSE en caso contrario.
+	 */
 	bool tieneBandera();
 
+
 	/*
-	* POST: Si la casilla esta marcada la desmarca.
-	        Si la casilla esta desmarcada la marca.
-	*/
+	 * devuelve TRUE si la casilla esta oculta o FALSE si no lo esta.
+	 */
+	bool estaOculta();
+
+
+	/*
+	 * PRE: la casilla esta oculta y no posee una bandera.
+	 * POST: descubre la casilla.
+	 */
+	void descubrirCasillero();
+
+
+	/*
+	 * PRE: la casilla no posee una bandera y esta oculta.
+	 * POST: coloca una bandera en la casilla.
+	 */
 	void colocarBandera();
 
+
 	/*
-	* POST: Muestra la casilla en su estado actual. Puede ser marcada o no, descubierta o no.
-	* 		Si esta descubierta, muestra el numero de minas cercanas o, si es una mina, el simbolo correspondiente.
-	*/
-	void mostrarCasilla();
+	 * PRE:se coloco una bandera en la casilla previamente.
+	 * POST: se quita la bandera de la casilla.
+	 */
+	void quitarBandera();
 
 
+	/*
+	 * PRE: la casilla no esta minada y esta oculta.
+	 * POST: coloca una mina en la casilla
+	 */
+
+	void colocarMina();
+
+
+	/*
+	 * POST:devuelve la fila de la casilla.
+	 */
+	unsigned int obtenerFila();
+
+
+	/*
+	 * POST: devuelve la columna de la casilla.
+	 */
+	unsigned int obtenerColumna();
+
+	/*
+	 * POST: devuelve el estado actual de la casilla. Puede ser marcada o no, descubierta o no.
+	 * 		Si esta descubierta, muestra el numero de minas cercanas o, si es una mina, el simbolo correspondiente.
+	 */
+	char mostrarCasilla();
 
 };
 
-#endif /* CASILLA_H_ */
 
+
+#endif /* CASILLA_H_ */

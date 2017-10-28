@@ -1,69 +1,108 @@
-#include "Casilla.h"
-using namespace std;
+#include "casilla.h"
 
-Casilla::Casilla(int fila, int columna) {
-	this->fila = fila;
-	this->columna = columna;
-	this->minasCercanas = 0;
-	this->tieneMina = false;
-	this->estaOculta = true;
-	this->TieneBandera = false;
+Casilla::Casilla(){
+	this->fila=0;
+	this->columna=0;
+	this->minasCercanas=0;
+	this->estaMinado= false;
+	this->estaConBandera= false;
+	this-> estaEscondido= true;
 }
 
-int Casilla::obtenerFila() {
+Casilla::Casilla(unsigned int filaActual, unsigned int columnaActual){
+
+	this->fila=filaActual;
+	this->columna=columnaActual;
+	this->minasCercanas=0;
+	this->estaMinado=false;
+	this->estaConBandera=false;
+	this->estaEscondido=true;
+}
+
+void Casilla::cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColumna){
+	if(this->estaOculta()){
+		this->fila=nuevaFila;
+		this->columna=nuevaColumna;
+	}
+}
+
+bool Casilla::tieneMina(){
+
+	return this->estaMinado;
+}
+
+bool Casilla::tieneBandera(){
+
+	return this->estaConBandera;
+}
+
+bool Casilla::estaOculta(){
+
+	return this->estaEscondido;
+}
+
+void Casilla::descubrirCasillero(){
+
+	if(this->estaOculta() && !this->tieneBandera()){
+		this->estaEscondido=false;
+	}
+}
+
+void Casilla::colocarBandera(){
+
+	if(!this->tieneBandera() && this->estaOculta()){
+		this->estaConBandera=true;
+	}
+}
+
+void Casilla::quitarBandera(){
+
+	if(this->tieneBandera() && this->estaOculta()){
+		this->estaConBandera=false;
+	}
+}
+
+void Casilla::colocarMina(){
+
+	if(!this->tieneMina() && this->estaOculta()){
+		this->estaMinado=true;
+	}
+}
+
+unsigned int Casilla::obtenerFila(){
+
 	return this->fila;
 }
 
+unsigned int Casilla::obtenerColumna(){
 
-int Casilla::obtenerColumna() {
 	return this->columna;
 }
 
+char Casilla::mostrarCasilla(){
+	char estadoActual;
+	if(this->estaOculta()){
 
-bool Casilla::estaOculta() {
-	return this->estaOculta;
-}
-
-
-void Casilla::descubrirCasilla() {
-	if(this->EstaOculta){
-		this->estaOculta = false;
+		if(this->tieneBandera()){
+			estadoActual= BANDERA;
+		}
+		else {
+			estadoActual=OCULTA;
+		}
 	}
 	else{
-		throw std:: string("La casilla ya esta Descubierta");
+		if(this->tieneMina()){
+			estadoActual=MINA;
+		}
+		else{
+			/*como la funcion devuelve un char, casteo minasCercanas a char
+			 *y le sumo 48, porque a partir del 48 estan los numeros
+			 *en la tabla ASCI.
+			 */
+			estadoActual=(char)this->minasCercanas + 48;
+		}
 	}
+	return estadoActual;
 }
-
-
-bool Casilla::tieneBandera() {
-	return this->tieneBandera;
-}
-
-
-void Casilla::colocarBandera() {
-	if(!this->tieneBandera)
-		this->tieneBandera = true;
-	else
-		this->tieneBandera = false;
-}
-
-
-void Casilla::mostrarCasilla() {
-	if(this->estaOculta) {
-		if(this->tieneBandera)
-			cout << BANDERA;
-		else
-			cout << OCULTA;
-	}
-	else {
-		if(this->tieneMina)
-			cout << MINA;
-		else
-			cout << this->minasCercanas;
-	}
-}
-
-
-
 
 
