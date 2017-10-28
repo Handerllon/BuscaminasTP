@@ -50,15 +50,15 @@ void Jugador::jugada(Tablero* tablero){
         cin<<tipoDeJugada;
 
         if (tipoDeJugada==1){
-            casillaElegida.descubrirCasillero;
+            casillaElegida->descubrirCasillero();
             jugadaValida=true;
         }
         else if (tipoDeJugada==2){
-            casillaElegida.colocarBandera;
+            casillaElegida->colocarBandera();
             jugadaValida=true;
         }
         else if (tipoDeJugada==3){
-            casillaElegida.quitarBandera;
+            casillaElegida->quitarBandera();
             jugadaValida=true;
         }
         else{
