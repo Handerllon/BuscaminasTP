@@ -11,25 +11,25 @@ Jugador::Jugador(unsigned int identificador){
 
 }
 
-Jugador::cambiarJugadorAPerdido(){
+void Jugador::cambiarJugadorAPerdido(){
 
     estaJugando=false;
 
 }
 
-Jugador::getEstaJugando(){
+bool Jugador::getEstaJugando(){
 
     return estaJugando;
 
 }
 
-Jugador::getIdentificador(){
+unsigned int Jugador::getIdentificador(){
 
     return identificadorJugador;
 
 }
 
-Jugador::jugada(Tablero* tablero){
+void Jugador::jugada(Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida,tipoDeJugada;
 
@@ -66,3 +66,5 @@ Jugador::jugada(Tablero* tablero){
         }
     }
 }
+
+Jugador::~Jugador(){}
