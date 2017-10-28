@@ -17,18 +17,16 @@ const char DIFICIL='D';
 
 class Referi {
 	private:
-		int jugadores;
-		Lista <Jugador*>* Jugadores;
+		int cantJugadores;
+		Lista <Jugador*>* jugadores;
 		char dificultad;
 	public:
 		//Crea al referi, que contiene 2 jugadores por defecto y dificultad media
 		Referi();
 		//Crea al referi que manejara una cantidad n de jugadores.
-		Referi(unsigned int jugadores, char dificultad);
+		Referi(unsigned int cantJugadores, char dificultad);
 
 		virtual ~Referi();
 };
-
-} /* namespace Referi */
 
 #endif /* REFERI_H_ */
