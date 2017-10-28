@@ -10,7 +10,7 @@ void Terrorista::plantarBombas(Tablero* tablero, Inicializador* init) {
     
     if (init->obtenerDificultad() == 'F')
         cantidadBombas = (filas * columnas) / 5;
-    if (init->obtenerDificultad() == 'I')
+    else if (init->obtenerDificultad() == 'I')
         cantidadBombas = (filas * columnas) / 4;
     else
         cantidadBombas = (filas * columnas) / 3;
