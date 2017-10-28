@@ -10,16 +10,23 @@
 namespace Referi {
 
 Referi::Referi() {
-	this->jugadores = 2;
+	this->cantJugadores = 2;
 	this->dificultad= MEDIA;
-	//Se crea la lista con 2 jugadores
-
+	this->jugadores = new Lista<Jugador*>;
 }
-Referi::Referi(unsigned int jugadores, char dificultad) {
+	
+Referi::Referi(unsigned int cantJugadores, char dificultad) {
 	//jugadores es enviado por metodo de inicializador
-	this->jugadores=jugadores;
-	this->dificultad=dificultad;
-	//se crea la lista ocn cantidad de 'jugadores'
+	this->cantJugadores=cantJugadores;
+	this->dificultad=dificultad;			
+	this->jugadores = new Lista<Jugador*>;
+	
+	//Se crean los jugadores y se los agrega a la lista circular
+	Jugador* arrayJugadores = new Jugador[cantJugadores];
+	for (int i = 0; i < cantJugadores; i++) {
+		jugadores.agregar(arrayJugadores[i]);
+	}
+	
 }
 
 Referi::~Referi() {
