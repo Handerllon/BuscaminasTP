@@ -27,9 +27,9 @@ unsigned int Tablero::obtenerCantidadColumnas(){
 	return this->columnas;
 }
 
-Casilla Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada){
-
-	return tablero[filaDeseada][columnaDeseada];
+Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada){
+	Casilla* aObtener = &tablero[filaDeseada][columnaDeseada]
+	return aObtener;
 }
 
 Tablero::~Tablero(){
