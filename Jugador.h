@@ -14,6 +14,13 @@ private:
         Planilla* planillaJugador;
 
         unsigned int identificadorJugador;
+        
+        /*
+        PRE: Recibe el ancho y el alto del tablero
+        POST: Verifica si la posicion ingresada por el jugador es valida para ser usada
+        */
+        
+        void verificarJugada(int posX, int posY, unsigned int anchoTablero, unsigned int altoTablero); 
 
 public:
 
