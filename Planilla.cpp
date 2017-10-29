@@ -24,7 +24,7 @@ int Planilla:: obtenerPuntaje(){
 }
 
 void Planilla:: sumarPuntos(int puntosASumar){
-	if(puntosASumar <-1 || puntosASumar >2){
+	if(puntosASumar <-2 || puntosASumar >2){
 		throw std::string("puntosASumar debe estar entre -1 y 2");
 	}
 
