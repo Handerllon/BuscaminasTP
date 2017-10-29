@@ -15,7 +15,7 @@ void Jugador::verificarJugada(int posX, int posY, unsigned int anchoTablero, uns
 
     bool jugadaValida=false;
     
-    if ((0<posX<anchoTablero) && (0<posY<altoTablero)){
+    if ((0<posX<=anchoTablero) && (0<posY<=altoTablero)){
         jugadaValida=true;
     }
     
@@ -58,11 +58,10 @@ void Jugador::jugada(Tablero* tablero){
         
     while (not jugadaValida(filaElegida,columnaElegida,filasTablero,columnasTablero){
 
-        cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
-        cin>>filaElegida;
-
-        cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
-        cin>>columnaElegida;
+        cout>>"Jugada no valida, por favor ingresar nuevamente la fila y columna elegida en ese orden">>endl;
+        cout>>"(Una a la vez)">>endl;
+        cin<<filaElegida;
+        cin<<columnaElegida;
         
     }
 
