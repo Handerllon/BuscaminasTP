@@ -11,6 +11,18 @@ Jugador::Jugador(unsigned int identificador){
 
 }
 
+void Jugador::verificarJugada(int posX, int posY, unsigned int anchoTablero, unsigned int altoTablero){
+
+    bool jugadaValida=false;
+    
+    if ((0<posX<anchoTablero) && (0<posY<altoTablero)){
+        jugadaValida=true;
+    }
+    
+    return jugadaValida;
+    
+}
+
 void Jugador::cambiarJugadorAPerdido(){
 
     estaJugando=false;
@@ -29,45 +41,53 @@ unsigned int Jugador::getIdentificador(){
 
 }
 
-/*
-Todos los couts han sido comentados, despues si son necesarios se les saca el comentario
-Estaban ahi papra que el jugador eliga casillero y jugada, al igual que la verificacion de la 
-jugada
-*/
 void Jugador::jugada(Tablero* tablero){
 
-    unsigned int filaElegida,columnaElegida,tipoDeJugada;
+    int filaElegida,columnaElegida,tipoDeJugada;
+    
+    unsigned int filasTablero = tablero->obtenerCantidadFilas();
+    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
-    bool jugadaValida=false
-
-    //cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
+    bool eleccionValida=false;
+    
+    cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
     cin>>filaElegida;
 
-    //cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
+    cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
     cin>>columnaElegida;
+        
+    while (not jugadaValida(filaElegida,columnaElegida,filasTablero,columnasTablero){
+
+        cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
+        cin>>filaElegida;
+
+        cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
+        cin>>columnaElegida;
+        
+    }
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
-    while (not jugadaValida){
+    while (not eleccionValida){
 
-        //cout>>"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
-        //cout>>"(1) Descubrir casillero">>endl>>"(2) Colocar bandera">>endl>>"(3) Quitar bandera">>endl;
+        cout>>"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
+        cout>>"(1) Descubrir casillero">>endl>>"(2) Colocar bandera">>endl>>"(3) Quitar bandera">>endl;
         cin<<tipoDeJugada;
 
         if (tipoDeJugada==1){
             casillaElegida->descubrirCasillero();
-            jugadaValida=true;
+            eleccionValida=true;
         }
         else if (tipoDeJugada==2){
             casillaElegida->colocarBandera();
-            jugadaValida=true;
+            eleccionValida=true;
         }
         else if (tipoDeJugada==3){
             casillaElegida->quitarBandera();
-            jugadaValida=true;
+            eleccionValida=true;
         }
         else{
-            //cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
+            cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
         }
     }
 }
