@@ -110,4 +110,10 @@ void Jugador::jugada(Tablero* tablero){
     }
 }
 
+void Jugador::modificarPuntaje(int puntos){
+    
+    planillaJugador-> sumarPuntos(puntos);
+    
+}
+
 Jugador::~Jugador(){}
