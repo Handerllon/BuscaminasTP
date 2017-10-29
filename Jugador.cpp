@@ -11,16 +11,49 @@ Jugador::Jugador(unsigned int identificador){
 
 }
 
-void Jugador::verificarJugada(int posX, int posY, unsigned int anchoTablero, unsigned int altoTablero){
+unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero){
 
-    bool jugadaValida=false;
-    
-    if ((0<posX<=anchoTablero) && (0<posY<=altoTablero)){
-        jugadaValida=true;
+    int valorElegido;
+
+    cout<<"Por favor ingresar la fila elegida para realizar la jugada"<<endl;
+    cin>>valorElegido;
+
+    valorElegido=verificarNumero(valorElegido,anchoTablero);
+
+    return valorElegido;
+
+}
+
+unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero){
+
+    int valorElegido;
+
+    cout<<"Por favor ingresar la columna elegida para realizar la jugada"<<endl;
+    cin>>valorElegido;
+
+    valorElegido=verificarNumero(valorElegido,altoTablero);
+
+    return valorElegido;
+
+}
+
+unsigned int Jugador::verificarNumero(int numeroIngresado, unsigned int tope){
+
+    bool numeroVerificado=false;
+
+    while (not numeroVerificado){
+
+        if (0<numeroIngresado<=tope)
+            numeroVerificado=true;
+
+        else{
+            cout<<"El numero ingresado no es valido, por favor, ingresar nuevamente"<<endl;
+            cin>>numeroIngresado;
+        }
     }
-    
-    return jugadaValida;
-    
+
+    return numeroIngresado;
+
 }
 
 void Jugador::cambiarJugadorAPerdido(){
@@ -44,26 +77,12 @@ unsigned int Jugador::getIdentificador(){
 void Jugador::jugada(Tablero* tablero){
 
     int filaElegida,columnaElegida,tipoDeJugada;
-    
+
     unsigned int filasTablero = tablero->obtenerCantidadFilas();
     unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
-    bool eleccionValida=false;
-    
-    cout<<"Por favor ingresar la fila elegida para jugar"<<endl;
-    cin>>filaElegida;
-
-    cout<<"Por favor ingresar la columna elegida para jugar"<<endl;
-    cin>>columnaElegida;
-        
-    while (not jugadaValida(filaElegida,columnaElegida,filasTablero,columnasTablero){
-
-        cout>>"Jugada no valida, por favor ingresar nuevamente la fila y columna elegida en ese orden">>endl;
-        cout>>"(Una a la vez)">>endl;
-        cin<<filaElegida;
-        cin<<columnaElegida;
-        
-    }
+    filaElegida=coordenadaXJugada(anchoTablero);
+    columnaElegida=coordenadaYJugada(altoTablero);
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
