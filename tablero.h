@@ -2,6 +2,7 @@
 #define TABLERO_H_
 
 #include "casilla.h"
+#include "Graficador.h"
 const unsigned int filasMinimas=10;
 const unsigned int columnasMinimas=10;
 
@@ -14,6 +15,8 @@ private:
 	unsigned int columnas;
 
 	Casilla** tablero;
+
+	Graficador TableroBMP;
 
 public:
 
