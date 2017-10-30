@@ -16,8 +16,8 @@ private:
 
 public:
 	//Pre: Filas y Columnas deben ser mayores a 0
-	//Post: Crea el Tablero en formato BMP del Buscaminas,con tableroObtener como filas, y Tableroobtener
-	//como columnas, el archivo se llamara "Buscaminas.bmp"
+	//Post: Crea el Tablero en formato BMP del Buscaminas,con las filas, y las
+	// columnas, el archivo se llamara "Buscaminas.bmp"
 	Graficador(unsigned int filas, unsigned int columnas);
 	//Post: Imprime el fondo del tablero en "Buscaminas.bmp"
 	void setTablero();
@@ -36,29 +36,29 @@ private:
 	//pre: Filas y columnas deben ser mayor a 0
 	//post:Pinta el caracter en el lugar deseado
 	void pintarCaracter(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna,char objetoAPintar);
-
+        //Post: Pinta el casillero como "Vacio" que representa un 0, es decir que no hay minas aledañas
 	void pintarVacio(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '1' 
 	void pintarUno(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '2'
 	void pintarDos(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '3'
 	void pintarTres(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '4'
 	void pintarCuatro(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '5'
 	void pintarCinco(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '6'
 	void pintarSeis(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '7'
 	void pintarSiete(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor '8'
 	void pintarOcho(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor 'B', es decir una bandera
 	void pintarBandera(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Limpia el casillero, dejandolo con el valor 'oculto'
 	void limpiarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
-
+	//Post: Pinta el casillero con el valor 'M', es decir, una mina, Reprensentada por un cuadrado rojo
 	void pintarMina(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
 };
 
