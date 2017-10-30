@@ -2,10 +2,12 @@
 
 #include "EasyBMP.h"
 #include "Graficador.h"
+#include <string>
 namespace Graficador{
 
 Graficador::Graficador(unsigned int filas, unsigned int columnas) {
-
+	if(filas<0||columnas<0)
+		throw std:: string("Tamaño del tablero es invalido");
 	this->filas=filas;
 	this->columnas=columnas;
 	this->Buscaminas.SetSize(TAMANIOCASILLERO*this->columnas+1,TAMANIOCASILLERO*this->filas+1);
@@ -27,6 +29,8 @@ void Graficador:: setTablero(){
 }
 
 void Graficador::imprimirJugada(unsigned int Fila,unsigned int Columna, char objetoAPintar){
+	if(Fila<0||Columna<0)
+		throw std:: string("Graficador: Posicion Invalida");
 	BMP Buscaminas;
 	Buscaminas.ReadFromFile("Buscaminas.bmp");
 	RGBApixel Rojo = Buscaminas.GetPixel(0,0);
@@ -42,6 +46,8 @@ void Graficador::imprimirJugada(unsigned int Fila,unsigned int Columna, char obj
 }
 
 void pintarFondo(BMP Buscaminas,RGBApixel Color,unsigned int CantidadFilas,unsigned int CantidadColumnas){
+	if(CantidadFilas<1||CantidadColumnas<1)
+		throw std:: string("Tamaño del tablero es invalido");
 	for(unsigned int i=0; i <=TAMANIOCASILLERO*CantidadFilas; i++){
 				for(unsigned int j=0; j <= TAMANIOCASILLERO*CantidadColumnas; j++){
 						Buscaminas.SetPixel(j,i,Color);
@@ -51,6 +57,8 @@ void pintarFondo(BMP Buscaminas,RGBApixel Color,unsigned int CantidadFilas,unsig
 }
 
 void pintarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int CantidadFilas,unsigned int CantidadColumnas){
+	if(CantidadFilas<1||CantidadColumnas<1)
+		throw std:: string("Cantidad de Filas y/o Columnas es menor a 1");
 	Buscaminas.ReadFromFile("Buscaminas.bmp");
 	unsigned int CantidadMayor;
 	if(CantidadFilas>CantidadColumnas)
@@ -278,6 +286,8 @@ void pintarMina(BMP Buscaminas,RGBApixel Color,unsigned int Fila,unsigned int Co
 }
 
 void pintarCaracter(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna,char objetoAPintar){
+	if(Fila<1||Columna<1)
+		throw std:: string("Posicion invalida");
 	if(objetoAPintar == '0')
 		pintarVacio(Buscaminas,Color,Fila,Columna);
 	else if(objetoAPintar == '1')
