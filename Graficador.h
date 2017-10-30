@@ -19,6 +19,7 @@ public:
 	//Post: Crea el Tablero en formato BMP del Buscaminas,con las filas, y las
 	// columnas, el archivo se llamara "Buscaminas.bmp"
 	Graficador(unsigned int filas, unsigned int columnas);
+	//Pre:Esta funcion no se utilizo previamente.
 	//Post: Imprime el fondo del tablero en "Buscaminas.bmp"
 	void setTablero();
 	//Pre: Filas y Columnas deben ser mayores a 0
