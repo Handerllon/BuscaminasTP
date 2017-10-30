@@ -47,28 +47,28 @@ void calcularProximidades(){
 
 			if (not casilleroActual->tieneMina()){
 
-				if (obtenerCasillero(i+1,j)->tieneMina())
+				if (obtenerCasillero(i+1,j)->tieneMina() && coordenadasValidas(i+1,j))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i-1,j)->tieneMina())
+				if (obtenerCasillero(i-1,j)->tieneMina() && coordenadasValidas(i-1,j))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i,j+1)->tieneMina())
+				if (obtenerCasillero(i,j+1)->tieneMina() && coordenadasValidas(i,j+1))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i,j-1)->tieneMina())
+				if (obtenerCasillero(i,j-1)->tieneMina() && coordenadasValidas(i,j-1))
 					minasEncontradas++;
 			
-				if (obtenerCasillero(i+1,j+1)->tieneMina())
+				if (obtenerCasillero(i+1,j+1)->tieneMina() && coordenadasValidas(i+1,j+1))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i+1,j-1)->tieneMina())
+				if (obtenerCasillero(i+1,j-1)->tieneMina() && coordenadasValidas(i+1,j-1))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i-1,j+1)->tieneMina())
+				if (obtenerCasillero(i-1,j+1)->tieneMina() && coordenadasValidas(i-1,j+1))
 					minasEncontradas++;
 
-				if (obtenerCasillero(i-1,j-1)->tieneMina())
+				if (obtenerCasillero(i-1,j-1)->tieneMina() && coordenadasValidas(i-1,j-1))
 					minasEncontradas++;
 			}
 
