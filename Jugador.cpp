@@ -108,12 +108,32 @@ void Jugador::jugada(Tablero* tablero){
             cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
         }
     }
+
+    actualizarPuntaje(casillaElegida,tipoDeJugada);
+
 }
 
-void Jugador::modificarPuntaje(int puntos){
-    
-    planillaJugador-> sumarPuntos(puntos);
-    
+void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida){
+
+        if (jugadaElegida==1 && casillaJugada->tieneMina()){
+            cambiarJugadorAPerdido();
+        }
+
+        else if (jugadaElegida==2 && casillaJugada->tieneMina()){
+            planillaJugador->sumarPuntos(1);
+        }
+
+        else if (jugadaElegida==2 && not casillaJugada->tieneMina()){
+            planillaJugador->sumarPuntos(-1);
+        }
+
+        else if (jugadaElegida==3 && casillaJugada->tieneMina()){
+            planillaJugador->sumarPuntos(-2);
+        }
+
+        else if (jugadaElegida==3 && not casillaJugada->tieneMina()){
+            planillaJugador->sumarPuntos(2);
+        }
 }
 
 Jugador::~Jugador(){}
