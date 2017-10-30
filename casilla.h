@@ -44,6 +44,12 @@ public:
 	 * POST:cambia el valor de la fila a 'nuevaFila' y el valor de la columna a 'nuevaColumna'
 	 */
 	void cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColumna);
+	
+	/*
+	PRE: Es necesario que el casillero este inicializado
+	POST: Modifica minasCercanas para que sea igual a "minasEncontradas"
+	*/
+	void setMinasCercanas(unsigned int minasEncontradas);
 
 
 	/*
