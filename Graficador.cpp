@@ -2,7 +2,6 @@
 
 #include "EasyBMP.h"
 #include "Graficador.h"
-#include "Inicializador.h"
 namespace Graficador{
 
 Graficador::Graficador(unsigned int filas, unsigned int columnas) {
