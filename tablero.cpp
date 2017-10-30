@@ -16,7 +16,6 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 		}
 	}
 }
-	this->TableroBMP(this->obtenerFilas(),this->obtenerColumnas());
 
 unsigned int Tablero::obtenerCantidadFilas(){
 
