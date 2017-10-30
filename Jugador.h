@@ -37,6 +37,13 @@ private:
         */
 
         unsigned int verificarNumero(unsigned int numeroIngresado, unsigned int tope);
+        
+        /*
+        PRE: Recibe la fila y columna del casillero que se quiere abrir
+        POST: En el caso de que el casillero tenga el numero 0, descubre los casilleros de alrededor
+        */
+
+        void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida);
 
 public:
 
