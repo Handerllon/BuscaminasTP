@@ -76,6 +76,26 @@ unsigned int Jugador::getIdentificador(){
 
 }
 
+void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
+
+    Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+
+    casillaElegida->descubrirCasillero();
+
+    if (casillaElegida->tieneMina() || (casillaElegida->mostrarCasilla())!=0)
+        return;
+
+    mostrarCasillero(tablero,filaElegida+1,columnaElegida);
+    mostrarCasillero(tablero,filaElegida-1,columnaElegida);
+    mostrarCasillero(tablero,filaElegida,columnaElegida+1);
+    mostrarCasillero(tablero,filaElegida,columnaElegida-1);
+    mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
+    mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
+    mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
+    mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+
+}
+
 void Jugador::jugada(Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida,tipoDeJugada;
@@ -95,7 +115,7 @@ void Jugador::jugada(Tablero* tablero){
         cin>>tipoDeJugada;
 
         if (tipoDeJugada==DESCUBRIR_CASILLA){
-            casillaElegida->descubrirCasillero();
+            mostrarCasillero(tablero,filaElegida,coulmnaElegida);
             eleccionValida=true;
         }
         else if (tipoDeJugada==COLOCAR_BANDERA){
