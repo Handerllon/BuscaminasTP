@@ -10,7 +10,6 @@
 #include "ListaCircular.h"
 #include "Jugador.h"
 
-namespace Referi {
 const char FACIL='F';
 const char MEDIA= 'M';
 const char DIFICIL='D';

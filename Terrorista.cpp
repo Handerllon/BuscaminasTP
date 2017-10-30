@@ -16,7 +16,7 @@ void Terrorista::plantarBombas(Tablero* tablero, Inicializador* init) {
         cantidadBombas = (filas * columnas) / 3;
     
  
-    for (int i = 0; i < cantBombas; i++) {
+    for (int i = 0; i < cantidadBombas; i++) {
          
         unsigned int posX = rand() % filas;
         unsigned int posY = rand() % columnas;

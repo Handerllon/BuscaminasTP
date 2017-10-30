@@ -3,13 +3,13 @@
 
 using namespace std;
 
-Jugador::Jugador(unsigned int identificador){
+Jugador::Jugador(){
 
-    estaJugando=true;
+    estaJugando = true;
 
-    identificadorJugador=identificador;
+    identificadorJugador = 0;
 
-    planillaJugador= new Planilla(this->getIdentificador());
+    planillaJugador = new Planilla(this->getIdentificador());
 
 }
 
@@ -76,7 +76,7 @@ unsigned int Jugador::getIdentificador(){
 
 }
 
-void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
+void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
@@ -115,7 +115,7 @@ void Jugador::jugada(Tablero* tablero){
         cin>>tipoDeJugada;
 
         if (tipoDeJugada==DESCUBRIR_CASILLA){
-            mostrarCasillero(tablero,filaElegida,coulmnaElegida);
+            mostrarCasillero(tablero,filaElegida,columnaElegida);
             eleccionValida=true;
         }
         else if (tipoDeJugada==COLOCAR_BANDERA){

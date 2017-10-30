@@ -1,13 +1,12 @@
-#include "BMPT.h"
+#include "Graficador.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-const int TAMANIOCASILLERO = 30; //Pixeles
 
 void pintarFondo(BMP Buscaminas,RGBApixel Color,unsigned int CantidadFilas,unsigned int CantidadColumnas){
-	for(unsigned int i=0; i <=TAMANIOCASILLERO*CantidadFilas; i++){
-				for(unsigned int j=0; j <= TAMANIOCASILLERO*CantidadColumnas; j++){
+	for(unsigned int i=0; i <=TAMANIOCASILLA*CantidadFilas; i++){
+				for(unsigned int j=0; j <= TAMANIOCASILLA*CantidadColumnas; j++){
 						Buscaminas.SetPixel(j,i,Color);
 				}
 			}
@@ -22,10 +21,10 @@ void pintarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int CantidadFilas,
 	 else
 		 CantidadMayor=CantidadColumnas;
 	for(unsigned int k=0; k <=CantidadMayor; k++){
-		for(unsigned int i=0; i <=TAMANIOCASILLERO*CantidadFilas; i++){
-			for(unsigned int j=0; j <= TAMANIOCASILLERO*CantidadColumnas; j++){
-				if(i==0 || i== TAMANIOCASILLERO*CantidadFilas ||j== 0 ||j== TAMANIOCASILLERO*CantidadColumnas|| i==k*TAMANIOCASILLERO
-					|| j==k*TAMANIOCASILLERO){
+		for(unsigned int i=0; i <=TAMANIOCASILLA*CantidadFilas; i++){
+			for(unsigned int j=0; j <= TAMANIOCASILLA*CantidadColumnas; j++){
+				if(i==0 || i== TAMANIOCASILLA*CantidadFilas ||j== 0 ||j== TAMANIOCASILLA*CantidadColumnas|| i==k*TAMANIOCASILLA
+					|| j==k*TAMANIOCASILLA){
 					Buscaminas.SetPixel(j,i,Color);
 				}
 			}
@@ -36,8 +35,8 @@ void pintarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int CantidadFilas,
 
 void pintarVacio(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 		Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+5; j < TAMANIOCASILLERO*Columna-5; j++){
-				for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+5; j < TAMANIOCASILLA*Columna-5; j++){
+				for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
 					Buscaminas.SetPixel(j,i,Color);
 				}
 		}
@@ -46,9 +45,9 @@ void pintarVacio(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int 
 
 void pintarUno(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-			for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-					for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-						if( j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21){
+			for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+					for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+						if( j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21){
 							Buscaminas.SetPixel(j,i,Color);
 						}
 					}
@@ -58,21 +57,21 @@ void pintarUno(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Co
 
 void pintarDos(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-	for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-		for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-			if( j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11 && i<= TAMANIOCASILLERO*Fila-15){
+	for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+		for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+			if( j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11 && i<= TAMANIOCASILLA*Fila-15){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21 && i>= TAMANIOCASILLERO*Fila-15){
+			if(j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21 && i>= TAMANIOCASILLA*Fila-15){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-6 && i>= TAMANIOCASILLERO*Fila-7 ){
+			if(i<= TAMANIOCASILLA*Fila-6 && i>= TAMANIOCASILLA*Fila-7 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+			if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+			if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 				Buscaminas.SetPixel(j,i,Color);
 								}
 		}
@@ -82,18 +81,18 @@ void pintarDos(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Co
 
 void pintarTres(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-	for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-		for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-			if( (j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11)){
+	for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+		for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+			if( (j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11)){
 					Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-6 && i>= TAMANIOCASILLERO*Fila-7 ){
+			if(i<= TAMANIOCASILLA*Fila-6 && i>= TAMANIOCASILLA*Fila-7 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+			if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+			if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
 		}
@@ -103,15 +102,15 @@ void pintarTres(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int C
 
 void pintarCuatro(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-			for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-				if( j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11){
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+			for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+				if( j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11){
 					Buscaminas.SetPixel(j,i,Color);
 				}
-				if(j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21 && i<= TAMANIOCASILLERO*Fila-15){
+				if(j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21 && i<= TAMANIOCASILLA*Fila-15){
 					Buscaminas.SetPixel(j,i,Color);
 				}
-				if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+				if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 					Buscaminas.SetPixel(j,i,Color);
 									}
 			}
@@ -122,21 +121,21 @@ void pintarCuatro(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int
 
 void pintarCinco(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-	for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-		for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-			if( j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11 && i>= TAMANIOCASILLERO*Fila-15){
+	for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+		for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+			if( j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11 && i>= TAMANIOCASILLA*Fila-15){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21 && i<= TAMANIOCASILLERO*Fila-15){
+			if(j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21 && i<= TAMANIOCASILLA*Fila-15){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-6 && i>= TAMANIOCASILLERO*Fila-7 ){
+			if(i<= TAMANIOCASILLA*Fila-6 && i>= TAMANIOCASILLA*Fila-7 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+			if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+			if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 				Buscaminas.SetPixel(j,i,Color);
 								}
 		}
@@ -146,21 +145,21 @@ void pintarCinco(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int 
 
 void pintarSeis(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-	for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-		for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-			if( j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11 && i>= TAMANIOCASILLERO*Fila-15){
+	for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+		for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+			if( j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11 && i>= TAMANIOCASILLA*Fila-15){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21  ){
+			if(j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21  ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-6 && i>= TAMANIOCASILLERO*Fila-7 ){
+			if(i<= TAMANIOCASILLA*Fila-6 && i>= TAMANIOCASILLA*Fila-7 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+			if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 				Buscaminas.SetPixel(j,i,Color);
 			}
-			if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+			if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 				Buscaminas.SetPixel(j,i,Color);
 								}
 		}
@@ -170,20 +169,20 @@ void pintarSeis(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int C
 
 void pintarOcho(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-				for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-					if( (j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11)
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+				for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+					if( (j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11)
 						||
-						(j<= (TAMANIOCASILLERO*Columna)-20 && j>= (TAMANIOCASILLERO*Columna)-21)){
+						(j<= (TAMANIOCASILLA*Columna)-20 && j>= (TAMANIOCASILLA*Columna)-21)){
 						Buscaminas.SetPixel(j,i,Color);
 					}
-					if(i<= TAMANIOCASILLERO*Fila-6 && i>= TAMANIOCASILLERO*Fila-7 ){
+					if(i<= TAMANIOCASILLA*Fila-6 && i>= TAMANIOCASILLA*Fila-7 ){
 						Buscaminas.SetPixel(j,i,Color);
 					}
-					if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+					if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 						Buscaminas.SetPixel(j,i,Color);
 					}
-					if(i<= TAMANIOCASILLERO*Fila-15 && i>= TAMANIOCASILLERO*Fila-16 ){
+					if(i<= TAMANIOCASILLA*Fila-15 && i>= TAMANIOCASILLA*Fila-16 ){
 						Buscaminas.SetPixel(j,i,Color);
 					}
 				}
@@ -193,12 +192,12 @@ void pintarOcho(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int C
 
 void pintarSiete(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+9; j < TAMANIOCASILLERO*Columna-9; j++){
-				for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-					if( j<= (TAMANIOCASILLERO*Columna)-10 && j>= (TAMANIOCASILLERO*Columna)-11){
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+9; j < TAMANIOCASILLA*Columna-9; j++){
+				for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+					if( j<= (TAMANIOCASILLA*Columna)-10 && j>= (TAMANIOCASILLA*Columna)-11){
 						Buscaminas.SetPixel(j,i,Color);
 					}
-					if(i<= TAMANIOCASILLERO*Fila-24 && i>= TAMANIOCASILLERO*Fila-25 ){
+					if(i<= TAMANIOCASILLA*Fila-24 && i>= TAMANIOCASILLA*Fila-25 ){
 						Buscaminas.SetPixel(j,i,Color);
 					}
 				}
@@ -208,11 +207,11 @@ void pintarSiete(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int 
 
 void pintarBandera(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-	for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+5; j < TAMANIOCASILLERO*Columna-5; j++){
-			for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
-				if(	(j<= (TAMANIOCASILLERO*Columna)-21 && j>= (TAMANIOCASILLERO*Columna)-22)
+	for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+5; j < TAMANIOCASILLA*Columna-5; j++){
+			for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
+				if(	(j<= (TAMANIOCASILLA*Columna)-21 && j>= (TAMANIOCASILLA*Columna)-22)
 					||
-					(i <= TAMANIOCASILLERO*Fila-15 && j>= (TAMANIOCASILLERO*Columna)-21)	){
+					(i <= TAMANIOCASILLA*Fila-15 && j>= (TAMANIOCASILLA*Columna)-21)	){
 					Buscaminas.SetPixel(j,i,Color);
 				}
 			}
@@ -222,8 +221,8 @@ void pintarBandera(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned in
 
 void limpiarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna){
 		Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+5; j < TAMANIOCASILLERO*Columna-5; j++){
-				for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+5; j < TAMANIOCASILLA*Columna-5; j++){
+				for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
 					Buscaminas.SetPixel(j,i,Color);
 				}
 		}
@@ -232,8 +231,8 @@ void limpiarCasillero(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned
 
 void pintarMina(BMP Buscaminas,RGBApixel Color,unsigned int Fila,unsigned int Columna){
 	Buscaminas.ReadFromFile("Test.bmp");
-		for(unsigned int j=TAMANIOCASILLERO*Columna-TAMANIOCASILLERO+5; j < TAMANIOCASILLERO*Columna-5; j++){
-				for(unsigned int i=TAMANIOCASILLERO*Fila-TAMANIOCASILLERO+5; i < TAMANIOCASILLERO*Fila-5; i++){
+		for(unsigned int j=TAMANIOCASILLA*Columna-TAMANIOCASILLA+5; j < TAMANIOCASILLA*Columna-5; j++){
+				for(unsigned int i=TAMANIOCASILLA*Fila-TAMANIOCASILLA+5; i < TAMANIOCASILLA*Fila-5; i++){
 					Buscaminas.SetPixel(j,i,Color);
 				}
 		}
@@ -280,7 +279,7 @@ int main(){
 			   	cin>>CantidadColumnas;
 		BMP Buscaminas;
 		Buscaminas.SetBitDepth(8);
-		Buscaminas.SetSize(TAMANIOCASILLERO*CantidadColumnas+1,TAMANIOCASILLERO*CantidadFilas+1);
+		Buscaminas.SetSize(TAMANIOCASILLA*CantidadColumnas+1,TAMANIOCASILLA*CantidadFilas+1);
 		Buscaminas.WriteToFile("Test.bmp");
 		Buscaminas.ReadFromFile("Test.bmp");
 		RGBApixel Rojo = Buscaminas.GetPixel(0,0);

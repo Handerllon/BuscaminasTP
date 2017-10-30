@@ -7,6 +7,7 @@
 const int DESCUBRIR_CASILLA=1;
 const int COLOCAR_BANDERA=2;
 const int QUITAR_BANDERA=3;
+
 class Jugador{
 
 private:
@@ -51,7 +52,7 @@ public:
         PRE: Es necesario un numero para identificar al jugador, pasado como parametro
         POST: Crea un jugador con el identificador recibido
         */
-        Jugador(unsigned int identificador);
+        Jugador();
 
         /*
         POST: Cambia getEstaJugando a falso (caso de que el jugador pierde)

@@ -4,8 +4,7 @@
 #include "EasyBMP.h"
 
 
-const unsigned int TAMANIOCASILLERO = 30;//Pixeles
-namespace Graficador{
+const unsigned int TAMANIOCASILLA = 30; //Pixeles
 
 class  Graficador{
 
@@ -63,7 +62,5 @@ private:
 	void pintarMina(BMP Buscaminas,RGBApixel Color, unsigned int Fila,unsigned int Columna);
 };
 
-
-} /* namespace Graficador */
 
 #endif /* Graficador_H_ */
