@@ -1,10 +1,12 @@
 #ifndef JUGADOR_H_
 #define JUGADOR_H_
 #include "Planilla.h"
-#include "Casilla.h"
-#include "Tablero.h"
+#include "casilla.h"
+#include "tablero.h"
 
-
+const int DESCUBRIR_CASILLA=1;
+const int COLOCAR_BANDERA=2;
+const int QUITAR_BANDERA=3;
 class Jugador{
 
 private:
@@ -34,7 +36,7 @@ private:
         POST: Devuelve si el numero ingresado esta entre 0 y el segundo parametro ingresado
         */
 
-        unsigned int verificarNumero(int numeroIngresado, unsigned int tope);
+        unsigned int verificarNumero(unsigned int numeroIngresado, unsigned int tope);
 
 public:
 
@@ -79,6 +81,13 @@ public:
         POST: Actualiza la planilla del jugador, tomando datos de la jugada y el tablero
         */
         void actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida);
+
+
+        /*
+         * PRE:-
+         * POST:devuelve el puntaje
+         */
+        int getPuntajeJugador();
 
         ~Jugador();
 
