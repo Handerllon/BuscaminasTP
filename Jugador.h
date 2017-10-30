@@ -68,13 +68,17 @@ public:
         */
 
         void jugada(Tablero* tablero);
-        
+
         /*
         PRE: Requiere que el jugador haya sido inicializado "puntosASumar" debe estar entre -1 y 2
         POST: Le agrega o resta puntos al jugador
         */
-        
-        void modificarPuntaje(int puntos);
+
+        /*
+        PRE: Es necesario que haya ocurrido una jugada
+        POST: Actualiza la planilla del jugador, tomando datos de la jugada y el tablero
+        */
+        void actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida);
 
         ~Jugador();
 
