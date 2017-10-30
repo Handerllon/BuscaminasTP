@@ -16,8 +16,6 @@ private:
 
 	Casilla** tablero;
 
-	Graficador TableroBMP;
-
 public:
 
 	/*
