@@ -152,10 +152,17 @@ template<class T> void Lista<T>::agregar(T elemento, unsigned int posicion) {
 
         Nodo<T>* nuevo = new Nodo<T>(elemento);
 
-        if (posicion == 1) {
-        	this->primero = nuevo;
-            nuevo->cambiarSiguiente(this->primero);
+        if (posicion == 1 ) {
+        	if(estaVacia()){
 
+            nuevo->cambiarSiguiente(nuevo);
+        	} else{
+
+        		Nodo<T>* ultimo=this->obtenerNodo(contarElementos());
+        		nuevo->cambiarSiguiente(primero);
+        		ultimo->cambiarSiguiente(nuevo);
+        	}
+        	this->primero = nuevo;
         } else {
 
             Nodo<T>* anterior = this->obtenerNodo(posicion - 1);
@@ -206,10 +213,16 @@ template<class T> void Lista<T>::remover(unsigned int posicion) {
         Nodo<T>* aRemover;
 
         if (posicion == 1) {
-
         	aRemover = this->primero;
-            this->primero = NULL;
+        	if(this->contarElementos()==1){
 
+        		this->primero = NULL;
+
+        	}else{
+        		Nodo<T>* ultimo=this->obtenerNodo(this->contarElementos());
+        		this->primero=aRemover->obtenerSiguiente();
+        		ultimo->cambiarSiguiente(this->primero);
+        	}
         } else {
 
             Nodo<T>* anterior = this->obtenerNodo(posicion - 1);
