@@ -31,7 +31,10 @@ Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int column
 	Casilla* aObtener = &tablero[filaDeseada][columnaDeseada];
 	return aObtener;
 }
-
+bool Tablero::coordenadasValidas(unsigned int fila, unsigned int columna){
+	
+	return fila>=0 && fila< obtenerCantidadFilas() && columna>=0 && columna< obtenerCantidadColumnas();
+}
 Tablero::~Tablero(){
 
 	unsigned int totalFilas=this->obtenerCantidadFilas();
