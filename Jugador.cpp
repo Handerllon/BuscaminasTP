@@ -9,11 +9,13 @@ Jugador::Jugador(unsigned int identificador){
 
     identificadorJugador=identificador;
 
+    planillaJugador= new Planilla(this->getIdentificador());
+
 }
 
 unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero){
 
-    int valorElegido;
+    unsigned int valorElegido;
 
     cout<<"Por favor ingresar la fila elegida para realizar la jugada"<<endl;
     cin>>valorElegido;
@@ -26,7 +28,7 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero){
 
 unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero){
 
-    int valorElegido;
+    unsigned int valorElegido;
 
     cout<<"Por favor ingresar la columna elegida para realizar la jugada"<<endl;
     cin>>valorElegido;
@@ -37,13 +39,13 @@ unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero){
 
 }
 
-unsigned int Jugador::verificarNumero(int numeroIngresado, unsigned int tope){
+unsigned int Jugador::verificarNumero(unsigned int numeroIngresado, unsigned int tope){
 
     bool numeroVerificado=false;
 
     while (not numeroVerificado){
 
-        if (0<numeroIngresado<=tope)
+        if (numeroIngresado>=0 && numeroIngresado<=tope)
             numeroVerificado=true;
 
         else{
@@ -76,36 +78,36 @@ unsigned int Jugador::getIdentificador(){
 
 void Jugador::jugada(Tablero* tablero){
 
-    int filaElegida,columnaElegida,tipoDeJugada;
-
+    unsigned int filaElegida,columnaElegida,tipoDeJugada;
+    bool eleccionValida=false;
     unsigned int filasTablero = tablero->obtenerCantidadFilas();
     unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
-    filaElegida=coordenadaXJugada(anchoTablero);
-    columnaElegida=coordenadaYJugada(altoTablero);
+    filaElegida=this->coordenadaXJugada(columnasTablero);
+    columnaElegida=this->coordenadaYJugada(filasTablero);
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
     while (not eleccionValida){
 
-        cout>>"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
-        cout>>"(1) Descubrir casillero">>endl>>"(2) Colocar bandera">>endl>>"(3) Quitar bandera">>endl;
-        cin<<tipoDeJugada;
+        cout<<"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
+        cout<<"(1) Descubrir casillero"<<endl<<"(2) Colocar bandera"<<endl<<"(3) Quitar bandera"<<endl;
+        cin>>tipoDeJugada;
 
-        if (tipoDeJugada==1){
+        if (tipoDeJugada==DESCUBRIR_CASILLA){
             casillaElegida->descubrirCasillero();
             eleccionValida=true;
         }
-        else if (tipoDeJugada==2){
+        else if (tipoDeJugada==COLOCAR_BANDERA){
             casillaElegida->colocarBandera();
             eleccionValida=true;
         }
-        else if (tipoDeJugada==3){
+        else if (tipoDeJugada==QUITAR_BANDERA){
             casillaElegida->quitarBandera();
             eleccionValida=true;
         }
         else{
-            cout>>"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente">>endl;
+            cout<<"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente"<<endl;
         }
     }
 
@@ -115,25 +117,32 @@ void Jugador::jugada(Tablero* tablero){
 
 void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida){
 
-        if (jugadaElegida==1 && casillaJugada->tieneMina()){
+        if (jugadaElegida==DESCUBRIR_CASILLA && casillaJugada->tieneMina()){
             cambiarJugadorAPerdido();
         }
 
-        else if (jugadaElegida==2 && casillaJugada->tieneMina()){
+        else if (jugadaElegida==COLOCAR_BANDERA && casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(1);
         }
 
-        else if (jugadaElegida==2 && not casillaJugada->tieneMina()){
+        else if (jugadaElegida==COLOCAR_BANDERA && not casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(-1);
         }
 
-        else if (jugadaElegida==3 && casillaJugada->tieneMina()){
+        else if (jugadaElegida==QUITAR_BANDERA && casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(-2);
         }
 
-        else if (jugadaElegida==3 && not casillaJugada->tieneMina()){
+        else if (jugadaElegida==QUITAR_BANDERA && not casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(2);
         }
 }
 
-Jugador::~Jugador(){}
+int Jugador::getPuntajeJugador(){
+
+	return planillaJugador->obtenerPuntaje();
+}
+
+Jugador::~Jugador(){
+	delete planillaJugador;
+}
