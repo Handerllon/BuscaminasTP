@@ -43,6 +43,13 @@ public:
 	 *POST:devuelve true si las coordenadas recibidas estan dentro del rango del tablero.
 	 */
 	bool coordenadasValidas(unsigned int fila, unsigned int columna);
+	
+	/*
+	PRE: Es necesario que el tablero este incicializado, ya con las minas puestas en cada una de las casillas
+	POST: Asigna las minas cercanas a cada uno de los casilleros dentro del tablero
+	*/
+
+	void calcularProximidades();
 
 	/*
 	 * Libera los recursos asociados a la clase.
