@@ -38,7 +38,11 @@ public:
 	 * POST: devuelve la casilla de la posicion filaDeseada y columnaDeseada.
 	 */
 	Casilla* obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada);
-
+	
+	/*
+	 *POST:devuelve true si las coordenadas recibidas estan dentro del rango del tablero.
+	 */
+	bool coordenadasValidas(unsigned int fila, unsigned int columna);
 
 	/*
 	 * Libera los recursos asociados a la clase.
