@@ -3,8 +3,7 @@
 
 #include "casilla.h"
 #include "Graficador.h"
-const unsigned int filasMinimas=10;
-const unsigned int columnasMinimas=10;
+
 
 class Tablero{
 
@@ -38,18 +37,7 @@ public:
 	 * POST: devuelve la casilla de la posicion filaDeseada y columnaDeseada.
 	 */
 	Casilla* obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada);
-	
-	/*
-	 *POST:devuelve true si las coordenadas recibidas estan dentro del rango del tablero.
-	 */
-	bool coordenadasValidas(unsigned int fila, unsigned int columna);
-	
-	/*
-	PRE: Es necesario que el tablero este incicializado, ya con las minas puestas en cada una de las casillas
-	POST: Asigna las minas cercanas a cada uno de los casilleros dentro del tablero
-	*/
 
-	void calcularProximidades();
 
 	/*
 	 * Libera los recursos asociados a la clase.

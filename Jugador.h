@@ -18,19 +18,6 @@ private:
 
         unsigned int identificadorJugador;
 
-        /*
-        PRE: Recibe el ancho del tablero
-        POST: Se encarga de obtener la posicion X de jugada
-        */
-
-        unsigned int coordenadaXJugada(unsigned int anchoTablero);
-
-        /*
-        PRE: Recibe el alto del tablero
-        POST: Se encarga de obtener la posicion Y de jugada
-        */
-
-        unsigned int coordenadaYJugada(unsigned int altoTablero);
 
         /*
         PRE: Recibe valor para verificar si es mayor a 0
@@ -44,9 +31,22 @@ private:
         POST: En el caso de que el casillero tenga el numero 0, descubre los casilleros de alrededor
         */
 
-        void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida);
+        void mostrarCasillero(Tablero tablero, unsigned int filaElegida, unsigned int columnaElegida);
 
 public:
+        /*
+        PRE: Recibe el ancho del tablero
+        POST: Se encarga de obtener la posicion X de jugada
+        */
+
+        unsigned int coordenadaXJugada(unsigned int anchoTablero);
+
+        /*
+        PRE: Recibe el alto del tablero
+        POST: Se encarga de obtener la posicion Y de jugada
+        */
+
+        unsigned int coordenadaYJugada(unsigned int altoTablero);
 
         /*
         PRE: Es necesario un numero para identificar al jugador, pasado como parametro
@@ -73,11 +73,18 @@ public:
         unsigned int getIdentificador();
 
         /*
+         * Pre: identificador es valido
+         * Post: asigna un identificador al jugador
+         */
+        void setIdentificador(unsigned int identificador);
+
+        /*
         POST: Realiza una jugada, haciendo que el usuario ingrese la posicion elegida, al
         igual que el tipo de jugada a realizar. Interactua con tablero y casillero
         */
 
-        void jugada(Tablero* tablero);
+
+        void jugada(Tablero tablero);
 
         /*
         PRE: Requiere que el jugador haya sido inicializado "puntosASumar" debe estar entre -1 y 2

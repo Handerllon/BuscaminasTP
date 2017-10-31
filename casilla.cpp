@@ -26,10 +26,6 @@ void Casilla::cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColum
 	}
 }
 
-void Casilla::setMinasCercanas(unsigned int minasEncontradas){
-	minasCercanas=minasEncontradas;
-}	
-
 bool Casilla::tieneMina(){
 
 	return this->estaMinado;

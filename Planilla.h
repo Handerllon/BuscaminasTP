@@ -12,15 +12,12 @@ class Planilla {
 
 	private:
 
-			int NumeroJugador;
-			int puntosTotales;
-
+		int puntosTotales;
 
 	public:
 
-	//Pre: Jugador debe ser mayor a 0.
 	//post: Crea una Planilla con los puntos del jugador iniciados en 0.
-	Planilla(int jugador);
+	Planilla();
 	//
 	//Post: Devuelve el puntaje actual del jugador.
 	int obtenerPuntaje();

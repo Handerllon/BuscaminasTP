@@ -16,13 +16,17 @@ Referi::Referi(unsigned int cantJugadores, char dificultad) {
 	
 	//Se crean los jugadores y se los agrega a la lista circular
 	Jugador* arrayJugadores = new Jugador[cantJugadores];
-	for (int i = 0; i < cantJugadores; i++) {
-		jugadores->agregar(arrayJugadores + i);
+	for (int i = 1; i <= cantJugadores; i++) {
+		arrayJugadores[i-1].setIdentificador(i);
+		jugadores->agregar(arrayJugadores + (i-1));
 	}
 	
+}
+
+Lista<Jugador*>* Referi::getJugadores() {
+	return jugadores;
 }
 
 Referi::~Referi() {
 	// TODO Auto-generated destructor stub
 }
-

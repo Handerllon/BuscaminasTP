@@ -9,7 +9,7 @@ Jugador::Jugador(){
 
     identificadorJugador = 0;
 
-    planillaJugador = new Planilla(this->getIdentificador());
+    planillaJugador = new Planilla;
 
 }
 
@@ -43,7 +43,7 @@ unsigned int Jugador::verificarNumero(unsigned int numeroIngresado, unsigned int
 
     bool numeroVerificado=false;
 
-    while (not numeroVerificado){
+    while (!numeroVerificado){
 
         if (numeroIngresado>=0 && numeroIngresado<=tope)
             numeroVerificado=true;
@@ -76,9 +76,13 @@ unsigned int Jugador::getIdentificador(){
 
 }
 
-void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
+void Jugador::setIdentificador(unsigned int identificador) {
+	this->identificadorJugador = identificador;
+}
 
-    Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+void Jugador::mostrarCasillero(Tablero tablero, unsigned int filaElegida, unsigned int columnaElegida){
+
+    Casilla* casillaElegida  = tablero.obtenerCasillero(filaElegida, columnaElegida);
 
     casillaElegida->descubrirCasillero();
 
@@ -96,17 +100,17 @@ void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsig
 
 }
 
-void Jugador::jugada(Tablero* tablero){
+void Jugador::jugada(Tablero tablero){
 
     unsigned int filaElegida,columnaElegida,tipoDeJugada;
     bool eleccionValida=false;
-    unsigned int filasTablero = tablero->obtenerCantidadFilas();
-    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
+    unsigned int filasTablero = tablero.obtenerCantidadFilas();
+    unsigned int columnasTablero = tablero.obtenerCantidadColumnas();
 
     filaElegida=this->coordenadaXJugada(columnasTablero);
     columnaElegida=this->coordenadaYJugada(filasTablero);
 
-    Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+    Casilla* casillaElegida= tablero.obtenerCasillero(filaElegida, columnaElegida);
 
     while (not eleccionValida){
 

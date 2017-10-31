@@ -31,52 +31,6 @@ Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int column
 	Casilla* aObtener = &tablero[filaDeseada][columnaDeseada];
 	return aObtener;
 }
-bool Tablero::coordenadasValidas(unsigned int fila, unsigned int columna){
-	
-	return fila>=0 && fila< obtenerCantidadFilas() && columna>=0 && columna< obtenerCantidadColumnas();
-}
-
-void calcularProximidades(){
-
-	for(unsigned int i=0; i<cantidadFilas; i++){
-		for(unsigned int j=0; j<cantidadColumnas; j++){
-
-			int minasEncontradas=0
-
-			Casillero* casilleroActual = obtenerCasillero(i,j);
-
-			if (not casilleroActual->tieneMina()){
-
-				if (obtenerCasillero(i+1,j)->tieneMina() && coordenadasValidas(i+1,j))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i-1,j)->tieneMina() && coordenadasValidas(i-1,j))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i,j+1)->tieneMina() && coordenadasValidas(i,j+1))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i,j-1)->tieneMina() && coordenadasValidas(i,j-1))
-					minasEncontradas++;
-			
-				if (obtenerCasillero(i+1,j+1)->tieneMina() && coordenadasValidas(i+1,j+1))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i+1,j-1)->tieneMina() && coordenadasValidas(i+1,j-1))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i-1,j+1)->tieneMina() && coordenadasValidas(i-1,j+1))
-					minasEncontradas++;
-
-				if (obtenerCasillero(i-1,j-1)->tieneMina() && coordenadasValidas(i-1,j-1))
-					minasEncontradas++;
-			}
-
-			casilleroActual->setMinasCercanas(minasEncontradas);
-
-		}
-	}
-}
 
 Tablero::~Tablero(){
 
@@ -89,5 +43,3 @@ Tablero::~Tablero(){
 
 	delete[]tablero;
 }
-
-
