@@ -17,7 +17,10 @@ private:
         Planilla* planillaJugador;
 
         unsigned int identificadorJugador;
+        
+        unsigned int coordenadaXDeJugada;
 
+        unsigned int coordenadaYDeJugada;
 
         /*
         PRE: Recibe valor para verificar si es mayor a 0
@@ -103,7 +106,14 @@ public:
          * POST:devuelve el puntaje
          */
         int getPuntajeJugador();
+        
+        //pre: el jugador debio hacer una jugada primero
+        //post: devuelve la coordenada x de la jugada
+        unsigned int obtenerCoordenadaXJugada();
 
+        //pre: el jugador debio hacer una jugada primero
+        //post: devuelve la coordenada y de la jugada
+        unsigned int obtenerCoordenadaYJugada();
         ~Jugador();
 
 
