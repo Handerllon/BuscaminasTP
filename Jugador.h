@@ -87,12 +87,7 @@ public:
         */
 
 
-        void jugada(Tablero tablero);
-
-        /*
-        PRE: Requiere que el jugador haya sido inicializado "puntosASumar" debe estar entre -1 y 2
-        POST: Le agrega o resta puntos al jugador
-        */
+        void jugada(Tablero* tablero);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
