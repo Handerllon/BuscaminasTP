@@ -42,14 +42,14 @@ public:
         POST: Se encarga de obtener la posicion X de jugada
         */
 
-        unsigned int coordenadaXJugada(unsigned int anchoTablero);
+        unsigned int coordenadaXJugada(unsigned int anchoTablero, unsigned int* fila);
 
         /*
         PRE: Recibe el alto del tablero
         POST: Se encarga de obtener la posicion Y de jugada
         */
 
-        unsigned int coordenadaYJugada(unsigned int altoTablero);
+        unsigned int coordenadaYJugada(unsigned int altoTablero, unsigned int* columna);
 
         /*
         PRE: Es necesario un numero para identificar al jugador, pasado como parametro

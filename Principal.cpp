@@ -24,8 +24,9 @@ int main() {
 
 		Referi referi(cantJugadores,dificultad);
 		Tablero tablero(cantidadFilas, cantidadColumnas);
+		Tablero* pTablero = &tablero;
 		Terrorista terrorista;
-		terrorista.plantarBombas(tablero, dificultad);
+		terrorista.plantarBombas(pTablero, dificultad);
 
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
@@ -37,12 +38,12 @@ int main() {
 		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
 
-			jugadorDeTurno->jugada(tablero);
+			jugadorDeTurno->jugada(pTablero);
 			for (unsigned int i=0; i<cantidadFilas; i++){
 				for(unsigned int j=0; i<cantidadFilas; i++){
-					Casilla* casilla = tablero.obtenerCasillero(i,j);
+					Casilla* casilla = pTablero->obtenerCasillero(i,j);
 					if(casilla->estaOculta()){
-					Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),
+						Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada(),casilla->mostrarCasilla());
 					}
 				}

@@ -6,14 +6,10 @@ using namespace std;
 Jugador::Jugador(){
 
     estaJugando = true;
-
     identificadorJugador = 0;
-
     planillaJugador = new Planilla;
-	
-    unsigned int coordenadaXDeJugada=0;
-
-    unsigned int coordenadaYDeJugada=0;
+    coordenadaXDeJugada = 0;
+    coordenadaYDeJugada = 0;
 
 }
 
@@ -25,7 +21,7 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero, unsigned int*
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,anchoTablero);
-    (*fila)=ValorElegido;
+    (*fila) = valorElegido;
     return valorElegido;
 
 }

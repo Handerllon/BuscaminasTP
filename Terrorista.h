@@ -12,7 +12,7 @@ class Terrorista {
 public:
     /* Post: inserta en el tablero una cantidad de minas proporcional a la dificultad.
      */
-    void plantarBombas(Tablero tablero, char dificultad);
+    void plantarBombas(Tablero* tablero, char dificultad);
 };
 
 

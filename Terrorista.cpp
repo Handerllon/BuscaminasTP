@@ -1,9 +1,9 @@
 #include "Terrorista.h"
 
-void Terrorista::plantarBombas(Tablero tablero, char dificultad) {
+void Terrorista::plantarBombas(Tablero* tablero, char dificultad) {
     
-    int filas = tablero.obtenerCantidadFilas();
-    int columnas = tablero.obtenerCantidadColumnas();
+    int filas = tablero->obtenerCantidadFilas();
+    int columnas = tablero->obtenerCantidadColumnas();
     int cantidadBombas;
     
     srand(time(0));
@@ -21,7 +21,7 @@ void Terrorista::plantarBombas(Tablero tablero, char dificultad) {
         unsigned int posX = rand() % filas;
         unsigned int posY = rand() % columnas;
         
-        Casilla* aPlantar = tablero.obtenerCasillero(posX, posY);
+        Casilla* aPlantar = tablero->obtenerCasillero(posX, posY);
         
         if(aPlantar->tieneMina())
             i--;
