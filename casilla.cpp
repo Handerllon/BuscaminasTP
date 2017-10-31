@@ -26,6 +26,10 @@ void Casilla::cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColum
 	}
 }
 
+void Casilla::setMinasCercanas(unsigned int minasEncontradas){
+	minasCercanas=minasEncontradas;
+}
+
 bool Casilla::tieneMina(){
 
 	return this->estaMinado;
@@ -77,6 +81,11 @@ unsigned int Casilla::obtenerFila(){
 unsigned int Casilla::obtenerColumna(){
 
 	return this->columna;
+}
+
+unsigned int Casilla::getMinasCercanas(){
+
+	return this->minasCercanas;
 }
 
 char Casilla::mostrarCasilla(){
