@@ -25,7 +25,7 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero, unsigned int*
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,anchoTablero);
-    *fila=ValorElejido;
+    (*fila)=ValorElegido;
     return valorElegido;
 
 }
@@ -38,7 +38,7 @@ unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero, unsigned int* 
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,altoTablero);
-    *coordenadaYDeJugada=valorElegido;
+    (*columna)=valorElegido;
     return valorElegido;
 
 }
@@ -49,7 +49,7 @@ unsigned int Jugador::verificarNumero(unsigned int numeroIngresado, unsigned int
 
     while (!numeroVerificado){
 
-        if (numeroIngresado>=0 && numeroIngresado<=tope)
+        if (numeroIngresado>=0 && numeroIngresado<tope)
             numeroVerificado=true;
 
         else{
@@ -84,37 +84,42 @@ void Jugador::setIdentificador(unsigned int identificador) {
 	this->identificadorJugador = identificador;
 }
 
-void Jugador::mostrarCasillero(Tablero tablero, unsigned int filaElegida, unsigned int columnaElegida){
+void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
+	if(tablero->coordenadasValidas(filaElegida,columnaElegida)){
 
-    Casilla* casillaElegida  = tablero.obtenerCasillero(filaElegida, columnaElegida);
+		Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
-    casillaElegida->descubrirCasillero();
+		if(casillaElegida->estaOculta() && !casillaElegida->tieneBandera()){
 
-    if (casillaElegida->tieneMina() || (casillaElegida->mostrarCasilla())!=0)
-        return;
+			casillaElegida->descubrirCasillero();
 
-    mostrarCasillero(tablero,filaElegida+1,columnaElegida);
-    mostrarCasillero(tablero,filaElegida-1,columnaElegida);
-    mostrarCasillero(tablero,filaElegida,columnaElegida+1);
-    mostrarCasillero(tablero,filaElegida,columnaElegida-1);
-    mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
-    mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
-    mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
-    mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+			if(!casillaElegida->tieneMina() && (casillaElegida->getMinasCercanas() == 0)){
 
+				mostrarCasillero(tablero,filaElegida+1,columnaElegida);
+				mostrarCasillero(tablero,filaElegida-1,columnaElegida);
+				mostrarCasillero(tablero,filaElegida,columnaElegida+1);
+				mostrarCasillero(tablero,filaElegida,columnaElegida-1);
+				mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
+				mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
+				mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
+				mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+
+			}
+		}
+	}
 }
 
-void Jugador::jugada(Tablero tablero){
+void Jugador::jugada(Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida,tipoDeJugada;
     bool eleccionValida=false;
-    unsigned int filasTablero = tablero.obtenerCantidadFilas();
-    unsigned int columnasTablero = tablero.obtenerCantidadColumnas();
+    unsigned int filasTablero = tablero->obtenerCantidadFilas();
+    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
     filaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
     columnaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
 
-    Casilla* casillaElegida= tablero.obtenerCasillero(filaElegida, columnaElegida);
+    Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
     while (not eleccionValida){
 
