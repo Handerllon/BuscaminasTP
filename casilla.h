@@ -45,6 +45,11 @@ public:
 	 */
 	void cambiarCoordenadas(unsigned int nuevaFila, unsigned int nuevaColumna);
 
+	/*
+	PRE: Es necesario que el casillero este inicializado
+	POST: Modifica minasCercanas para que sea igual a "minasEncontradas"
+	*/
+	void setMinasCercanas(unsigned int minasEncontradas);
 
 	/*
 	 * devuelve TRUE si la casilla esta Minada o FALSE en caso contrario.
@@ -105,8 +110,14 @@ public:
 	unsigned int obtenerColumna();
 
 	/*
+	 *PRE:-
+	 *POST:devuelve el valor de minasCercanas.(cuantos casilleros a su alrededor tienen una mina plantada.)
+	 */
+	unsigned int getMinasCercanas();
+	
+	/*
 	 * POST: devuelve el estado actual de la casilla. Puede ser marcada o no, descubierta o no.
-	 * 		Si esta descubierta, muestra el numero de minas cercanas o, si es una mina, el simbolo correspondiente.
+	 * 	Si esta descubierta, muestra el numero de minas cercanas o, si es una mina, el simbolo correspondiente.
 	 */
 	char mostrarCasilla();
 
