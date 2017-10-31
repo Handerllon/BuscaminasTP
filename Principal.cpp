@@ -37,8 +37,13 @@ int main() {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
 
 			jugadorDeTurno->jugada(tablero);
-			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),jugadorDeTurno->obtenerCoordenadaXJugada(),//Valor de la casilla);
-
+			for (int i=1; i<cantidadFilas; i++){
+				for(int i=1; i<cantidadFilas; i++){
+					if(Casilla->!EstaOculta()){
+					Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),jugadorDeTurno->obtenerCoordenadaXJugada(),Casilla->mostrarCasilla());
+					}
+				}
+			}
 		}
 
 
