@@ -10,10 +10,14 @@ Jugador::Jugador(){
     identificadorJugador = 0;
 
     planillaJugador = new Planilla;
+	
+    unsigned int coordenadaXDeJugada=0;
+
+    unsigned int coordenadaYDeJugada=0;
 
 }
 
-unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero){
+unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero, unsigned int* fila){
 
     unsigned int valorElegido;
 
@@ -21,12 +25,12 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero){
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,anchoTablero);
-
+    *fila=ValorElejido;
     return valorElegido;
 
 }
 
-unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero){
+unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero, unsigned int* columna){
 
     unsigned int valorElegido;
 
@@ -34,7 +38,7 @@ unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero){
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,altoTablero);
-
+    *coordenadaYDeJugada=valorElegido;
     return valorElegido;
 
 }
@@ -107,8 +111,8 @@ void Jugador::jugada(Tablero tablero){
     unsigned int filasTablero = tablero.obtenerCantidadFilas();
     unsigned int columnasTablero = tablero.obtenerCantidadColumnas();
 
-    filaElegida=this->coordenadaXJugada(columnasTablero);
-    columnaElegida=this->coordenadaYJugada(filasTablero);
+    filaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
+    columnaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
 
     Casilla* casillaElegida= tablero.obtenerCasillero(filaElegida, columnaElegida);
 
