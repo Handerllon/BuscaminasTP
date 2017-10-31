@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include "Referi.h"
@@ -28,7 +29,7 @@ int main() {
 
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
-		Buscaminas.setTablero();	
+		Buscaminas.setTablero();
 
 		bool gameover = false;
 		referi.getJugadores()->iniciarCursor();
@@ -37,10 +38,12 @@ int main() {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
 
 			jugadorDeTurno->jugada(tablero);
-			for (int i=1; i<cantidadFilas; i++){
-				for(int i=1; i<cantidadFilas; i++){
-					if(Casilla->!EstaOculta()){
-					Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),jugadorDeTurno->obtenerCoordenadaXJugada(),Casilla->mostrarCasilla());
+			for (unsigned int i=0; i<cantidadFilas; i++){
+				for(unsigned int j=0; i<cantidadFilas; i++){
+					Casilla* casilla = tablero.obtenerCasillero(i,j);
+					if(casilla->estaOculta()){
+					Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),
+												jugadorDeTurno->obtenerCoordenadaXJugada(),casilla->mostrarCasilla());
 					}
 				}
 			}
@@ -50,7 +53,6 @@ int main() {
 	} catch (string e) {
 		cout << "Error:" << e << endl;
 	}
-
 
 	return 0;
 }
