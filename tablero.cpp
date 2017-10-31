@@ -32,6 +32,38 @@ Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int column
 	return aObtener;
 }
 
+bool Tablero::coordenadasValidas(unsigned int fila, unsigned int columna){
+
+	return fila>=0 && fila< obtenerCantidadFilas() && columna>=0 && columna< obtenerCantidadColumnas();
+}
+void Tablero::calcularProximidades(){
+	unsigned int minasEncontradas=0;
+	for( int filaActual=0; filaActual<obtenerCantidadFilas(); filaActual++){
+		for(int columnaActual=0; columnaActual<obtenerCantidadColumnas(); columnaActual++){
+
+			minasEncontradas=0;
+			Casilla* casilleroActual = obtenerCasillero(filaActual,columnaActual);
+
+			if ( !casilleroActual->tieneMina()){
+
+				for(int i= (filaActual-1); i <= (filaActual+1); i++){
+					for(int j= (columnaActual-1); j <= (columnaActual+1); j++){
+
+						Casilla* aChequear;
+						if(coordenadasValidas(i,j)){
+							aChequear=obtenerCasillero(i,j);
+							if(aChequear->tieneMina()){
+								minasEncontradas++;
+							}
+						}
+					}
+				}
+			}
+			casilleroActual->setMinasCercanas(minasEncontradas);
+		}
+	}
+}
+
 Tablero::~Tablero(){
 
 	unsigned int totalFilas=this->obtenerCantidadFilas();
