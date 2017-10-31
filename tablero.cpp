@@ -5,31 +5,13 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->columnas=cantidadColumnas;
 
 	this->tablero= new Casilla* [cantidadFilas];
-	for (unsigned int i=0; i<cantidadFilas; i++) {
-		this->tablero[i]= new Casilla[cantidadColumnas];
-		for (unsigned int j=0; j < cantidadColumnas; j++) {
-			tablero[i][j].cambiarCoordenadas(i,j);
-		}
-	}
-
-
-
-	/*for(unsigned int i=0; i<cantidadFilas; i++){
-		for(unsigned int j=0; j<cantidadColumnas; j++){
-			Casilla* actual = new Casilla;
-			actual = &tablero[i][j];
-			actual->cambiarCoordenadas(i,j);
-		}
-	}*/
-
-
-	/*Casilla* actual;
+	Casilla* actual;
 	for(unsigned int i=0; i<cantidadFilas; i++){
 		for(unsigned int j=0; j<cantidadColumnas; j++){
 			actual=this->obtenerCasillero(i,j);
 			actual->cambiarCoordenadas(i,j);
 		}
-	}*/
+	}
 }
 
 unsigned int Tablero::obtenerCantidadFilas(){
