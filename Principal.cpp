@@ -43,7 +43,7 @@ int main() {
 					Casilla* casilla = tablero.obtenerCasillero(i,j);
 					if(casilla->estaOculta()){
 					Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),
-												jugadorDeTurno->obtenerCoordenadaXJugada(),casilla->mostrarCasilla());
+								jugadorDeTurno->obtenerCoordenadaXJugada(),casilla->mostrarCasilla());
 					}
 				}
 			}
