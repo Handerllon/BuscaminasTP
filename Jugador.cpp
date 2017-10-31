@@ -170,7 +170,12 @@ int Jugador::getPuntajeJugador(){
 
 	return planillaJugador->obtenerPuntaje();
 }
-
+unsigned int Jugador::obtenerCoordenadaXJugada(){
+	return this->coordenadaXDeJugada;
+}
+unsigned int Jugador::obtenerCoordenadaYJugada(){
+	return this->coordenadaYDeJugada;
+}
 Jugador::~Jugador(){
 	delete planillaJugador;
 }
