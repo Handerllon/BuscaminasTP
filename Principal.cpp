@@ -27,6 +27,8 @@ int main() {
 		terrorista.plantarBombas(tablero, dificultad);
 
 		//BMP
+		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
+		Buscaminas.setTablero();	
 
 		bool gameover = false;
 		referi.getJugadores()->iniciarCursor();
@@ -35,7 +37,7 @@ int main() {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
 
 			jugadorDeTurno->jugada(tablero);
-
+			Buscaminas.imprimirJugada(,,);
 
 		}
 
