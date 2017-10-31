@@ -34,7 +34,7 @@ private:
         POST: En el caso de que el casillero tenga el numero 0, descubre los casilleros de alrededor
         */
 
-        void mostrarCasillero(Tablero tablero, unsigned int filaElegida, unsigned int columnaElegida);
+        void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida);
 
 public:
         /*
