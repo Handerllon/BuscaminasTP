@@ -3,12 +3,13 @@
 #include <string>
 #include "Referi.h"
 #include "Terrorista.h"
+#include "Graficador.h"
 using namespace std;
 
 
 
 int main() {
-	try {
+//	try {
 		unsigned int cantidadFilas;
 		unsigned int cantidadColumnas;
 		unsigned int cantJugadores;
@@ -27,11 +28,9 @@ int main() {
 		Tablero* pTablero = &tablero;
 		Terrorista terrorista;
 		terrorista.plantarBombas(pTablero, dificultad);
-
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
 		Buscaminas.setTablero();
-
 		bool gameover = false;
 		referi.getJugadores()->iniciarCursor();
 
@@ -40,26 +39,26 @@ int main() {
 			jugadorDeTurno->jugada(pTablero);
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaXJugada(),
 								jugadorDeTurno->obtenerCoordenadaYJugada());
-			if(casilla->getMinasCercanas()== 0){
-				for (unsigned int i=0; i<cantidadFilas; i++){
-					for(unsigned int j=0; i<cantidadFilas; i++){
-						 casilla = pTablero->obtenerCasillero(i,j);
-						if(!casilla->estaOculta()){
-							Buscaminas.imprimirJugada(i,j,casilla->mostrarCasilla());
-						}
-					}
-				}
-			}
-			else{
-			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),jugadorDeTurno->obtenerCoordenadaYJugada(),
+		//	if(casilla->getMinasCercanas()== 0){
+		//		for (unsigned int i=0; i<cantidadFilas; i++){
+			//		for(unsigned int j=0; i<cantidadFilas; i++){
+			//			 casilla = pTablero->obtenerCasillero(i,j);
+						//if(!casilla->estaOculta()){
+			//				Buscaminas.imprimirJugada(i+1,j+1,casilla->mostrarCasilla());
+		//				}
+			//		}
+			//	}
+
+	//		else{
+			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada()+1,jugadorDeTurno->obtenerCoordenadaYJugada()+1,
 						  casilla->mostrarCasilla());
-			}
+		//	}
 		}
 
 
-	} catch (string e) {
-		cout << "Error:" << e << endl;
-	}
-
+	//} catch (string e) {
+	//	cout << "Error:" << e << endl;
+	//}
+	cout<<"Gracias por jugar!"<<endl;
 	return 0;
 }
