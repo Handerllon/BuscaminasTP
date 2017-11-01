@@ -1,3 +1,0 @@
-# BuscaminasTP
-
-Hola a todos
