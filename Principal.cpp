@@ -9,7 +9,7 @@ using namespace std;
 
 
 int main() {
-//	try {
+	try {
 		unsigned int cantidadFilas;
 		unsigned int cantidadColumnas;
 		unsigned int cantJugadores;
@@ -37,28 +37,18 @@ int main() {
 		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
 			jugadorDeTurno->jugada(pTablero);
-			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaXJugada(),
-								jugadorDeTurno->obtenerCoordenadaYJugada());
-		//	if(casilla->getMinasCercanas()== 0){
-		//		for (unsigned int i=0; i<cantidadFilas; i++){
-			//		for(unsigned int j=0; i<cantidadFilas; i++){
-			//			 casilla = pTablero->obtenerCasillero(i,j);
-						//if(!casilla->estaOculta()){
-			//				Buscaminas.imprimirJugada(i+1,j+1,casilla->mostrarCasilla());
-		//				}
-			//		}
-			//	}
+			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
+								jugadorDeTurno->obtenerCoordenadaXJugada());
 
-	//		else{
-			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada()+1,jugadorDeTurno->obtenerCoordenadaYJugada()+1,
+			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
 						  casilla->mostrarCasilla());
-		//	}
+
 		}
 
 
-	//} catch (string e) {
-	//	cout << "Error:" << e << endl;
-	//}
+	} catch (string e) {
+		cout << "Error:" << e << endl;
+	}
 	cout<<"Gracias por jugar!"<<endl;
 	return 0;
 }

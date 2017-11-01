@@ -17,12 +17,12 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero, unsigned int*
 
     unsigned int valorElegido;
 
-    cout<<"Por favor ingresar la fila elegida para realizar la jugada"<<endl;
+    cout<<"Por favor ingresar la columna elegida para realizar la jugada"<<endl;
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,anchoTablero);
     (*fila) = valorElegido;
-    return valorElegido-1;
+    return valorElegido;
 
 }
 
@@ -30,12 +30,12 @@ unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero, unsigned int* 
 
     unsigned int valorElegido;
 
-    cout<<"Por favor ingresar la columna elegida para realizar la jugada"<<endl;
+    cout<<"Por favor ingresar la fila elegida para realizar la jugada"<<endl;
     cin>>valorElegido;
 
     valorElegido=verificarNumero(valorElegido,altoTablero);
     (*columna)=valorElegido;
-    return valorElegido-1;
+    return valorElegido;
 
 }
 
@@ -45,7 +45,7 @@ unsigned int Jugador::verificarNumero(unsigned int numeroIngresado, unsigned int
 
     while (!numeroVerificado){
 
-        if (numeroIngresado>=0 && numeroIngresado<tope)
+        if ((numeroIngresado>=0) && (numeroIngresado<tope))
             numeroVerificado=true;
 
         else{
@@ -112,8 +112,8 @@ void Jugador::jugada(Tablero* tablero){
     unsigned int filasTablero = tablero->obtenerCantidadFilas();
     unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
-    filaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
-    columnaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
+    filaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
+    columnaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
 
     Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 
