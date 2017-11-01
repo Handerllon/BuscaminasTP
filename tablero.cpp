@@ -4,10 +4,11 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->filas=cantidadFilas;
 	this->columnas=cantidadColumnas;
 
-	this->tablero= new Casilla* [cantidadFilas];
 	Casilla* actual;
-	for(unsigned int i=0; i<cantidadFilas; i++){
-		for(unsigned int j=0; j<cantidadColumnas; j++){
+	this->tablero= new Casilla* [cantidadFilas];
+	for (unsigned int i=0; i<cantidadFilas; i++) {
+		this->tablero[i]= new Casilla[cantidadColumnas];
+		for (unsigned int j=0; j < cantidadColumnas; j++) {
 			actual=this->obtenerCasillero(i,j);
 			actual->cambiarCoordenadas(i,j);
 		}
