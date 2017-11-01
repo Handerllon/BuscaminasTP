@@ -4,7 +4,16 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->filas=cantidadFilas;
 	this->columnas=cantidadColumnas;
 
-	this->tablero= new Casilla[cantidadFilas * cantidadColumnas];
+	this->tablero= new Casilla*[cantidadFilas];
+	for (int i=0; i<cantidadColumnas; i++)
+		tablero[i]= new Casilla[cantidadColumnas];
+	
+	for (int i=0; i<cantidadFilas; i++){
+		for (int j=0; j<cantidadColumnas; j++){
+			Casilla actual(i,j);
+			tablero[i][j]=actual;
+		}
+	}
 
 
 }
