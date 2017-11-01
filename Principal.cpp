@@ -37,16 +37,22 @@ int main() {
 
 		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
-
 			jugadorDeTurno->jugada(pTablero);
-			for (unsigned int i=0; i<cantidadFilas; i++){
-				for(unsigned int j=0; i<cantidadFilas; i++){
-					Casilla* casilla = pTablero->obtenerCasillero(i,j);
-					if(casilla->estaOculta()){
-						Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),
-								jugadorDeTurno->obtenerCoordenadaXJugada(),casilla->mostrarCasilla());
+			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaXJugada(),
+								jugadorDeTurno->obtenerCoordenadaYJugada());
+			if(casilla->mostrarCasilla()== '0'){
+				for (unsigned int i=0; i<cantidadFilas; i++){
+					for(unsigned int j=0; i<cantidadFilas; i++){
+						 casilla = pTablero->obtenerCasillero(i,j);
+						if(!casilla->estaOculta()){
+							Buscaminas.imprimirJugada(i,j,casilla->mostrarCasilla());
+						}
 					}
 				}
+			}
+			else{
+			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaXJugada(),jugadorDeTurno->obtenerCoordenadaYJugada(),
+						  casilla->mostrarCasilla());
 			}
 		}
 
