@@ -3,6 +3,7 @@
 #include "EasyBMP.h"
 #include "Graficador.h"
 #include <string>
+#include <iostream>
 
 Graficador::Graficador(unsigned int filas, unsigned int columnas) {
 	if(filas<0||columnas<0)
@@ -311,6 +312,8 @@ void Graficador::pintarCaracter(BMP Buscaminas,RGBApixel Color, unsigned int Fil
 		limpiarCasillero(Buscaminas,Color,Fila,Columna);
 	else if (objetoAPintar == 'M')
 		pintarMina(Buscaminas,Color,Fila,Columna);
+	else
+		cout<<"Graficador: imrimirTablero: No recibio un caracter valido"
 }
 
 
