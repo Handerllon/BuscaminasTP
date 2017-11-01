@@ -13,7 +13,7 @@ private:
 
 	unsigned int columnas;
 
-	Casilla** tablero;
+	Casilla* tablero;
 
 public:
 
