@@ -40,7 +40,7 @@ int main() {
 			jugadorDeTurno->jugada(pTablero);
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaXJugada(),
 								jugadorDeTurno->obtenerCoordenadaYJugada());
-			if(casilla->mostrarCasilla()== '0'){
+			if(casilla->getMinasCercanas()== 0){
 				for (unsigned int i=0; i<cantidadFilas; i++){
 					for(unsigned int j=0; i<cantidadFilas; i++){
 						 casilla = pTablero->obtenerCasillero(i,j);
