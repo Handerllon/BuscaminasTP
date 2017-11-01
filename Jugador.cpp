@@ -22,7 +22,7 @@ unsigned int Jugador::coordenadaXJugada(unsigned int anchoTablero, unsigned int*
 
     valorElegido=verificarNumero(valorElegido,anchoTablero);
     (*fila) = valorElegido;
-    return valorElegido;
+    return valorElegido-1;
 
 }
 
@@ -35,7 +35,7 @@ unsigned int Jugador::coordenadaYJugada(unsigned int altoTablero, unsigned int* 
 
     valorElegido=verificarNumero(valorElegido,altoTablero);
     (*columna)=valorElegido;
-    return valorElegido;
+    return valorElegido-1;
 
 }
 
