@@ -24,13 +24,7 @@ private:
 	bool estaEscondido;
 
 public:
-	/*
-	 * POST: crea un casillero con sus coordenadas en 0, escondido,
-	 *  sin bandera y sin estar minado.
-	 */
-	Casilla();
-
-
+	
 	/*
 	 * PRE: La fila y la columna ingresada deben estar entre 0 y Tablero->ObtenerFilas / Tablero->ObtenerColumnas
 	 * POST: Devuelve una casilla ubicada en la posicion ('x','y') del tablero.
