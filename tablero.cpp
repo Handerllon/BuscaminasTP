@@ -5,7 +5,7 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->columnas=cantidadColumnas;
 
 	this->tablero= new Casilla*[cantidadFilas];
-	for (int i=0; i<cantidadColumnas; i++)
+	for (int i=0; i<cantidadFilas; i++)
 		tablero[i]= new Casilla[cantidadColumnas];
 	
 	for (int i=0; i<cantidadFilas; i++){
@@ -29,7 +29,7 @@ unsigned int Tablero::obtenerCantidadColumnas(){
 }
 
 Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada){
-	Casilla* aObtener = &tablero[filaDeseada * columnaDeseada];
+	Casilla* aObtener = &tablero[filaDeseada][columnaDeseada];
 	return aObtener;
 }
 
