@@ -4,15 +4,9 @@ Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->filas=cantidadFilas;
 	this->columnas=cantidadColumnas;
 
-	Casilla* actual;
-	this->tablero= new Casilla* [cantidadFilas];
-	for (unsigned int i=0; i<cantidadFilas; i++) {
-		this->tablero[i]= new Casilla[cantidadColumnas];
-		for (unsigned int j=0; j < cantidadColumnas; j++) {
-			actual=this->obtenerCasillero(i,j);
-			actual->cambiarCoordenadas(i,j);
-		}
-	}
+	this->tablero= new Casilla[cantidadFilas * cantidadColumnas];
+
+
 }
 
 unsigned int Tablero::obtenerCantidadFilas(){
@@ -26,7 +20,7 @@ unsigned int Tablero::obtenerCantidadColumnas(){
 }
 
 Casilla* Tablero::obtenerCasillero(unsigned int filaDeseada, unsigned int columnaDeseada){
-	Casilla* aObtener = &tablero[filaDeseada][columnaDeseada];
+	Casilla* aObtener = &tablero[filaDeseada * columnaDeseada];
 	return aObtener;
 }
 
@@ -65,10 +59,7 @@ void Tablero::calcularProximidades(){
 
 Tablero::~Tablero(){
 
-	for(unsigned int i=0; i < this->filas; i++) {
-
-		delete []tablero[i];
-	}
 
 	delete[]tablero;
 }
+
