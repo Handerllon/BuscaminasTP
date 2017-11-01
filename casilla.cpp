@@ -1,5 +1,14 @@
 #include "casilla.h"
 
+Casilla::Casilla(){
+	this->fila=0;
+	this->columna=0;
+	this->minasCercanas=0;
+	this->estaMinado= false;
+	this->estaConBandera= false;
+	this-> estaEscondido= true;
+}
+
 Casilla::Casilla(unsigned int filaActual, unsigned int columnaActual){
 
 	this->fila=filaActual;
