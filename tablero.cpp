@@ -68,7 +68,10 @@ void Tablero::calcularProximidades(){
 
 Tablero::~Tablero(){
 
-
+	for(int i = 0; i < this->filas; i++){
+		delete[]tablero[i];
+	}
+	
 	delete[]tablero;
 }
 
