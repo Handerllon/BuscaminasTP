@@ -20,9 +20,9 @@ Referi::Referi(unsigned int cantJugadores, char dificultad) {
 		arrayJugadores[i-1].setIdentificador(i);
 		jugadores->agregar(arrayJugadores + (i-1));
 	}
-	delete[]arrayJugadores;
-	
 }
+	
+
 
 Lista<Jugador*>* Referi::getJugadores() {
 	return jugadores;
@@ -30,6 +30,5 @@ Lista<Jugador*>* Referi::getJugadores() {
 
 Referi::~Referi() {
 
-	delete jugadores
-	// TODO Auto-generated destructor stub
+	delete jugadores;
 }
