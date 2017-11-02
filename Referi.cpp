@@ -6,6 +6,7 @@ Referi::Referi() {
 	this->cantJugadores = 2;
 	this->dificultad= MEDIA;
 	this->jugadores = new Lista<Jugador*>;
+	this->arrayJugadores = NULL;
 }
 	
 Referi::Referi(unsigned int cantJugadores, char dificultad) {
@@ -15,7 +16,7 @@ Referi::Referi(unsigned int cantJugadores, char dificultad) {
 	this->jugadores = new Lista<Jugador*>;
 	
 	//Se crean los jugadores y se los agrega a la lista circular
-	Jugador* arrayJugadores = new Jugador[cantJugadores];
+	this->arrayJugadores = new Jugador[cantJugadores];
 	for (int i = 1; i <= cantJugadores; i++) {
 		arrayJugadores[i-1].setIdentificador(i);
 		jugadores->agregar(arrayJugadores + (i-1));
@@ -28,5 +29,7 @@ Lista<Jugador*>* Referi::getJugadores() {
 }
 
 Referi::~Referi() {
+	delete[]arrayJugadores;
+	delete jugadores
 	// TODO Auto-generated destructor stub
 }
