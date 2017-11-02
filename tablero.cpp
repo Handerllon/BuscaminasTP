@@ -40,8 +40,8 @@ bool Tablero::coordenadasValidas(unsigned int fila, unsigned int columna){
 
 void Tablero::calcularProximidades(){
 	unsigned int minasEncontradas=0;
-	for(unsigned int filaActual=0; filaActual<obtenerCantidadFilas(); filaActual++){
-		for(unsigned int columnaActual=0; columnaActual<obtenerCantidadColumnas(); columnaActual++){
+	for(int filaActual=0; filaActual<obtenerCantidadFilas(); filaActual++){
+		for(int columnaActual=0; columnaActual<obtenerCantidadColumnas(); columnaActual++){
 
 			minasEncontradas=0;
 			Casilla* casilleroActual = obtenerCasillero(filaActual,columnaActual);
