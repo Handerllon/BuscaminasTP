@@ -26,6 +26,7 @@ int main() {
 		Referi referi(cantJugadores,dificultad);
 		Tablero tablero(cantidadFilas, cantidadColumnas);
 		Tablero* pTablero = &tablero;
+		pTablero->calcularProximidades();
 		Terrorista terrorista;
 		terrorista.plantarBombas(pTablero, dificultad);
 		//BMP
