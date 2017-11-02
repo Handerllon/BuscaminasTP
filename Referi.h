@@ -19,6 +19,7 @@ class Referi {
 		int cantJugadores;
 		Lista <Jugador*>* jugadores;
 		char dificultad;
+		Jugador* arrayJugadores;
 	public:
 		//Crea al referi, que contiene 2 jugadores por defecto y dificultad media
 		Referi();
