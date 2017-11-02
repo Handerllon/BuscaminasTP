@@ -37,12 +37,18 @@ int main() {
 
 		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
 			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
+			cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << endl;
 			jugadorDeTurno->jugada(pTablero);
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada());
 
 			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
 						  casilla->mostrarCasilla());
+
+			if (casilla->mostrarCasilla() == MINA) {
+				referi.getJugadores()->remover(jugadorDeTurno->getIdentificador());
+				cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() << " !" <<endl;
+			}
 
 		}
 
