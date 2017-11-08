@@ -43,10 +43,19 @@ int main() {
 			jugadorDeTurno->jugada(pTablero);
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada());
-
+			if(casilla->mostrarCasilla()== '0'){
+				for(int i=1, i<=cantidadFilas, i++){
+					for(int j=1, j=<cantidadColumnas, j++){
+						casilla=pTablero->obtenerCasillero(i,j);
+						if(!casilla->estaOculta()){
+							Buscaminas.imprimirJugada(i,j,casilla->mostrarCasilla());
+						}
+					}
+			}
+			else{
 			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
 						  casilla->mostrarCasilla());
-
+			}
 			if (casilla->mostrarCasilla() == MINA) {
 				referi.getJugadores()->remover(jugadorDeTurno->getIdentificador());
 				cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() << " !" <<endl;
