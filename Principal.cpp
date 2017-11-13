@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include "Referi.h"
@@ -30,39 +29,18 @@ int main() {
 		Terrorista terrorista;
 		terrorista.plantarBombas(pTablero, dificultad);
 		pTablero->calcularProximidades();
-		
+
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
 		Buscaminas.setTablero();
+
 		bool gameover = false;
-		referi.getJugadores()->iniciarCursor();
 
-		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
-			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
-			cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << endl;
-			jugadorDeTurno->jugada(pTablero);
-			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
-								jugadorDeTurno->obtenerCoordenadaXJugada());
-			if(casilla->mostrarCasilla()== '0'){
-				for(int i=1, i<=cantidadFilas, i++){
-					for(int j=1, j=<cantidadColumnas, j++){
-						casilla=pTablero->obtenerCasillero(i,j);
-						if(!casilla->estaOculta()){
-							Buscaminas.imprimirJugada(i,j,casilla->mostrarCasilla());
-						}
-					}
-			}
-			else{
-			Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
-						  casilla->mostrarCasilla());
-			}
-			if (casilla->mostrarCasilla() == MINA) {
-				referi.getJugadores()->remover(jugadorDeTurno->getIdentificador());
-				cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() << " !" <<endl;
-			}
 
+		while(referi.hayJugadoresVivos() && !gameover){
+			referi.ejecutarRonda(Buscaminas, pTablero);
+			referi.mostrarPuntajes();
 		}
-
 
 	} catch (string e) {
 		cout << "Error:" << e << endl;
@@ -70,3 +48,25 @@ int main() {
 	cout<<"Gracias por jugar!"<<endl;
 	return 0;
 }
+
+
+/*		referi.getJugadores()->iniciarCursor();
+		
+		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
+			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
+			if(jugadorDeTurno->getEstaJugando()){
+				cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << endl;
+				jugadorDeTurno->jugada(pTablero);
+				Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
+									jugadorDeTurno->obtenerCoordenadaXJugada());
+
+				Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
+											casilla->mostrarCasilla());
+
+				if (casilla->mostrarCasilla() == MINA) {
+					jugadorDeTurno->cambiarJugadorAPerdido();
+					cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() << " !" <<endl;
+				}
+			}
+		}
+*/
