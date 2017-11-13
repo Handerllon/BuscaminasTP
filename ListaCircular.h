@@ -1,8 +1,18 @@
+
 #ifndef LISTACIRCULAR_H_
 #define LISTACIRCULAR_H_
 
 #include "Nodo.h"
 
+/*
+ * Una Lista es una colección dinámica de elementos dispuestos en una secuencia.
+ *
+ * Define operaciones para agregar, remover, acceder y cambiar elementos
+ * en cualquier posición.
+ *
+ * Tiene un cursor que permite recorrer todos los elementos secuencialmente.
+ *
+ */
 template<class T> class Lista {
 
     private:
@@ -114,6 +124,34 @@ template<class T> class Lista {
         Nodo<T>* obtenerNodo(unsigned int posicion); // NOTA: primitiva PRIVADA
 };
 
+/*
+ * Excepción que representa el intento de acceder a un elemento
+ * que no existe dentro de la Lista.
+ */
+class ExcepcionElementoInexistente {
+
+    private:
+        unsigned int posicion;
+
+    public:
+        /*
+         * post: Excepción creada a partir de la posición inválida a la
+         *       que se intentó acceder.
+         */
+        ExcepcionElementoInexistente(unsigned int posicion) {
+
+            this->posicion = posicion;
+        }
+
+        /*
+         * post: devuelve la posición inválida a la que se intentó acceder.
+         */
+        unsigned int obtenerPosicionInvalida() {
+
+            return this->posicion;
+        }
+};
+
 template<class T> Lista<T>::Lista() {
 
     this->primero = NULL;
@@ -152,17 +190,11 @@ template<class T> void Lista<T>::agregar(T elemento, unsigned int posicion) {
 
         Nodo<T>* nuevo = new Nodo<T>(elemento);
 
-        if (posicion == 1 ) {
-        	if(estaVacia()){
+        if (posicion == 1) {
 
-            nuevo->cambiarSiguiente(nuevo);
-        	} else{
+            nuevo->cambiarSiguiente(this->primero);
+            this->primero = nuevo;
 
-        		Nodo<T>* ultimo=this->obtenerNodo(contarElementos());
-        		nuevo->cambiarSiguiente(primero);
-        		ultimo->cambiarSiguiente(nuevo);
-        	}
-        	this->primero = nuevo;
         } else {
 
             Nodo<T>* anterior = this->obtenerNodo(posicion - 1);
@@ -174,14 +206,19 @@ template<class T> void Lista<T>::agregar(T elemento, unsigned int posicion) {
 
         /* cualquier recorrido actual queda invalidado */
         this->iniciarCursor();
-    }
 
+    } else {
+
+        throw ExcepcionElementoInexistente(posicion);
+    }
 }
 
 template<class T> void Lista<T>::agregar(Lista<T> &otraLista) {
 
     otraLista.iniciarCursor();
+
     while (otraLista.avanzarCursor()) {
+
         this->agregar(otraLista.obtenerCursor());
     }
 }
@@ -193,6 +230,10 @@ template<class T> T Lista<T>::obtener(unsigned int posicion) {
     if ((posicion > 0) && (posicion <= this->tamanio)) {
 
         elemento = this->obtenerNodo(posicion)->obtenerDato();
+
+    } else {
+
+        throw ExcepcionElementoInexistente(posicion);
     }
 
     return elemento;
@@ -203,6 +244,10 @@ template<class T> void Lista<T>::asignar(T elemento, unsigned int posicion) {
     if ((posicion > 0) && (posicion <= this->tamanio)) {
 
         this->obtenerNodo(posicion)->cambiarDato(elemento);
+
+    } else {
+
+        throw ExcepcionElementoInexistente(posicion);
     }
 }
 
@@ -210,31 +255,29 @@ template<class T> void Lista<T>::remover(unsigned int posicion) {
 
     if ((posicion > 0) && (posicion <= this->tamanio)) {
 
-        Nodo<T>* aRemover;
+        Nodo<T>* removido;
 
         if (posicion == 1) {
-        	aRemover = this->primero;
-        	if(this->contarElementos()==1){
 
-        		this->primero = NULL;
+            removido = this->primero;
+            this->primero = removido->obtenerSiguiente();
 
-        	}else{
-        		Nodo<T>* ultimo=this->obtenerNodo(this->contarElementos());
-        		this->primero=aRemover->obtenerSiguiente();
-        		ultimo->cambiarSiguiente(this->primero);
-        	}
         } else {
 
             Nodo<T>* anterior = this->obtenerNodo(posicion - 1);
-            aRemover = anterior->obtenerSiguiente();
-            anterior->cambiarSiguiente(aRemover->obtenerSiguiente());
+            removido = anterior->obtenerSiguiente();
+            anterior->cambiarSiguiente(removido->obtenerSiguiente());
         }
 
-        delete aRemover;
+        delete removido;
         this->tamanio--;
 
         /* cualquier recorrido actual queda invalidado */
         this->iniciarCursor();
+
+    } else {
+
+        throw ExcepcionElementoInexistente(posicion);
     }
 }
 
@@ -265,6 +308,10 @@ template<class T> T Lista<T>::obtenerCursor() {
     if (this->cursor != NULL) {
 
         elemento = this->cursor->obtenerDato();
+
+    } else {
+
+        throw ExcepcionElementoInexistente(0);
     }
 
     return elemento;
@@ -292,4 +339,7 @@ template<class T> Nodo<T>* Lista<T>::obtenerNodo(unsigned int posicion) {
     return actual;
 }
 
+
+
 #endif /* LISTACIRCULAR_H_ */
+
