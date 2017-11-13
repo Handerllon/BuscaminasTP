@@ -19,6 +19,7 @@ class Referi {
 		int cantJugadores;
 		Lista <Jugador*>* jugadores;
 		char dificultad;
+		Jugador* arrayJugadores;
 	public:
 		//Crea al referi, que contiene 2 jugadores por defecto y dificultad media
 		Referi();
@@ -26,6 +27,20 @@ class Referi {
 		Referi(unsigned int cantJugadores, char dificultad);
 
 		Lista<Jugador*>* getJugadores();
+	
+		/*
+		 * devuelve si hay al menos un jugador que no haya perdido.
+		 */
+		bool hayJugadoresVivos();
+		/*
+		 * ejecuta una ronda de la partida, en otras palabras, le pide una jugada a
+		 * cada jugador(si este no perdio aun) y la ejecuta. .
+		 */
+		void ejecutarRonda(Graficador &buscaminas, Tablero* pTablero);
+		/*
+		 * muestra por pantalla el puntaje de cada uno de los jugadores.
+		 */
+		void mostrarPuntajes();
 
 		virtual ~Referi();
 };
