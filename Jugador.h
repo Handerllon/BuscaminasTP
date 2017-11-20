@@ -35,6 +35,10 @@ private:
         */
 
         void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida);
+        
+        //Pre: Necesita recibir la coordenada de la jugada que quiere realizar el jugador actual
+        //Post: Devuelve la jugada elegida, verificando que esta sea valida (Por ej, no se puede poner bandera donde ya hay una)
+        int verificarJugada(unsigned int filaElegida, unsigned int columnaElegida, Casilla* casillaElegida);
 
 public:
         /*
