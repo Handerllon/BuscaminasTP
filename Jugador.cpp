@@ -152,33 +152,35 @@ int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegi
 
 void Jugador::jugada(Tablero* tablero){
 
-	unsigned int filaElegida,columnaElegida,tipoDeJugada;
-	bool casilleroValido=false;
-	unsigned int filasTablero = tablero->obtenerCantidadFilas();
-	unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
-	Casilla* casillaElegida;
-	while (not casilleroValido){
-		filaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
-		columnaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
-		casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
-		if (casillaElegida->estaOculta()){
-			casilleroValido=true;
-    		}
-    	}	
+    unsigned int filaElegida,columnaElegida;
+    bool casilleroValido = false;
+    unsigned int filasTablero = tablero->obtenerCantidadFilas();
+    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
 
-	tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
+    Casilla* casillaElegida;
 
-	if (tipoDeJugada==DESCUBRIR_CASILLA){
-		mostrarCasillero(tablero,filaElegida,columnaElegida);
-	}
-	else if (tipoDeJugada==COLOCAR_BANDERA){
-		casillaElegida->colocarBandera();
+    while (not casilleroValido){
+    	filaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
+    	columnaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
+    	casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+    	if (casillaElegida->estaOculta()){
+    		casilleroValido=true;
     	}
-    	else if (tipoDeJugada==QUITAR_BANDERA){
-        	casillaElegida->quitarBandera();
-    	}
+    }	
 
-    	actualizarPuntaje(casillaElegida,tipoDeJugada);
+    unsigned int tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
+
+    if (tipoDeJugada==DESCUBRIR_CASILLA){
+        mostrarCasillero(tablero,filaElegida,columnaElegida);
+    }
+    else if (tipoDeJugada==COLOCAR_BANDERA){
+        casillaElegida->colocarBandera();
+    }
+    else if (tipoDeJugada==QUITAR_BANDERA){
+        casillaElegida->quitarBandera();
+    }
+
+    actualizarPuntaje(casillaElegida,tipoDeJugada);
 
 }
 
