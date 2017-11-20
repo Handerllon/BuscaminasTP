@@ -105,39 +105,77 @@ void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsig
 	}
 }
 
-void Jugador::jugada(Tablero* tablero){
+int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegida, Casilla* casillaElegida){
 
-    unsigned int filaElegida,columnaElegida,tipoDeJugada;
-    bool eleccionValida=false;
-    unsigned int filasTablero = tablero->obtenerCantidadFilas();
-    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
+	bool eleccionValida=false;
+	unsigned int tipoDeJugada;
 
-    filaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
-    columnaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
 
-    Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
-
-    while (not eleccionValida){
+	while (not eleccionValida){
 
         cout<<"Por favor ingresar el numero que corresponde a la jugada elegida"<<endl;
         cout<<"(1) Descubrir casillero"<<endl<<"(2) Colocar bandera"<<endl<<"(3) Quitar bandera"<<endl;
         cin>>tipoDeJugada;
 
+        //Puse como verificacion que si se quiere descubrir, que no haya bandera, ya que de hacerlo de otra manera interfiere con
+        //El conteo de puntos
         if (tipoDeJugada==DESCUBRIR_CASILLA){
-            mostrarCasillero(tablero,filaElegida,columnaElegida);
-            eleccionValida=true;
+        	if (not casillaElegida->tieneBandera())
+        		eleccionValida=true;
+        	else
+        		cout<<"No se puede descubrir un casillero en donde se encuentra una bandera, por favor quitarla primero"<<endl;
         }
+
         else if (tipoDeJugada==COLOCAR_BANDERA){
-            casillaElegida->colocarBandera();
-            eleccionValida=true;
+        	if (not casillaElegida->tieneBandera())
+        		eleccionValida=true;
+        	else
+        		cout<<"No se puede ingresar una bandera en un casillero que ya tiene bandera"<<endl;	
         }
+
         else if (tipoDeJugada==QUITAR_BANDERA){
-            casillaElegida->quitarBandera();
-            eleccionValida=true;
+        	if (casillaElegida->tieneBandera())
+        		eleccionValida=true;
+        	else
+        		cout<<"No se puede quitar una bandera de un casillero que no tiene bandera"<<endl;	
         }
-        else{
-            cout<<"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente"<<endl;
-        }
+
+        else
+        	cout<<"El tipo de jugada ingresado no es valido, por favor ingresar nuevamente"<<endl;
+    	
+
+	}
+
+	return tipoDeJugada;
+}
+
+
+void Jugador::jugada(Tablero* tablero){
+
+    unsigned int filaElegida,columnaElegida,tipoDeJugada;
+    bool casilleroValido=false;
+    unsigned int filasTablero = tablero->obtenerCantidadFilas();
+    unsigned int columnasTablero = tablero->obtenerCantidadColumnas();
+
+    while (not casilleroValido){
+    	filaElegida=this->coordenadaYJugada(filasTablero,&this->coordenadaYDeJugada);
+    	columnaElegida=this->coordenadaXJugada(columnasTablero,&this->coordenadaXDeJugada);
+    	Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+    	if (casillaElegida->estaOculta()){
+    		casilleroValido=true;
+    	}
+    }	
+
+    tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
+
+    if (tipoDeJugada==DESCUBRIR_CASILLA){
+        mostrarCasillero(tablero,filaElegida,columnaElegida);
+    }
+    else if (tipoDeJugada==COLOCAR_BANDERA){
+        casillaElegida->colocarBandera();
+    }
+    else if (tipoDeJugada==QUITAR_BANDERA){
+        casillaElegida->quitarBandera();
     }
 
     actualizarPuntaje(casillaElegida,tipoDeJugada);
