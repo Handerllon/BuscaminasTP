@@ -1,6 +1,6 @@
 #include "Terrorista.h"
 
-void Terrorista::plantarBombas(Tablero* tablero, char dificultad) {
+int Terrorista::plantarBombas(Tablero* tablero, char dificultad) {
     
     int filas = tablero->obtenerCantidadFilas();
     int columnas = tablero->obtenerCantidadColumnas();
@@ -27,5 +27,6 @@ void Terrorista::plantarBombas(Tablero* tablero, char dificultad) {
             i--;
         
         aPlantar->colocarMina();
-    }                   
+    }
+    return cantidadBombas;
 }
