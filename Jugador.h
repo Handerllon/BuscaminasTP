@@ -113,6 +113,8 @@ public:
         //pre: el jugador debio hacer una jugada primero
         //post: devuelve la coordenada y de la jugada
         unsigned int obtenerCoordenadaYJugada();
+
+        //Post: libera los recursos asociados
         ~Jugador();
 
 

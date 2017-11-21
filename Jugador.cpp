@@ -194,7 +194,7 @@ void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegi
             planillaJugador->sumarPuntos(1);
         }
 
-        else if (jugadaElegida==COLOCAR_BANDERA && not casillaJugada->tieneMina()){
+        else if (jugadaElegida==COLOCAR_BANDERA && !casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(-1);
         }
 
@@ -202,7 +202,7 @@ void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegi
             planillaJugador->sumarPuntos(-2);
         }
 
-        else if (jugadaElegida==QUITAR_BANDERA && not casillaJugada->tieneMina()){
+        else if (jugadaElegida==QUITAR_BANDERA && !casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(2);
         }
 }

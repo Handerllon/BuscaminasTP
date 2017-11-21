@@ -10,12 +10,11 @@ Referi::Referi() {
 }
 
 Referi::Referi(unsigned int cantJugadores, char dificultad) {
-	//jugadores es enviado por metodo de inicializador
 	this->cantJugadores=cantJugadores;
 	this->dificultad=dificultad;
 	this->jugadores = new Lista<Jugador*>;
 
-	//Se crean los jugadores y se los agrega a la lista circular
+	//Se crean los jugadores y se los agrega a la lista
 	this->arrayJugadores = new Jugador[cantJugadores];
 	for (int i = 1; i <= cantJugadores; i++) {
 		arrayJugadores[i-1].setIdentificador(i);
@@ -87,9 +86,8 @@ void Referi::mostrarPuntajes(){
 
 	while(this->getJugadores()->avanzarCursor()){
 		Jugador* jugadorActual= this->getJugadores()->obtenerCursor();
-		std::cout<<"Jugador: "<<jugadorActual->getIdentificador()<<
-		std::cout<<":   "<<jugadorActual->getPuntajeJugador()<<"puntos";
-		std::cout<<std::endl;
+		std::cout<<"Jugador "<< jugadorActual->getIdentificador() <<
+				": "<< jugadorActual->getPuntajeJugador() << " puntos " << std::endl;
 	}
 
 	std::cout<<"+++++++++++++++++++++++++++++"<<std::endl;

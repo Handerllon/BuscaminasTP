@@ -49,24 +49,3 @@ int main() {
 	return 0;
 }
 
-
-/*		referi.getJugadores()->iniciarCursor();
-		
-		while((referi.getJugadores()->avanzarCursor()) && !gameover) {
-			Jugador* jugadorDeTurno = referi.getJugadores()->obtenerCursor();
-			if(jugadorDeTurno->getEstaJugando()){
-				cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << endl;
-				jugadorDeTurno->jugada(pTablero);
-				Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
-									jugadorDeTurno->obtenerCoordenadaXJugada());
-
-				Buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,jugadorDeTurno->obtenerCoordenadaXJugada()+1,
-											casilla->mostrarCasilla());
-
-				if (casilla->mostrarCasilla() == MINA) {
-					jugadorDeTurno->cambiarJugadorAPerdido();
-					cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() << " !" <<endl;
-				}
-			}
-		}
-*/

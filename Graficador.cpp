@@ -35,12 +35,16 @@ void Graficador::imprimirJugada(unsigned int Fila,unsigned int Columna, char obj
 	RGBApixel Rojo = Buscaminas.GetPixel(0,0);
 	Rojo.Red = 250; Rojo.Green = 0; Rojo.Blue = 0; Rojo.Alpha = 0;
 	RGBApixel Blanco = Buscaminas.GetPixel(2,2);
+	RGBApixel Negro = Buscaminas.GetPixel(1,1);
+	Negro.Red = 0; Negro.Green = 0; Negro.Blue = 0; Negro.Alpha = 0;
 	Blanco.Red = 255; Blanco.Green = 255; Blanco.Blue = 255; Blanco.Alpha = 0;
 
 	if(objetoAPintar== 'M')
-	pintarCaracter(Buscaminas,Rojo, Fila,Columna,objetoAPintar);
+		pintarCaracter(Buscaminas,Rojo, Fila,Columna,objetoAPintar);
+	else if (objetoAPintar == 'Q')
+		pintarVacio(Buscaminas, Negro, Fila, Columna);
 	else
-	pintarCaracter(Buscaminas,Blanco, Fila,Columna,objetoAPintar);
+		pintarCaracter(Buscaminas, Blanco, Fila, Columna, objetoAPintar);
 
 }
 

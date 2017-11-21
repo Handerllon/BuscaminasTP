@@ -4,7 +4,7 @@
 
 
 char const MINA = 'M';
-char const OCULTA = 'X';
+char const OCULTA = 'Q';
 char const BANDERA = 'B';
 
 class Casilla{
