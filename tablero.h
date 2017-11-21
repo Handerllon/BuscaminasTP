@@ -14,6 +14,8 @@ private:
 	unsigned int columnas;
 
 	Casilla** tablero;
+	
+	unsigned int casillasPorDescubrir;
 
 public:
 
@@ -49,6 +51,17 @@ public:
 	POST: Asigna las minas cercanas a cada uno de los casilleros dentro del tablero
 	*/
 	void calcularProximidades();
+	
+	/*
+	 * devuelve si quedan casilla por descubrir.
+	 */
+	bool quedanCasillasPorDescubrir();
+	
+	/*
+	 * PRE:casillas es menor a casillasPorDescubrir
+	 * POST:recibe una cantidad de casillas y la resta de la cantidad de casillas que faltan descubrir.
+	 */
+	void cambiarCasillasPorDescubrir(int casillas);
 
 	/*
 	 * Libera los recursos asociados a la clase.
