@@ -12,6 +12,7 @@ int main() {
 		unsigned int cantidadFilas;
 		unsigned int cantidadColumnas;
 		unsigned int cantJugadores;
+		int cantidadDeBombas;
 		char dificultad;
 		cout << "Ingresa la cantidad de filas: "<< endl;
 		cin >> cantidadFilas;
@@ -27,18 +28,19 @@ int main() {
 		Tablero* pTablero = &tablero;
 
 		Terrorista terrorista;
-		terrorista.plantarBombas(pTablero, dificultad);
+		cantidadDeBombas=terrorista.plantarBombas(pTablero, dificultad);
+		tablero.cambiarCasillasPorDescubrir(cantidadDeBombas);
 		pTablero->calcularProximidades();
 
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
 		Buscaminas.setTablero();
 
-		bool gameover = false;
+		bool quedanCasillas = true;
 
 
-		while(referi.hayJugadoresVivos() && !gameover){
-			referi.ejecutarRonda(Buscaminas, pTablero);
+		while(referi.hayJugadoresVivos() && quedanCasillas){
+			referi.ejecutarRonda(Buscaminas, pTablero, quedanCasillas);
 			referi.mostrarPuntajes();
 		}
 
