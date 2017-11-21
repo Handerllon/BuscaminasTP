@@ -89,17 +89,20 @@ void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsig
 
 			casillaElegida->descubrirCasillero();
 
-			if(!casillaElegida->tieneMina() && (casillaElegida->getMinasCercanas() == 0)){
+			if(!casillaElegida->tieneMina()){
+				tablero->cambiarCasillasPorDescubrir(1);
 
-				mostrarCasillero(tablero,filaElegida+1,columnaElegida);
-				mostrarCasillero(tablero,filaElegida-1,columnaElegida);
-				mostrarCasillero(tablero,filaElegida,columnaElegida+1);
-				mostrarCasillero(tablero,filaElegida,columnaElegida-1);
-				mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
-				mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
-				mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
-				mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+				if(casillaElegida->getMinasCercanas()==0){
 
+					mostrarCasillero(tablero,filaElegida+1,columnaElegida);
+					mostrarCasillero(tablero,filaElegida-1,columnaElegida);
+					mostrarCasillero(tablero,filaElegida,columnaElegida+1);
+					mostrarCasillero(tablero,filaElegida,columnaElegida-1);
+					mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
+					mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
+					mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
+					mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+				}
 			}
 		}
 	}
@@ -166,6 +169,9 @@ void Jugador::jugada(Tablero* tablero){
     	if (casillaElegida->estaOculta()){
     		casilleroValido=true;
     	}
+	else{
+    		cout<<"el casillero elegido no es valido, elija otro"<<endl;
+    	}	    
     }	
 
     unsigned int tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
