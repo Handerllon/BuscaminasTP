@@ -3,6 +3,7 @@
 Tablero::Tablero(unsigned int cantidadFilas, unsigned int cantidadColumnas){
 	this->filas=cantidadFilas;
 	this->columnas=cantidadColumnas;
+	this->casillasPorDescubrir=cantidadFilas*cantidadColumnas;
 
 	this->tablero= new Casilla*[cantidadFilas];
 	for (int i=0; i<cantidadFilas; i++)
@@ -64,6 +65,16 @@ void Tablero::calcularProximidades(){
 			casilleroActual->setMinasCercanas(minasEncontradas);
 		}
 	}
+}
+
+bool Tablero::quedanCasillasPorDescubrir(){
+
+	return this->casillasPorDescubrir > 0;
+}
+
+void Tablero::cambiarCasillasPorDescubrir(int casillas){
+
+	this->casillasPorDescubrir= casillasPorDescubrir-casillas;
 }
 
 Tablero::~Tablero(){
