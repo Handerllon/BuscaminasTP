@@ -42,10 +42,10 @@ bool Referi::hayJugadoresVivos(){
 		return jugadoresVivos > 0;
 }
 
-void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero){
+void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &quedanCasillas){
 	this->getJugadores()->iniciarCursor();
 
-	while((this->getJugadores()->avanzarCursor())) {
+	while((this->getJugadores()->avanzarCursor()) && quedanCasillas ) {
 		Jugador* jugadorDeTurno = this->getJugadores()->obtenerCursor();
 		if(jugadorDeTurno->getEstaJugando()){
 			std::cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << std::endl;
@@ -69,6 +69,8 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero){
 							  casilla->mostrarCasilla());
 			}
 
+			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
+			
 			if (casilla->mostrarCasilla() == MINA) {
 				jugadorDeTurno->cambiarJugadorAPerdido();
 				std::cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() <<
