@@ -152,6 +152,63 @@ int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegi
 	return tipoDeJugada;
 }
 
+void Jugador::elegirJugada(Tablero* tablero){
+
+	bool jugadaValida = false;
+	unsigned int jugadaElegida;
+
+	while (!jugadaValida){
+		cout<<"Por favor, elegir la jugada ingresando el numero correspondiente"<<endl;
+		cout<<"(1) Jugada normal (Descubrir casillero, colocar/sacar bandera)"<<endl;
+		cout<<"(2) Ingresar en la maquina del tiempo"<<endl;
+		cin>>jugadaElegida;
+
+		if ( jugadaElegida==1){
+			jugadaValida = true;
+		}
+
+		else if (jugadaElegida==2 || getPuntajeJugador()>=3){
+			jugadaValida = true;
+		}
+
+		else{
+			cout<<"La jugada ingresada no fue valida, recuerde que, en caso de querer"<<endl;
+			cout<<"volver en el tiempo, debe tener como minimo 3 puntos"<<endl;
+		}
+	}
+
+	if (jugadaElegida==1){
+		jugada(tablero);
+	}
+
+	else{
+
+		jugadaValida=false;
+
+		while (!jugadaValida){
+			cout<<"Por favor, elegir la jugada ingresando el numero correspondiente"<<endl;
+			cout<<"(1) Volver un turno atras"<<endl;
+			cout<<"(2) Volver al turno siguiente"<<endl;
+			cin>>jugadaElegida;
+
+			if (jugadaElegida==1 || jugadaElegida==2){
+				jugadaValida=true;
+			}
+			else
+				cout<<"El numero de jugada ingresado no fue valido"<<endl;
+		}
+
+		if (jugadaElegida==1){
+			//Pasan cosas
+		}
+		else{
+			//Pasan mas cosas
+		}
+
+		planillaJugador->sumarPuntos(-3);
+		
+	}
+}
 
 void Jugador::jugada(Tablero* tablero){
 
