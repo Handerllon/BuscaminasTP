@@ -39,6 +39,13 @@ private:
         //Pre: Necesita recibir la coordenada de la jugada que quiere realizar el jugador actual
         //Post: Devuelve la jugada elegida, verificando que esta sea valida (Por ej, no se puede poner bandera donde ya hay una)
         int verificarJugada(unsigned int filaElegida, unsigned int columnaElegida, Casilla* casillaElegida);
+        
+         /*
+        POST: Realiza una jugada, haciendo que el usuario ingrese la posicion elegida, al
+        igual que el tipo de jugada a realizar. Interactua con tablero y casillero
+        */
+        
+        void jugada(Tablero* tablero);
 
 public:
         /*
@@ -86,12 +93,11 @@ public:
         void setIdentificador(unsigned int identificador);
 
         /*
-        POST: Realiza una jugada, haciendo que el usuario ingrese la posicion elegida, al
-        igual que el tipo de jugada a realizar. Interactua con tablero y casillero
+        Pre: Debe tener el tablero para poder funcionar
+        Post: Consulta al jugador los diverentes tipos de jugadas a hacer y las realiza
         */
-
-
-        void jugada(Tablero* tablero);
+        
+        void elegirJugada(Tablero* tablero);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
