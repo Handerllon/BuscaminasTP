@@ -41,6 +41,18 @@ public:
 	//Pre:El 'valorActual' debe estar entre 0 y 8, o Bandera('B')
 	//Post: Almacena el valor que posee la casilla moficada
 	void modificarElValorDeLaCasilla(char valorActual);
+	
+	//Post: devuelve el valor de la fila en la que se realizo la jugada
+	int getFilaDescubierta();
+
+	//Post: devuelve el valor de la columna en la que se realizo la jugada
+	int getColumnaDescubierta();
+
+	//Post: devuelve el identificador del jugadorq ue realizo la jugada
+	int getJugadorDeLaJugada();
+
+	//Post: devuelve el tipo de jugada que decidio hacer el jugador
+	char getTipoDeJugada();
 
 
 	virtual ~Jugada();
