@@ -36,6 +36,25 @@ void Jugada:: modificarElValorDeLaCasilla(char valorActual){
 	this->valorDeLaCasilla = valorActual;
 }
 
+int Jugada::getFilaDescubierta(){
+
+	return this->filaDescubierta;
+}
+
+int Jugada::getColumnaDescubierta(){
+
+	return this->columnaDescubierta;
+}
+
+int Jugada::getJugadorDeLaJugada(){
+
+	return this->jugadaDeJugadorNumero;
+}
+
+char Jugada::getTipoDeJugada(){
+
+	return this->opcionElegidaParaJugar;
+
 Jugada::~Jugada() {
 	// TODO Auto-generated destructor stub
 }
