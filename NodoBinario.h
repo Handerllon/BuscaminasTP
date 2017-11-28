@@ -12,8 +12,10 @@ template<class T> class NodoBinario {
         T dato;
 
         NodoBinario<T>* hermano;
+        NodoBinario<T>* anteriorHermano;
 
         NodoBinario<T>* hijo;
+        NodoBinario<T>* anteriorHijo;
 
     public:
 
@@ -26,6 +28,8 @@ template<class T> class NodoBinario {
             this->dato = dato;
             this->hermano = NULL;
             this->hijo = NULL;
+            this->anteriorHermano = NULL;
+            this->anteriorHijo = NULL;
         }
 
         /*
@@ -53,9 +57,9 @@ template<class T> class NodoBinario {
         }
 
         /*
-         * post: cambia el siguiente Nodo por nuevoSiguiente.
+         * post: cambia el nodo hermano por nuevoHermano.
          */
-        void cambiarSiguiente(NodoBinario<T>* nuevoHermano) {
+        void cambiarHermano(NodoBinario<T>* nuevoHermano) {
 
             this->hermano = nuevoHermano;
         }
@@ -69,7 +73,7 @@ template<class T> class NodoBinario {
 		}
 
 		/*
-		* post: cambia el siguiente Nodo por nuevoSiguiente.
+		* post: cambia el nodo hijo por nuevoHijo.
 		*/
 		void cambiarHijo(NodoBinario<T>* nuevoHijo) {
 
@@ -77,8 +81,39 @@ template<class T> class NodoBinario {
 		}
 
 
+		/*
+		 *post: cambia el anteriorHermano.
+		 */
+		void cambiarAnteriorHermano(NodoBinario<T>* anteriorHermano) {
 
+			this->anteriorHermano = anteriorHermano;
+
+		}
+
+		/*
+		 * post: cambia el anteriorHijo.
+		 */
+		void cambiarAnteriorHijo(NodoBinario<T>* anteriorHijo) {
+
+			this->anteriorHijo = anteriorHijo;
+		}
+
+		/*
+		 * Post: devuelve el hermano anterior.
+		 */
+		NodoBinario<T>* obtenerAnteriorHermano()  {
+			return anteriorHermano;
+		}
+
+		/*
+		 * post: devuelve el hijo anterior.
+		 */
+		NodoBinario<T>* obtenerAnteriorHijo() {
+			return anteriorHijo;
+		}
 };
 
+
+#endif /* NODOBINARIO_H_ */
 
 #endif /* NODOBINARIO_H_ */
