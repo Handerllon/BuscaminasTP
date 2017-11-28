@@ -167,7 +167,7 @@ void Jugador::elegirJugada(Tablero* tablero){
 			jugadaValida = true;
 		}
 
-		else if (jugadaElegida==2 || getPuntajeJugador()>=3){
+		else if (jugadaElegida==2 && getPuntajeJugador()>=3){
 			jugadaValida = true;
 		}
 
