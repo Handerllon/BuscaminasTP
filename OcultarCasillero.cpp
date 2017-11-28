@@ -11,23 +11,25 @@ void Algo::ocultarCasilleros(Tablero* tablero, unsigned int filaElegida, unsigne
 	if(tablero->coordenadasValidas(filaElegida,columnaElegida)){
 		Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
 		
-		//Ocultar Casillero seria un metodo de casilla, que lo cambia a oculto
-		casillaElegida->ocultarCasillero();
+		if( !casillaElegida->estaOculta() ){
+			//Ocultar Casillero seria un metodo de casilla, que lo cambia a oculto
+			casillaElegida->ocultarCasillero();
 
-		if(!casillaElegida->tieneMina()){
-			//Se cambio a un -1, ya que debe agregar casillas a casillas por descubrir
-			tablero->cambiarCasillasPorDescubrir(-1);
+			if(!casillaElegida->tieneMina()){
+				//Se cambio a un -1, ya que debe agregar casillas a casillas por descubrir
+				tablero->cambiarCasillasPorDescubrir(-1);
 
-			if(casillaElegida->getMinasCercanas()==0){
+				if(casillaElegida->getMinasCercanas()==0){
 
-				ocultarCasilleros(tablero,filaElegida+1,columnaElegida);
-				ocultarCasilleros(tablero,filaElegida-1,columnaElegida);
-				ocultarCasilleros(tablero,filaElegida,columnaElegida+1);
-				ocultarCasilleros(tablero,filaElegida,columnaElegida-1);
-				ocultarCasilleros(tablero,filaElegida+1,columnaElegida+1);
-				ocultarCasilleros(tablero,filaElegida+1,columnaElegida-1);
-				ocultarCasilleros(tablero,filaElegida-1,columnaElegida+1);
-				ocultarCasilleros(tablero,filaElegida-1,columnaElegida-1);
+					ocultarCasilleros(tablero,filaElegida+1,columnaElegida);
+					ocultarCasilleros(tablero,filaElegida-1,columnaElegida);
+					ocultarCasilleros(tablero,filaElegida,columnaElegida+1);
+					ocultarCasilleros(tablero,filaElegida,columnaElegida-1);
+					ocultarCasilleros(tablero,filaElegida+1,columnaElegida+1);
+					ocultarCasilleros(tablero,filaElegida+1,columnaElegida-1);
+					ocultarCasilleros(tablero,filaElegida-1,columnaElegida+1);
+					ocultarCasilleros(tablero,filaElegida-1,columnaElegida-1);
+				}
 			}
 		}
 	}
