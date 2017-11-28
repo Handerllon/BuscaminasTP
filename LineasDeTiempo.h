@@ -20,7 +20,9 @@
 
 template<class T> class LineasDeTiempo {
 private:
-	NodoBinario<T>* raiz;
+
+	NodoBinario<T>* turnoActual;
+	int tamanio;
 
 public:
 	/*
@@ -28,10 +30,20 @@ public:
 	 */
 	LineasDeTiempo();
 
-	void nuevaLinea(T dato);
+	/*
+	 * post: obtiene la jugada actual.
+	 */
+	T obtenerJugadaActual();
 
+	/*
+	 * post: crea un nuevo turno.
+	 */
 	void nuevoTurno(T dato);
 
+	/*
+	 * post: se vuelve al turno anterior, y se crea una nueva linea de tiempo para los siguientes turnos.
+	 */
+	void deshacerJugada();
 
 	/*
 	 * Post: Libera los recursos asociados.
@@ -39,65 +51,86 @@ public:
 	~LineasDeTiempo();
 
 private:
+	/*
+	 * post: crea una nueva linea de tiempo, donde se van a jugar nuevos turnos paralelos a los de la
+	 * 		 linea anterior
+	 */
+	void nuevaLinea();
 
-	void nuevaLinea(T dato, NodoBinario<T>* nuevaLinea);
-
-	void nuevoTurno(T dato, NodoBinario<T>* nuevoTurno);
+	/*
+	 * post: el nuevo turno actual sera el anterior.
+	 */
+	NodoBinario<T>* obtenerTurnoAnterior();
 
 };
 
 
 
 template<class T> LineasDeTiempo<T>::LineasDeTiempo() {
-	raiz = NULL;
+	turnoActual = NULL;
+	tamanio = 0;
 }
+
+
+template<class T> T LineasDeTiempo<T>::obtenerJugadaActual() {
+	return turnoActual->obtenerDato();
+}
+
 
 template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
-	if (raiz != NULL)
-		nuevoTurno(dato, raiz);
-	else {
-		raiz = new NodoBinario<T>;
-		raiz->cambiarDato(dato);
-
+	NodoBinario<T>* nuevo = new NodoBinario<T>;
+	if (tamanio == 0)  {
+		turnoActual = nuevo;
 	}
+	else {
+		nuevo->cambiarAnteriorHijo(turnoActual);
+		turnoActual->cambiarHijo(nuevo);
+		turnoActual = nuevo;
+	}
+	nuevo->cambiarDato(dato);
+	tamanio++;
 }
 
-template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
-	if (raiz != NULL)
-		nuevaLinea(dato, raiz);
-	else {
-		raiz = new NodoBinario<T>;
-		raiz->cambiarDato(dato);
+
+template<class T> void LineasDeTiempo<T>::nuevaLinea() {
+	NodoBinario<T>* nuevo = new NodoBinario<T>;
+	if (tamanio == 0)  {
+		turnoActual = nuevo;
 	}
+	else {
+		nuevo->cambiarAnteriorHermano(turnoActual);
+		turnoActual->cambiarHermano(nuevo);
+		turnoActual = nuevo;
+	}
+	tamanio++;
+}
+
+
+template<class T> NodoBinario<T>* LineasDeTiempo<T>::obtenerTurnoAnterior() {
+
+	//Este while esta porque, por ejemplo,
+	// si hay muchas lineas de tiempo que se desprenden del turno 2, pero se quiere volver
+	// al unico turno 1 que hay, hay que volver a la linea original.
+	while (turnoActual->obtenerAnteriorHermano() != NULL) {
+		 turnoActual = turnoActual->obtenerAnteriorHermano();
+	}
+
+	turnoActual = turnoActual->obtenerAnteriorHijo();
+	return turnoActual;
+}
+
+
+template<class T> void LineasDeTiempo<T>::deshacerJugada() {
+	turnoActual = obtenerTurnoAnterior();
+	nuevaLinea();
 }
 
 
 template<class T> LineasDeTiempo<T>::~LineasDeTiempo() {
+//TODO: destruir todos los nodos
 
 }
 
-
-template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato, NodoBinario<T>* nuevoTurno) {
-	NodoBinario<T>* turno = nuevoTurno->obtenerHijo();
-	if (turno != NULL)
-		nuevoTurno(dato, turno);
-
-	else {
-		turno = new NodoBinario<T>;
-		turno->cambiarDato(dato);
-	}
-}
-
-template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato, NodoBinario<T>* nuevaLinea) {
-	NodoBinario<T>* turno = nuevaLinea->obtenerHermano();
-	if (turno != NULL)
-		nuevoTurno(dato, turno);
-
-	else {
-		turno = new NodoBinario<T>;
-		turno->cambiarDato(dato);
-	}
-}
 
 
 
