@@ -7,7 +7,7 @@
 
 #include "Jugada.h"
 
-Jugada::Jugada(int fila, int columna, int identificador, char opcion, char valor){
+Jugada::Jugada(int fila, int columna, int identificador, int opcion, char valor){
 	    this-> filaDescubierta = fila;
 		this-> columnaDescubierta = columna;
 		this-> jugadaDeJugadorNumero = identificador;
