@@ -111,7 +111,7 @@ void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsig
 int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegida, Casilla* casillaElegida){
 
 	bool eleccionValida=false;
-	unsigned int tipoDeJugada;
+	int tipoDeJugada;
 
 
 	while (not eleccionValida){
@@ -231,7 +231,7 @@ Jugada* Jugador::jugada(Tablero* tablero){
     	}	    
     }	
 
-    unsigned int tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
+    int tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
 
     if (tipoDeJugada==DESCUBRIR_CASILLA){
         mostrarCasillero(tablero,filaElegida,columnaElegida);
