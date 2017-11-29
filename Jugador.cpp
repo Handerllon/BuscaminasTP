@@ -153,7 +153,7 @@ int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegi
 	return tipoDeJugada;
 }
 
-bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada){
+bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
 
 	bool jugadaValida = false;
 	bool esJugadaNormal;
@@ -182,6 +182,8 @@ bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada){
 	if (jugadaElegida==1){
 		jugadaRealizada = jugada(tablero);
 		esJugadaNormal = true;
+		jugadaRealizada= this->getJugadaRealizada();
+		jugadas.nuevoTurno( (*jugadaRealizada) );
 	}
 
 	else{
