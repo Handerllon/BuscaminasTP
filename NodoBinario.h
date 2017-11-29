@@ -5,17 +5,19 @@
 #define NULL 0
 #endif
 
+//Nodo con punteros al siguiente y al anterior turno. Y las siguiente
+// y anterior lineas de tiempo.
 template<class T> class NodoBinario {
 
     private:
 
         T dato;
 
-        NodoBinario<T>* hermano;
-        NodoBinario<T>* anteriorHermano;
+        NodoBinario<T>* siguienteLinea;
+        NodoBinario<T>* anteriorLinea;
 
-        NodoBinario<T>* hijo;
-        NodoBinario<T>* anteriorHijo;
+        NodoBinario<T>* siguienteTurno;
+        NodoBinario<T>* anteriorTurno;
 
     public:
 
@@ -26,10 +28,10 @@ template<class T> class NodoBinario {
         NodoBinario(T dato){
 
             this->dato = dato;
-            this->hermano = NULL;
-            this->hijo = NULL;
-            this->anteriorHermano = NULL;
-            this->anteriorHijo = NULL;
+            this->siguienteLinea = NULL;
+            this->siguienteTurno = NULL;
+            this->anteriorLinea = NULL;
+            this->anteriorTurno = NULL;
         }
 
         /*
@@ -49,71 +51,69 @@ template<class T> class NodoBinario {
         }
 
         /*
-         * post: devuelve el siguiente Nodo.
+         * post: devuelve la siguiente linea.
          */
-        NodoBinario<T>* obtenerHermano() {
+        NodoBinario<T>* obtenerSiguienteLinea() {
 
-            return this->hermano;
+            return this->siguienteLinea;
         }
 
         /*
-         * post: cambia el nodo hermano por nuevoHermano.
+         * post: cambia el la siguiente linea por nuevaLinea.
          */
-        void cambiarHermano(NodoBinario<T>* nuevoHermano) {
+        void cambiarSiguienteLinea(NodoBinario<T>* nuevaLinea) {
 
-            this->hermano = nuevoHermano;
+            this->siguienteLinea = nuevaLinea;
         }
 
         /*
-		* post: devuelve el siguiente Nodo.
+		* post: devuelve el siguiente turno.
 		*/
-		NodoBinario<T>* obtenerHijo() {
+		NodoBinario<T>* obtenerSiguienteTurno() {
 
-			return this->hijo;
+			return this->siguienteTurno;
 		}
 
 		/*
-		* post: cambia el nodo hijo por nuevoHijo.
+		* post: cambia el siguiente turno por nuevoTurno.
 		*/
-		void cambiarHijo(NodoBinario<T>* nuevoHijo) {
+		void cambiarSiguienteTurno(NodoBinario<T>* nuevoTurno) {
 
-			 this->hermano = nuevoHijo;
+			 this->siguienteTurno = nuevoTurno;
 		}
 
 
 		/*
-		 *post: cambia el anteriorHermano.
+		 *post: cambia la anteriorLinea.
 		 */
-		void cambiarAnteriorHermano(NodoBinario<T>* anteriorHermano) {
+		void cambiarAnteriorLinea(NodoBinario<T>* anteriorLinea) {
 
-			this->anteriorHermano = anteriorHermano;
+			this->anteriorLinea = anteriorLinea;
 
 		}
 
 		/*
-		 * post: cambia el anteriorHijo.
+		 * post: cambia el anteriorTurno.
 		 */
-		void cambiarAnteriorHijo(NodoBinario<T>* anteriorHijo) {
+		void cambiarAnteriorTurno(NodoBinario<T>* anteriorTurno) {
 
-			this->anteriorHijo = anteriorHijo;
+			this->anteriorTurno = anteriorTurno;
 		}
 
 		/*
-		 * Post: devuelve el hermano anterior.
+		 * Post: devuelve la linea anterior.
 		 */
-		NodoBinario<T>* obtenerAnteriorHermano()  {
-			return anteriorHermano;
+		NodoBinario<T>* obtenerAnteriorLinea()  {
+			return anteriorLinea;
 		}
 
 		/*
-		 * post: devuelve el hijo anterior.
+		 * post: devuelve el turno anterior.
 		 */
-		NodoBinario<T>* obtenerAnteriorHijo() {
-			return anteriorHijo;
+		NodoBinario<T>* obtenerAnteriorTurno() {
+			return anteriorTurno;
 		}
 };
 
-
-#endif /* NODOBINARIO_H_ */
 
 #endif /* NODOBINARIO_H_ */

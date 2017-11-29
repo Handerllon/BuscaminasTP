@@ -8,20 +8,19 @@
  * Se va a encargar de guardar los turnos jugados, para poder acceder a ellos mediante
  * el deshacer y rehacer de las jugadas.
  *
- * Raiz (t0)
- 	 |
- 	 t1(1) ----- t1(2) ----- t1(3) ----- t1(4)
-	 |       	 |            |      	 |
- 	 t2(1)       t2(2)       t2(3)       t2(4)
-          	  	 |                       |
-          	  	 |                     	 |
-          	  	 t3(2-1)--t3(2-1)        t3(4)
+ *(raiz) t1(1) ----- t1(2) ----- t1(3) ----- t1(4)
+	 	 |       	 |            |      	 |
+ 	 	 t2(1)       t2(2)       t2(3)       t2(4)
+          	  	 	 |                       |
+          	  	 	 |                     	 |
+          	  	 	 t3(2-1)--t3(2-1)        t3(4)
  */
 
 template<class T> class LineasDeTiempo {
 private:
 
 	NodoBinario<T>* turnoActual;
+	NodoBinario<T>* primerTurno;
 	int tamanio;
 
 public:
@@ -46,21 +45,32 @@ public:
 	void deshacerJugada();
 
 	/*
+	 * post: regresa al turno posterior.
+	 */
+	void rehacerJugada();
+
+	/*
 	 * Post: Libera los recursos asociados.
 	 */
 	~LineasDeTiempo();
 
 private:
 	/*
+	 * pre: no se puede crear una nueva linea si no hay un turno de donde deshacer.
 	 * post: crea una nueva linea de tiempo, donde se van a jugar nuevos turnos paralelos a los de la
-	 * 		 linea anterior
+	 * 		 linea anterior.
 	 */
 	void nuevaLinea();
 
 	/*
 	 * post: el nuevo turno actual sera el anterior.
 	 */
-	NodoBinario<T>* obtenerTurnoAnterior();
+	NodoBinario<T>* regresarUnTurno();
+
+	/*
+	 * post: borra el nodo pasado por parametro.
+	 */
+	void eliminar(NodoBinario<T>* aBorrar);
 
 };
 
@@ -69,6 +79,7 @@ private:
 template<class T> LineasDeTiempo<T>::LineasDeTiempo() {
 	turnoActual = NULL;
 	tamanio = 0;
+	primerTurno = NULL;
 }
 
 
@@ -81,10 +92,11 @@ template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 	NodoBinario<T>* nuevo = new NodoBinario<T>;
 	if (tamanio == 0)  {
 		turnoActual = nuevo;
+		primerTurno = nuevo;
 	}
 	else {
-		nuevo->cambiarAnteriorHijo(turnoActual);
-		turnoActual->cambiarHijo(nuevo);
+		nuevo->cambiarAnteriorTurno(turnoActual);
+		turnoActual->cambiarSiguienteTurno(nuevo);
 		turnoActual = nuevo;
 	}
 	nuevo->cambiarDato(dato);
@@ -98,37 +110,58 @@ template<class T> void LineasDeTiempo<T>::nuevaLinea() {
 		turnoActual = nuevo;
 	}
 	else {
-		nuevo->cambiarAnteriorHermano(turnoActual);
-		turnoActual->cambiarHermano(nuevo);
-		turnoActual = nuevo;
+		//Si existe una linea de tiempo vacia no crea una nueva
+		if (turnoActual->obtenerSiguienteLinea()->obtenerSiguienteTurno() != NULL) {
+
+			nuevo->cambiarAnteriorLinea(turnoActual);
+			turnoActual->cambiarSiguienteLinea(nuevo);
+			turnoActual = nuevo;
+		}
 	}
 	tamanio++;
 }
 
 
-template<class T> NodoBinario<T>* LineasDeTiempo<T>::obtenerTurnoAnterior() {
+template<class T> NodoBinario<T>* LineasDeTiempo<T>::regresarUnTurno() {
 
 	//Este while esta porque, por ejemplo,
 	// si hay muchas lineas de tiempo que se desprenden del turno 2, pero se quiere volver
 	// al unico turno 1 que hay, hay que volver a la linea original.
-	while (turnoActual->obtenerAnteriorHermano() != NULL) {
-		 turnoActual = turnoActual->obtenerAnteriorHermano();
+	while (turnoActual->obtenerAnteriorLinea() != NULL) {
+		 turnoActual = turnoActual->obtenerAnteriorLinea();
 	}
 
-	turnoActual = turnoActual->obtenerAnteriorHijo();
+	turnoActual = turnoActual->obtenerAnteriorturno();
 	return turnoActual;
 }
 
 
 template<class T> void LineasDeTiempo<T>::deshacerJugada() {
-	turnoActual = obtenerTurnoAnterior();
+	turnoActual = regresarUnTurno();
 	nuevaLinea();
 }
 
 
-template<class T> LineasDeTiempo<T>::~LineasDeTiempo() {
-//TODO: destruir todos los nodos
+template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 
+}
+
+
+template<class T> void LineasDeTiempo<T>::eliminar(NodoBinario<T>* aBorrar) {
+
+	if (aBorrar->obtenerSiguienteLinea() != NULL) {
+		eliminar(aBorrar->obtenerSiguienteLinea());
+	}
+	if (aBorrar->obtenerSiguienteTurno() != NULL) {
+		eliminar(aBorrar->obtenerSiguienteTurno());
+	}
+	delete aBorrar;
+
+}
+
+
+template<class T> LineasDeTiempo<T>::~LineasDeTiempo() {
+	eliminar(primerTurno);
 }
 
 
