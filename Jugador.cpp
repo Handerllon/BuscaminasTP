@@ -252,8 +252,8 @@ Jugada* Jugador::jugada(Tablero* tablero){
 
     actualizarPuntaje(casillaElegida,tipoDeJugada);
 
-    jugadaRealizada->modificarFilaDeJugada(filaElegida);
-    jugadaRealizada->modificarColumnaDeJugada(columnaElegida);
+	jugadaRealizada->modificarFilaDeJugada(filaElegida);
+	jugadaRealizada->modificarColumnaDeJugada(columnaElegida);
 	jugadaRealizada->modificarJugadorDeLaJugada(getIdentificador());
 	jugadaRealizada->modificarOpcionElegidaParaJugar(tipoDeJugada);
 
@@ -261,7 +261,7 @@ Jugada* Jugador::jugada(Tablero* tablero){
 
 }
 
-Jugada* obtenerJugada(){
+Jugada* Jugador::getJugadaRealizada(){
 	return jugadaRealizada;
 }
 
