@@ -65,7 +65,13 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 				}
 			}
 			else{
-				graficarJugadaEspecial(buscaminas, jugadorDeTurno, pTablero, casilla)
+				this->graficarJugadaEspecial(buscaminas, jugadorDeTurno, pTablero, casilla)
+					
+				if (casilla->mostrarCasilla() == MINA) {
+					jugadorDeTurno->cambiarJugadorAPerdido();
+					std::cout << "El jugador " << jugadorDeTurno->getIdentificador() <<
+							" revivio al jugador anterior" <<std::endl;
+				}
 			}
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 		}
