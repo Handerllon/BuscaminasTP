@@ -48,7 +48,7 @@ private:
         igual que el tipo de jugada a realizar. Interactua con tablero y casillero
         */
         
-        Jugada* jugada(Tablero* tablero);
+        void jugada(Tablero* tablero);
 
 public:
         /*
