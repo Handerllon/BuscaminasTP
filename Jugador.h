@@ -98,7 +98,7 @@ public:
         Post: Consulta al jugador los diverentes tipos de jugadas a hacer y las realiza
         */
         
-        void elegirJugada(Tablero* tablero);
+        bool elegirJugada(Tablero* tablero, Jugada* jugadaRealizada);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
