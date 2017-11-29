@@ -11,7 +11,6 @@ Jugada::Jugada(Casilla* casilla, int identificador, int opcion){
 	    this-> casillaDeJugada = casilla;
 		this-> jugadaDeJugadorNumero = identificador;
 		this-> opcionElegidaParaJugar = opcion;
-		this-> valorDeLaCasilla = 0 ;
 
 }
 /*
