@@ -13,7 +13,7 @@ private:
 	int filaDescubierta;
     int columnaDescubierta;
 	int jugadaDeJugadorNumero;
-	char opcionElegidaParaJugar;
+	int opcionElegidaParaJugar;
 	char valorDeLaCasilla;
 
 
@@ -21,7 +21,7 @@ public:
 	
 	//Pre: Debe recibir los datos de la jugada que ocurrio para ser creado
 	//Post: Crea la jugada con todos los datos de la jugada que fue realizada
-	Jugada(int fila, int columna, int identificador, char opcion, char valor);
+	Jugada(int fila, int columna, int identificador, int opcion, char valor);
 
 	//Pre: 'filaJugada' debe estar entre 0 y tablero->ObtenerFilas()
 	//Post: Almacena la fila que se realizo en la jugada
