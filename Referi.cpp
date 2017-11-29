@@ -65,7 +65,7 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 				}
 			}
 			else{
-			//graficar jugada Especial(?
+				graficarJugadaEspecial(buscaminas, jugadorDeTurno, pTablero, casilla)
 			}
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 		}
