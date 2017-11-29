@@ -274,7 +274,7 @@ void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegi
         }
 	
 	else if(jugadaElegida==DESCUBRIR_CASILLA && !casillaJugada->tieneMina()){
-        	planillaJugador->sumarPuntos(1)
+        	planillaJugador->sumarPuntos(1);
         }
 
         else if (jugadaElegida==COLOCAR_BANDERA && casillaJugada->tieneMina()){
