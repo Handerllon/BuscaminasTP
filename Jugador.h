@@ -3,6 +3,7 @@
 #include "Planilla.h"
 #include "casilla.h"
 #include "tablero.h"
+#include "jugada.h"
 
 const int DESCUBRIR_CASILLA=1;
 const int COLOCAR_BANDERA=2;
