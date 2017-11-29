@@ -152,9 +152,10 @@ int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegi
 	return tipoDeJugada;
 }
 
-void Jugador::elegirJugada(Tablero* tablero){
+bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada){
 
 	bool jugadaValida = false;
+	bool esJugadaNormal;
 	unsigned int jugadaElegida;
 
 	while (!jugadaValida){
@@ -178,12 +179,14 @@ void Jugador::elegirJugada(Tablero* tablero){
 	}
 
 	if (jugadaElegida==1){
-		jugada(tablero);
+		jugadaRealizada = jugada(tablero);
+		esJugadaNormal = true;
 	}
 
 	else{
 
 		jugadaValida=false;
+		esJugadaNormal = false;
 
 		while (!jugadaValida){
 			cout<<"Por favor, elegir la jugada ingresando el numero correspondiente"<<endl;
@@ -200,14 +203,17 @@ void Jugador::elegirJugada(Tablero* tablero){
 
 		if (jugadaElegida==1){
 			//Pasan cosas
+			// jugadaRealizada = deshacer() ?
 		}
 		else{
 			//Pasan mas cosas
+			// jugadaRealizada = rehacer() ?
 		}
 
 		planillaJugador->sumarPuntos(-3);
 		
 	}
+	return esJugadaNormal;
 }
 
 Jugada* Jugador::jugada(Tablero* tablero){
