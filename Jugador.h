@@ -15,6 +15,8 @@ private:
         bool estaJugando;
 
         Planilla* planillaJugador;
+        
+        Jugada* jugadaRealizada;
 
         unsigned int identificadorJugador;
         
