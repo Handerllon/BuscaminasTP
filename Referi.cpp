@@ -42,7 +42,7 @@ bool Referi::hayJugadoresVivos(){
 		return jugadoresVivos > 0;
 }
 
-void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &quedanCasillas){
+void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &quedanCasillas, LineasDeTiempo<Jugada> &jugadas){
 	this->getJugadores()->iniciarCursor();
 
 	while((this->getJugadores()->avanzarCursor()) && quedanCasillas ) {
@@ -51,9 +51,12 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			std::cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << std::endl;
 			Jugada* jugadaActual = NULL;
 			
-			bool esJugadaNormal = jugadorDeTurno->elegirJugada(pTablero, jugadaActual);
+			bool esJugadaNormal = jugadorDeTurno->elegirJugada(pTablero, jugadaActual, jugadas);
 			//Metodo para agregar jugada a estructura
-			Casilla* casilla = jugadaActual->getCasilla();
+			jugadaActual=jugadorDeTurno->getJugadaRealizada();
+			
+			Casilla* casilla = pTablero->obtenerCasillero(jugadaActual->getFilaDescubierta(),
+								jugadaActual->getColumnaDescubierta());
 			
 			if(esJugadaNormal){
 				this->graficarJugadaNormal(buscaminas, jugadorDeTurno, pTablero, casilla);
