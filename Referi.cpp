@@ -54,7 +54,7 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada());
 			
-			this->graficarJugada(buscaminas, jugadorDeTurno, pTablero, casilla);
+			this->graficarJugadaNormal(buscaminas, jugadorDeTurno, pTablero, casilla);
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 			
 			if (casilla->mostrarCasilla() == MINA) {
@@ -66,7 +66,7 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 	}
 }
 
-void Referi::graficarJugada(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla){
+void Referi::graficarJugadaNormal(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla){
 	if(casilla->mostrarCasilla()== '0'){
 
 		for(int i=0; i < pTablero->obtenerCantidadFilas();i++){
