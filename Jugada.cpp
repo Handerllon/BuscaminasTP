@@ -7,7 +7,7 @@
 
 #include "Jugada.h"
 
-Jugada::Jugada(Casilla* casilla, int identificador, int opcion, char valor){
+Jugada::Jugada(Casilla* casilla, int identificador, int opcion){
 	    this-> casillaDeJugada = casilla;
 		this-> jugadaDeJugadorNumero = identificador;
 		this-> opcionElegidaParaJugar = opcion;
@@ -56,7 +56,7 @@ char Jugada::getTipoDeJugada(){
 	return this->opcionElegidaParaJugar;
 }
 	
-Casilla* getCasilla(){
+Casilla* Jugada::getCasilla(){
 	
 	return this->casillaDeJugada;
 }
