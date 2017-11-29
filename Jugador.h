@@ -16,6 +16,8 @@ private:
         bool estaJugando;
 
         Planilla* planillaJugador;
+        
+        Jugada* jugadaRealizada;
 
         unsigned int identificadorJugador;
         
@@ -112,6 +114,10 @@ public:
          * POST:devuelve el puntaje
          */
         int getPuntajeJugador();
+        
+        //Pre: Se debe haber jugado al menos un turno
+        //POST: Devuelve la jugada realizada, de tipo Jugada
+        Jugada* getJugadaRealizada();
         
         //pre: el jugador debio hacer una jugada primero
         //post: devuelve la coordenada x de la jugada
