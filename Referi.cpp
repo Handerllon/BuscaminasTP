@@ -49,7 +49,8 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 		Jugador* jugadorDeTurno = this->getJugadores()->obtenerCursor();
 		if(jugadorDeTurno->getEstaJugando()){
 			std::cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << std::endl;
-			jugadorDeTurno->jugada(pTablero);
+			jugadaActual = jugadorDeTurno->jugada(pTablero);
+			//Metodo para agregar jugada a estructura
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada());
 			
