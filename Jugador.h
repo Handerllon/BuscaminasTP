@@ -100,7 +100,7 @@ public:
         Post: Consulta al jugador los diverentes tipos de jugadas a hacer y las realiza
         */
         
-        bool elegirJugada(Tablero* tablero, Jugada* jugadaRealizada);
+        bool elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
