@@ -31,6 +31,8 @@ int main() {
 		cantidadDeBombas=terrorista.plantarBombas(pTablero, dificultad);
 		tablero.cambiarCasillasPorDescubrir(cantidadDeBombas);
 		pTablero->calcularProximidades();
+		
+		LineasDeTiempo<Jugada> jugadas;
 
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
@@ -40,7 +42,7 @@ int main() {
 
 
 		while(referi.hayJugadoresVivos() && quedanCasillas){
-			referi.ejecutarRonda(Buscaminas, pTablero, quedanCasillas);
+			referi.ejecutarRonda(Buscaminas, pTablero, quedanCasillas, jugadas);
 			referi.mostrarPuntajes();
 		}
 
