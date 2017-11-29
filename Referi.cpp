@@ -49,19 +49,25 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 		Jugador* jugadorDeTurno = this->getJugadores()->obtenerCursor();
 		if(jugadorDeTurno->getEstaJugando()){
 			std::cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << std::endl;
-			Jugada* jugadaActual = jugadorDeTurno->jugada(pTablero);
+			Jugada* jugadaActual = NULL;
+			
+			bool esJugadaNormal = jugadorDeTurno->elegirJugada(pTablero, jugadaActual);
 			//Metodo para agregar jugada a estructura
-			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
-								jugadorDeTurno->obtenerCoordenadaXJugada());
+			Casilla* casilla = jugadaActual->getCasilla();
 			
-			this->graficarJugadaNormal(buscaminas, jugadorDeTurno, pTablero, casilla);
-			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
+			if(esJugadaNormal){
+				this->graficarJugadaNormal(buscaminas, jugadorDeTurno, pTablero, casilla);
 			
-			if (casilla->mostrarCasilla() == MINA) {
-				jugadorDeTurno->cambiarJugadorAPerdido();
-				std::cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() <<
-						" !" <<std::endl;
+				if (casilla->mostrarCasilla() == MINA) {
+					jugadorDeTurno->cambiarJugadorAPerdido();
+					std::cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() <<
+							" !" <<std::endl;
+				}
 			}
+			else{
+			//graficar jugada Especial(?
+			}
+			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 		}
 	}
 }
