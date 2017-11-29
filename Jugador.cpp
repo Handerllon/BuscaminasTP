@@ -245,7 +245,7 @@ void Jugador::jugada(Tablero* tablero){
 
     actualizarPuntaje(casillaElegida,tipoDeJugada);
 	//No se porque el indentado me lo manda para aca
-	Jugada* jugadaRealizada(filaElegida,columnaElegida,getIdentificador(),tipoDeJugada);
+	Jugada* jugadaRealizada(casillaElegida,getIdentificador(),tipoDeJugada);
 
 }
 
