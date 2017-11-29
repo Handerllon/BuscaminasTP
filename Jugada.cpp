@@ -12,7 +12,7 @@ Jugada::Jugada(int fila, int columna, int identificador, int opcion, char valor)
 		this-> columnaDescubierta = columna;
 		this-> jugadaDeJugadorNumero = identificador;
 		this-> opcionElegidaParaJugar = opcion;
-		this-> valorDeLaCasilla = valor;
+		this-> valorDeLaCasilla = 0 ;
 
 }
 
