@@ -20,6 +20,10 @@ class Referi {
 		Lista <Jugador*>* jugadores;
 		char dificultad;
 		Jugador* arrayJugadores;
+	
+		//se encarga de enviarle al graficador los datos para graficar la jugada
+		void graficarJugada(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla);
+	
 	public:
 		//Crea al referi, que contiene 2 jugadores por defecto y dificultad media
 		Referi();
