@@ -12,7 +12,7 @@
 class Jugada {
 private:
 	int filaDescubierta;
-	int columnaDiscubierta;
+	int columnaDescubierta;
 	int jugadaDeJugadorNumero;
 	int opcionElegidaParaJugar;
 
