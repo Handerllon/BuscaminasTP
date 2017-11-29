@@ -7,12 +7,12 @@
 
 #include "Jugada.h"
 
-Jugada::Jugada() {
-	    this-> filaDescubierta = 0;
-		this-> columnaDescubierta = 0;
-		this-> jugadaDeJugadorNumero = 0;
-		this-> opcionElegidaParaJugar = 0;
-		this-> valorDeLaCasilla =0;
+Jugada::Jugada(int fila, int columna, int identificador, char opcion, char valor){
+	    this-> filaDescubierta = fila;
+		this-> columnaDescubierta = columna;
+		this-> jugadaDeJugadorNumero = identificador;
+		this-> opcionElegidaParaJugar = opcion;
+		this-> valorDeLaCasilla = valor;
 
 }
 
