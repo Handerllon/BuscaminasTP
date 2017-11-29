@@ -54,10 +54,6 @@ public:
 
 	//Post: devuelve el tipo de jugada que decidio hacer el jugador
 	char getTipoDeJugada();
-	
-	//Post: devuelve la casilla donde se realizo la jugada
-	Casilla* getCasilla();
-
 
 	virtual ~Jugada();
 };
