@@ -210,7 +210,7 @@ void Jugador::elegirJugada(Tablero* tablero){
 	}
 }
 
-void Jugador::jugada(Tablero* tablero){
+Jugada* Jugador::jugada(Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida;
     bool casilleroValido = false;
@@ -246,6 +246,8 @@ void Jugador::jugada(Tablero* tablero){
     actualizarPuntaje(casillaElegida,tipoDeJugada);
 	//No se porque el indentado me lo manda para aca
 	Jugada* jugadaRealizada(casillaElegida,getIdentificador(),tipoDeJugada);
+	
+	return jugadaRealizada;
 
 }
 
