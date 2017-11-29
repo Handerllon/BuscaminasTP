@@ -18,9 +18,10 @@ private:
 
 
 public:
-
-	//Post: Crea la jugada con todos los datos en 0 para luego ser modificados
-	Jugada();
+	
+	//Pre: Debe recibir los datos de la jugada que ocurrio para ser creado
+	//Post: Crea la jugada con todos los datos de la jugada que fue realizada
+	Jugada(int fila, int columna, int identificador, int opcion, int valor);
 
 	//Pre: 'filaJugada' debe estar entre 0 y tablero->ObtenerFilas()
 	//Post: Almacena la fila que se realizo en la jugada
