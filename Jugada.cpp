@@ -7,13 +7,14 @@
 
 #include "Jugada.h"
 
-Jugada::Jugada(Casilla* casilla, int identificador, int opcion){
-	    this-> casillaDeJugada = casilla;
-		this-> jugadaDeJugadorNumero = identificador;
-		this-> opcionElegidaParaJugar = opcion;
+Jugada::Jugada(){
+	this-> filaDescubierta = 0;
+	this-> columnaDescubierta = 0;
+		this-> jugadaDeJugadorNumero = 0;
+		this-> opcionElegidaParaJugar = 0;
 
 }
-/*
+
 void Jugada:: modificarFilaDeJugada(int filaJugada){
 	this->filaDescubierta = filaJugada;
 }
@@ -21,7 +22,7 @@ void Jugada:: modificarFilaDeJugada(int filaJugada){
 void Jugada:: modificarColumnaDeJugada(int columnaJugada){
 	this->columnaDescubierta = columnaJugada;
 }
-*/
+
 
 void Jugada:: modificarJugadorDeLaJugada(int jugadorNumero){
 	this->jugadaDeJugadorNumero = jugadorNumero;
@@ -34,7 +35,7 @@ void Jugada:: modificarOpcionElegidaParaJugar(char opcionElegida){
 void Jugada:: modificarElValorDeLaCasilla(char valorActual){
 	this->valorDeLaCasilla = valorActual;
 }
-
+*/
 int Jugada::getFilaDescubierta(){
 
 	return this->filaDescubierta;
@@ -44,7 +45,7 @@ int Jugada::getColumnaDescubierta(){
 
 	return this->columnaDescubierta;
 }
-*/
+
 int Jugada::getJugadorDeLaJugada(){
 
 	return this->jugadaDeJugadorNumero;
