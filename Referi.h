@@ -44,7 +44,7 @@ class Referi {
 		 * ejecuta una ronda de la partida, en otras palabras, le pide una jugada a
 		 * cada jugador(si este no perdio aun) y la ejecuta. .
 		 */
-		void ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &quedanCasillas);
+		void ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &quedanCasillas, LineasDeTiempo<Jugada> &jugadas);
 		/*
 		 * muestra por pantalla el puntaje de cada uno de los jugadores.
 		 */
