@@ -8,6 +8,7 @@ Jugador::Jugador(){
     estaJugando = true;
     identificadorJugador = 0;
     planillaJugador = new Planilla;
+	jugadaRealizada = new Jugada;
     coordenadaXDeJugada = 0;
     coordenadaYDeJugada = 0;
 
@@ -232,7 +233,7 @@ Jugada* Jugador::jugada(Tablero* tablero){
     	if (casillaElegida->estaOculta()){
     		casilleroValido=true;
     	}
-	else{
+		else{
     		cout<<"el casillero elegido no es valido, elija otro"<<endl;
     	}	    
     }	
@@ -251,10 +252,17 @@ Jugada* Jugador::jugada(Tablero* tablero){
 
     actualizarPuntaje(casillaElegida,tipoDeJugada);
 
-    Jugada* jugadaRealizada =new Jugada(casillaElegida,getIdentificador(),tipoDeJugada);
+    jugadaRealizada->modificarFilaDeJugada(filaElegida);
+    jugadaRealizada->modificarColumnaDeJugada(columnaElegida);
+	jugadaRealizada->modificarJugadorDeLaJugada(getIdentificador());
+	jugadaRealizada->modificarOpcionElegidaParaJugar(tipoDeJugada);
 
     return jugadaRealizada;
 
+}
+
+Jugada* obtenerJugada(){
+	return jugadaRealizada;
 }
 
 void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida){
