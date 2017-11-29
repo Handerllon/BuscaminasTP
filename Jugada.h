@@ -14,7 +14,6 @@ private:
 	Casilla* casillaDeJugada;
 	int jugadaDeJugadorNumero;
 	int opcionElegidaParaJugar;
-	char valorDeLaCasilla;
 
 
 public:
