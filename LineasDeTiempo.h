@@ -131,7 +131,7 @@ template<class T> NodoBinario<T>* LineasDeTiempo<T>::regresarUnTurno() {
 		 turnoActual = turnoActual->obtenerAnteriorLinea();
 	}
 
-	turnoActual = turnoActual->obtenerAnteriorturno();
+	turnoActual = turnoActual->obtenerAnteriorTurno();
 	return turnoActual;
 }
 
