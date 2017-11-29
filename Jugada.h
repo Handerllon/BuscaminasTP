@@ -11,7 +11,7 @@
 
 class Jugada {
 private:
-	casillaDeJugada = new Casilla;
+	Casilla* casillaDeJugada;
 	int jugadaDeJugadorNumero;
 	int opcionElegidaParaJugar;
 	char valorDeLaCasilla;
