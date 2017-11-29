@@ -56,10 +56,6 @@ char Jugada::getTipoDeJugada(){
 	return this->opcionElegidaParaJugar;
 }
 	
-Casilla* Jugada::getCasilla(){
-	
-	return this->casillaDeJugada;
-}
 
 Jugada::~Jugada() {
 	// TODO Auto-generated destructor stub
