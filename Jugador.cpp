@@ -300,4 +300,5 @@ unsigned int Jugador::obtenerCoordenadaYJugada(){
 }
 Jugador::~Jugador(){
 	delete planillaJugador;
+	delete jugadaRealizada;
 }
