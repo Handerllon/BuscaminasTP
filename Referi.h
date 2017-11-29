@@ -25,6 +25,9 @@ class Referi {
 		//se encarga de enviarle al graficador los datos para graficar la jugada
 		void graficarJugadaNormal(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla);
 	
+		//Se encarga de Enviarle al graficador los datos para graficar la jugada de tipo "Deshacer"
+		void graficarJugadaEspecial(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla)
+	
 	public:
 		//Crea al referi, que contiene 2 jugadores por defecto y dificultad media
 		Referi();
