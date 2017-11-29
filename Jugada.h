@@ -11,7 +11,8 @@
 
 class Jugada {
 private:
-	Casilla* casillaDeJugada;
+	int filaDescubierta;
+	int columnaDiscubierta;
 	int jugadaDeJugadorNumero;
 	int opcionElegidaParaJugar;
 
@@ -20,8 +21,8 @@ public:
 	
 	//Pre: Debe recibir los datos de la jugada que ocurrio para ser creado
 	//Post: Crea la jugada con todos los datos de la jugada que fue realizada
-	Jugada(Casilla* casilla, int identificador, int opcion);
-/*
+	Jugada();
+
 	//Pre: 'filaJugada' debe estar entre 0 y tablero->ObtenerFilas()
 	//Post: Almacena la fila que se realizo en la jugada
 	void modificarFilaDeJugada(int filaJugada);
@@ -29,7 +30,7 @@ public:
 	//Pre: 'columnaJugada' debe estar entre 0 y tablero->ObtenerFilas()
 	//Post: Almacena la columna que se hizo en la jugada
 	void modificarColumnaDeJugada(int columnaJugada);
-*/
+
 	//Pre: 'jugadaDeJugadorNumero' debe estar entre 0 y referi->obtenerCantidadDeJugadores()
 	//Post: Modifica el numero del jugador que realizo la jugada
 	void modificarJugadorDeLaJugada(int jugadorNumero);
@@ -41,13 +42,13 @@ public:
 	//Pre:El 'valorActual' debe estar entre 0 y 8, o Bandera('B')
 	//Post: Almacena el valor que posee la casilla moficada
 	void modificarElValorDeLaCasilla(char valorActual);
-	
+*/	
 	//Post: devuelve el valor de la fila en la que se realizo la jugada
 	int getFilaDescubierta();
 
 	//Post: devuelve el valor de la columna en la que se realizo la jugada
 	int getColumnaDescubierta();
-*/
+
 	//Post: devuelve el identificador del jugadorq ue realizo la jugada
 	int getJugadorDeLaJugada();
 
