@@ -52,23 +52,8 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			jugadorDeTurno->jugada(pTablero);
 			Casilla* casilla = pTablero->obtenerCasillero(jugadorDeTurno->obtenerCoordenadaYJugada(),
 								jugadorDeTurno->obtenerCoordenadaXJugada());
-
-			if(casilla->mostrarCasilla()== '0'){
-				for(int i=0; i < pTablero->obtenerCantidadFilas();i++){
-					for(int j=0; j < pTablero->obtenerCantidadColumnas();j++){
-						Casilla* casillaActual= pTablero->obtenerCasillero(i,j);
-						if(!casillaActual->estaOculta()){
-							buscaminas.imprimirJugada(i+1,j+1,casillaActual->mostrarCasilla());
-						}
-					}
-				}
-			}
-			else{
-				buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,
-							  jugadorDeTurno->obtenerCoordenadaXJugada()+1,
-							  casilla->mostrarCasilla());
-			}
-
+			
+			this->graficarJugada(buscaminas, jugadorDeTurno, pTablero, casilla);
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 			
 			if (casilla->mostrarCasilla() == MINA) {
@@ -78,6 +63,28 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			}
 		}
 	}
+}
+
+void Referi::graficarJugada(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla){
+	if(casilla->mostrarCasilla()== '0'){
+
+		for(int i=0; i < pTablero->obtenerCantidadFilas();i++){
+			for(int j=0; j < pTablero->obtenerCantidadColumnas();j++){
+
+				Casilla* casillaActual= pTablero->obtenerCasillero(i,j);
+
+				if(!casillaActual->estaOculta()){
+					buscaminas.imprimirJugada(i+1,j+1,casillaActual->mostrarCasilla());
+				}
+			}
+		}
+	}
+	else{
+		buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,
+					  jugadorDeTurno->obtenerCoordenadaXJugada()+1,
+					  casilla->mostrarCasilla());
+	}
+
 }
 void Referi::mostrarPuntajes(){
 
