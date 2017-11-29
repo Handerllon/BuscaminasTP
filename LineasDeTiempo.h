@@ -3,6 +3,7 @@
 #define LINEASDETIEMPO_H_
 
 #include "NodoBinario.h"
+#include <iostream>
 
 /*
  * Se va a encargar de guardar los turnos jugados, para poder acceder a ellos mediante
@@ -60,7 +61,7 @@ private:
 	 * post: crea una nueva linea de tiempo, donde se van a jugar nuevos turnos paralelos a los de la
 	 * 		 linea anterior.
 	 */
-	void nuevaLinea();
+	void nuevaLinea(T dato);
 
 	/*
 	 * post: el nuevo turno actual sera el anterior.
@@ -89,7 +90,7 @@ template<class T> T LineasDeTiempo<T>::obtenerJugadaActual() {
 
 
 template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
-	NodoBinario<T>* nuevo = new NodoBinario<T>;
+	NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
 	if (tamanio == 0)  {
 		turnoActual = nuevo;
 		primerTurno = nuevo;
@@ -104,14 +105,15 @@ template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 }
 
 
-template<class T> void LineasDeTiempo<T>::nuevaLinea() {
-	NodoBinario<T>* nuevo = new NodoBinario<T>;
+template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
+	NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
 	if (tamanio == 0)  {
 		turnoActual = nuevo;
 	}
 	else {
 		//Si existe una linea de tiempo vacia no crea una nueva
-		if (turnoActual->obtenerSiguienteLinea()->obtenerSiguienteTurno() != NULL) {
+		NodoBinario<T>* siguienteLinea = turnoActual->obtenerSiguienteLinea();
+		if ((siguienteLinea != NULL) && (siguienteLinea->obtenerSiguienteTurno() != NULL)) {
 
 			nuevo->cambiarAnteriorLinea(turnoActual);
 			turnoActual->cambiarSiguienteLinea(nuevo);
@@ -138,7 +140,7 @@ template<class T> NodoBinario<T>* LineasDeTiempo<T>::regresarUnTurno() {
 
 template<class T> void LineasDeTiempo<T>::deshacerJugada() {
 	turnoActual = regresarUnTurno();
-	nuevaLinea();
+	nuevaLinea(turnoActual->obtenerDato());
 }
 
 
@@ -146,30 +148,31 @@ template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 	int cantidadDeLineas = 1;
 	int eleccionLinea;
 	NodoBinario<T>* iteradorLineas = turnoActual;
-	
+
 	//Cuenta las posibles lineas
 	while (iteradorLineas->obtenerAnteriorLinea() != NULL) {
 		iteradorLineas = iteradorLineas->obtenerAnteriorLinea();
 		cantidadDeLineas++;
 	}
-	
+
 	//Si hay mas de una posibilidad, se le da a elegir al usuario
 	if (cantidadDeLineas >= 2) {
-		
+
 		while ((eleccionLinea < 1 ) && (eleccionLinea > cantidadDeLineas)) {
 			std::cout << "Hay " << cantidadDeLineas << " lineas de tiempo posibles para ir. En cual desea rehacer la jugada?" << std::endl;
 			std::cin >> eleccionLinea;
 		}
 	}
-	
+
 	//posiciona el cursor de turnos en la linea elegida
 	while ((cantidadDeLineas-eleccionLinea + 1) > 0) {
 		turnoActual = turnoActual->obtenerAnteriorLinea();
 		cantidadDeLineas--;
 	}
-	
+
 	//rehago el turno de la linea elegida
-	turnoActual = turnoActual->obtenerSiguienteTurno(); 
+	turnoActual = turnoActual->obtenerSiguienteTurno();
+
 }
 
 
