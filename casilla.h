@@ -73,6 +73,12 @@ public:
 	 * POST: descubre la casilla.
 	 */
 	void descubrirCasillero();
+	
+	/*
+	 * PRE: la casilla esta descubierta
+	 * POST:oculta la casilla.
+	 */
+	void ocultarCasillero();
 
 
 	/*
