@@ -3,6 +3,7 @@
 #include "Referi.h"
 #include "Terrorista.h"
 #include "Graficador.h"
+#include "LineasDeTiempo.h"
 using namespace std;
 
 
@@ -33,6 +34,8 @@ int main() {
 		pTablero->calcularProximidades();
 		
 		LineasDeTiempo<Jugada> jugadas;
+		Jugada jugadaInicial;
+		jugadas.nuevoTurno(jugadaInicial);
 
 		//BMP
 		Graficador Buscaminas(cantidadFilas,cantidadColumnas);
