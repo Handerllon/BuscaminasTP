@@ -22,7 +22,7 @@ private:
 
 	NodoBinario<T>* turnoActual;
 	NodoBinario<T>* primerTurno;
-	int tamanio;
+
 
 public:
 	/*
@@ -79,7 +79,6 @@ private:
 
 template<class T> LineasDeTiempo<T>::LineasDeTiempo() {
 	turnoActual = NULL;
-	tamanio = 0;
 	primerTurno = NULL;
 }
 
@@ -91,7 +90,7 @@ template<class T> T LineasDeTiempo<T>::obtenerJugadaActual() {
 
 template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 	NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
-	if (tamanio == 0)  {
+	if (primerTurno == NULL)  {
 		turnoActual = nuevo;
 		primerTurno = nuevo;
 	}
@@ -101,26 +100,26 @@ template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 		turnoActual = nuevo;
 	}
 	nuevo->cambiarDato(dato);
-	tamanio++;
+
 }
 
 
 template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
 	NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
-	if (tamanio == 0)  {
+
+	//Si existe una linea de tiempo vacia no crea una nueva
+	NodoBinario<T>* siguienteLinea = turnoActual->obtenerSiguienteLinea();
+	if ((siguienteLinea == NULL) ||
+			((siguienteLinea != NULL) && (siguienteLinea->obtenerSiguienteTurno() == NULL))) {
+
+		nuevo->cambiarAnteriorLinea(turnoActual);
+		turnoActual->cambiarSiguienteLinea(nuevo);
 		turnoActual = nuevo;
 	}
-	else {
-		//Si existe una linea de tiempo vacia no crea una nueva
-		NodoBinario<T>* siguienteLinea = turnoActual->obtenerSiguienteLinea();
-		if ((siguienteLinea != NULL) && (siguienteLinea->obtenerSiguienteTurno() != NULL)) {
 
-			nuevo->cambiarAnteriorLinea(turnoActual);
-			turnoActual->cambiarSiguienteLinea(nuevo);
-			turnoActual = nuevo;
-		}
-	}
-	tamanio++;
+	else
+		delete nuevo;
+
 }
 
 
@@ -145,8 +144,8 @@ template<class T> void LineasDeTiempo<T>::deshacerJugada() {
 
 
 template<class T> void LineasDeTiempo<T>::rehacerJugada() {
-	int cantidadDeLineas = 1;
-	int eleccionLinea;
+	int cantidadDeLineas = 0;
+	int eleccionLinea = 0;
 	NodoBinario<T>* iteradorLineas = turnoActual;
 
 	//Cuenta las posibles lineas
@@ -158,6 +157,8 @@ template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 	//Si hay mas de una posibilidad, se le da a elegir al usuario
 	if (cantidadDeLineas >= 2) {
 
+		std::cout << "Hay " << cantidadDeLineas << " lineas de tiempo posibles para ir. En cual desea rehacer la jugada?" << std::endl;
+		std::cin >> eleccionLinea;
 		while ((eleccionLinea < 1 ) && (eleccionLinea > cantidadDeLineas)) {
 			std::cout << "Hay " << cantidadDeLineas << " lineas de tiempo posibles para ir. En cual desea rehacer la jugada?" << std::endl;
 			std::cin >> eleccionLinea;
@@ -165,7 +166,7 @@ template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 	}
 
 	//posiciona el cursor de turnos en la linea elegida
-	while ((cantidadDeLineas-eleccionLinea + 1) > 0) {
+	while ((cantidadDeLineas-eleccionLinea) > 0) {
 		turnoActual = turnoActual->obtenerAnteriorLinea();
 		cantidadDeLineas--;
 	}
