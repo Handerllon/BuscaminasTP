@@ -4,6 +4,7 @@
 #include "casilla.h"
 #include "tablero.h"
 #include "jugada.h"
+#include "LineasDeTiempo.h"
 
 const int DESCUBRIR_CASILLA=1;
 const int COLOCAR_BANDERA=2;
@@ -37,7 +38,16 @@ private:
         POST: En el caso de que el casillero tenga el numero 0, descubre los casilleros de alrededor
         */
 
-        void mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida);
+        void mostrarCasillero(Graficador &buscaminas, Tablero* tablero, unsigned int filaElegida,
+                                                                        unsigned int columnaElegida);
+        
+        /*
+         * PRE:Recibe la fila y columna del casillero que se quiere ocultar
+         * POST:oculta la casilla deseada y, en caso de que tenga el numero 0,
+         *  	tambien oculta los casilleros de alrededor
+         */
+        void ocultarCasilleros(Graficador &buscaminas, Tablero* tablero, unsigned int filaElegida,
+        								unsigned int columnaElegida);
         
         //Pre: Necesita recibir la coordenada de la jugada que quiere realizar el jugador actual
         //Post: Devuelve la jugada elegida, verificando que esta sea valida (Por ej, no se puede poner bandera donde ya hay una)
@@ -48,7 +58,7 @@ private:
         igual que el tipo de jugada a realizar. Interactua con tablero y casillero
         */
         
-        Jugada* jugada(Tablero* tablero);
+        Jugada* jugada(Graficador &buscaminas, Tablero* tablero);
 
 public:
         /*
@@ -94,13 +104,26 @@ public:
          * Post: asigna un identificador al jugador
          */
         void setIdentificador(unsigned int identificador);
+        
+        /*
+         * PRE: recibe el tablero, el graficador y la jugada que se debe deshacer.
+         * POST: se encarga de deshacer la jugada recibida.
+         */
+        void revertirJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada);
+        
+        /*
+         * PRE:recibe el tablero, el graficador y la jugada que se sebe rehacer.
+         * POST:se encarga de rehacer la jugada recibida.
+         */
+        void restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada);
 
         /*
         Pre: Debe tener el tablero para poder funcionar
         Post: Consulta al jugador los diverentes tipos de jugadas a hacer y las realiza
         */
         
-        bool elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas);
+        bool elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, 
+                                                                LineasDeTiempo<Jugada> &jugadas);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
