@@ -214,6 +214,8 @@ void Jugador::revertirJugada(Graficador &buscaminas, Tablero* tablero, Jugada ju
 										casillaAfectada->mostrarCasilla());
 
 	}
+	//No creo que sea asi, no entendi bien lo del puntero
+	revertirJugada();
 }
 
 void Jugador::restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada){
