@@ -38,11 +38,7 @@ public:
 	//Pre: 'opcionElegida' debe ser o una bandera, o descubir un casillero, o quitar bandera
 	//Post: modifica la opcion de la jugada a un valor valido
 	void modificarOpcionElegidaParaJugar(char opcionElegida);
-/*
-	//Pre:El 'valorActual' debe estar entre 0 y 8, o Bandera('B')
-	//Post: Almacena el valor que posee la casilla moficada
-	void modificarElValorDeLaCasilla(char valorActual);
-*/	
+	
 	//Post: devuelve el valor de la fila en la que se realizo la jugada
 	int getFilaDescubierta();
 
