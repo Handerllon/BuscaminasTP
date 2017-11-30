@@ -105,20 +105,25 @@ template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 
 
 template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
-	NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
+	
+template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
 
-	//Si existe una linea de tiempo vacia no crea una nueva
-	NodoBinario<T>* siguienteLinea = turnoActual->obtenerSiguienteLinea();
-	if ((siguienteLinea == NULL) ||
-			((siguienteLinea != NULL) && (siguienteLinea->obtenerSiguienteTurno() == NULL))) {
+	if(primerTurno != NULL) {
+		NodoBinario<T>* nuevo = new NodoBinario<T>(dato);
 
-		nuevo->cambiarAnteriorLinea(turnoActual);
-		turnoActual->cambiarSiguienteLinea(nuevo);
-		turnoActual = nuevo;
+		//Si existe una linea de tiempo vacia no crea una nueva
+		NodoBinario<T>* siguienteLinea = turnoActual->obtenerSiguienteLinea();
+		if ((siguienteLinea == NULL) ||
+				((siguienteLinea != NULL) && (siguienteLinea->obtenerSiguienteTurno() == NULL))) {
+
+			nuevo->cambiarAnteriorLinea(turnoActual);
+			turnoActual->cambiarSiguienteLinea(nuevo);
+			turnoActual = nuevo;
+		}
+
+		else
+			delete nuevo;
 	}
-
-	else
-		delete nuevo;
 
 }
 
