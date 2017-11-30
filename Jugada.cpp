@@ -28,7 +28,7 @@ void Jugada:: modificarJugadorDeLaJugada(int jugadorNumero){
 	this->jugadaDeJugadorNumero = jugadorNumero;
 }
 
-void Jugada:: modificarOpcionElegidaParaJugar(char opcionElegida){
+void Jugada:: modificarOpcionElegidaParaJugar(int opcionElegida){
 	this->opcionElegidaParaJugar = opcionElegida;
 }
 /*
@@ -51,7 +51,7 @@ int Jugada::getJugadorDeLaJugada(){
 	return this->jugadaDeJugadorNumero;
 }
 
-char Jugada::getTipoDeJugada(){
+int Jugada::getTipoDeJugada(){
 
 	return this->opcionElegidaParaJugar;
 }
