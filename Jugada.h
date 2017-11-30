@@ -53,7 +53,7 @@ public:
 	int getJugadorDeLaJugada();
 
 	//Post: devuelve el tipo de jugada que decidio hacer el jugador
-	char getTipoDeJugada();
+	int getTipoDeJugada();
 
 	virtual ~Jugada();
 };
