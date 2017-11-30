@@ -34,6 +34,12 @@ public:
 	 * post: obtiene la jugada actual.
 	 */
 	T obtenerJugadaActual();
+	
+	/*
+	 * post: obtiene el lugar donde esta almacenada la jugada actual
+	 */
+	NodoBinario<T>* obtenerPosicionDelCursor();
+
 
 	/*
 	 * post: crea un nuevo turno.
@@ -85,6 +91,12 @@ template<class T> LineasDeTiempo<T>::LineasDeTiempo() {
 
 template<class T> T LineasDeTiempo<T>::obtenerJugadaActual() {
 	return turnoActual->obtenerDato();
+}
+
+
+
+template<class T> NodoBinario<T>* LineasDeTiempo<T>::obtenerPosicionDelCursor() {
+	return turnoActual;
 }
 
 
