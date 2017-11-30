@@ -3,7 +3,7 @@
 #include "Planilla.h"
 #include "casilla.h"
 #include "tablero.h"
-#include "jugada.h"
+#include "Jugada.h"
 #include "LineasDeTiempo.h"
 #include "referi.h"
 
