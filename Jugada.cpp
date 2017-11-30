@@ -10,8 +10,8 @@
 Jugada::Jugada(){
 	this-> filaDescubierta = 0;
 	this-> columnaDescubierta = 0;
-		this-> jugadaDeJugadorNumero = 0;
-		this-> opcionElegidaParaJugar = 0;
+	this-> jugadaDeJugadorNumero = 0;
+	this-> opcionElegidaParaJugar = 0;
 
 }
 
