@@ -21,7 +21,7 @@ class Planilla {
 	//
 	//Post: Devuelve el puntaje actual del jugador.
 	int obtenerPuntaje();
-	//Pre: "puntosASumar" Debe estar entre -2 y 2.
+	//Pre: "puntosASumar" Debe estar entre -3 y 2.
 	//Post: Suma los puntos que gano o perdio en su turno.
 	void sumarPuntos(int puntosASumar);
 
