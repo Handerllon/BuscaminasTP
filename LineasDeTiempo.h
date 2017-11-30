@@ -103,9 +103,6 @@ template<class T> void LineasDeTiempo<T>::nuevoTurno(T dato) {
 
 }
 
-
-template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
-	
 template<class T> void LineasDeTiempo<T>::nuevaLinea(T dato) {
 
 	if(primerTurno != NULL) {
