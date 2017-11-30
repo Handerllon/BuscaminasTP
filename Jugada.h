@@ -37,7 +37,7 @@ public:
 
 	//Pre: 'opcionElegida' debe ser o una bandera, o descubir un casillero, o quitar bandera
 	//Post: modifica la opcion de la jugada a un valor valido
-	void modificarOpcionElegidaParaJugar(char opcionElegida);
+	void modificarOpcionElegidaParaJugar(int opcionElegida);
 	
 	//Post: devuelve el valor de la fila en la que se realizo la jugada
 	int getFilaDescubierta();
