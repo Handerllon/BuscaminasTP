@@ -5,12 +5,12 @@ using namespace std;
 
 Jugador::Jugador(){
 
-    estaJugando = true;
-    identificadorJugador = 0;
-    planillaJugador = new Planilla;
+	estaJugando = true;
+	identificadorJugador = 0;
+	planillaJugador = new Planilla;
 	jugadaRealizada = new Jugada;
-    coordenadaXDeJugada = 0;
-    coordenadaYDeJugada = 0;
+	coordenadaXDeJugada = 0;
+	coordenadaYDeJugada = 0;
 
 }
 
@@ -81,7 +81,9 @@ void Jugador::setIdentificador(unsigned int identificador) {
 	this->identificadorJugador = identificador;
 }
 
-void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsigned int columnaElegida){
+void Jugador::mostrarCasillero(Graficador &buscaminas,Tablero* tablero, unsigned int filaElegida,
+									unsigned int columnaElegida){
+
 	if(tablero->coordenadasValidas(filaElegida,columnaElegida)){
 
 		Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
@@ -90,19 +92,53 @@ void Jugador::mostrarCasillero(Tablero* tablero, unsigned int filaElegida, unsig
 
 			casillaElegida->descubrirCasillero();
 
+			buscaminas.imprimirJugada(filaElegida+1,columnaElegida+1,casillaElegida->mostrarCasilla());
+
 			if(!casillaElegida->tieneMina()){
 				tablero->cambiarCasillasPorDescubrir(1);
 
 				if(casillaElegida->getMinasCercanas()==0){
 
-					mostrarCasillero(tablero,filaElegida+1,columnaElegida);
-					mostrarCasillero(tablero,filaElegida-1,columnaElegida);
-					mostrarCasillero(tablero,filaElegida,columnaElegida+1);
-					mostrarCasillero(tablero,filaElegida,columnaElegida-1);
-					mostrarCasillero(tablero,filaElegida+1,columnaElegida+1);
-					mostrarCasillero(tablero,filaElegida+1,columnaElegida-1);
-					mostrarCasillero(tablero,filaElegida-1,columnaElegida+1);
-					mostrarCasillero(tablero,filaElegida-1,columnaElegida-1);
+					mostrarCasillero(buscaminas, tablero,filaElegida+1,columnaElegida);
+					mostrarCasillero(buscaminas, tablero,filaElegida-1,columnaElegida);
+					mostrarCasillero(buscaminas, tablero,filaElegida,columnaElegida+1);
+					mostrarCasillero(buscaminas, tablero,filaElegida,columnaElegida-1);
+					mostrarCasillero(buscaminas, tablero,filaElegida+1,columnaElegida+1);
+					mostrarCasillero(buscaminas, tablero,filaElegida+1,columnaElegida-1);
+					mostrarCasillero(buscaminas, tablero,filaElegida-1,columnaElegida+1);
+					mostrarCasillero(buscaminas, tablero,filaElegida-1,columnaElegida-1);
+				}
+			}
+		}
+	}
+}
+
+void Jugador::ocultarCasilleros(Graficador &buscaminas, Tablero* tablero, unsigned int filaElegida,
+									unsigned int columnaElegida){
+
+	if(tablero->coordenadasValidas(filaElegida,columnaElegida)){
+		Casilla* casillaElegida= tablero->obtenerCasillero(filaElegida, columnaElegida);
+
+		if( !casillaElegida->estaOculta() ){
+
+			casillaElegida->ocultarCasillero();
+
+			buscaminas.imprimirJugada(filaElegida+1,columnaElegida+1,casillaElegida->mostrarCasilla());
+
+			if(!casillaElegida->tieneMina()){
+				//Se cambio a un -1, ya que debe agregar casillas a casillas por descubrir
+				tablero->cambiarCasillasPorDescubrir(-1);
+
+				if(casillaElegida->getMinasCercanas()==0){
+
+					ocultarCasilleros(buscaminas, tablero,filaElegida+1,columnaElegida);
+					ocultarCasilleros(buscaminas, tablero,filaElegida-1,columnaElegida);
+					ocultarCasilleros(buscaminas, tablero,filaElegida,columnaElegida+1);
+					ocultarCasilleros(buscaminas, tablero,filaElegida,columnaElegida-1);
+					ocultarCasilleros(buscaminas, tablero,filaElegida+1,columnaElegida+1);
+					ocultarCasilleros(buscaminas, tablero,filaElegida+1,columnaElegida-1);
+					ocultarCasilleros(buscaminas, tablero,filaElegida-1,columnaElegida+1);
+					ocultarCasilleros(buscaminas, tablero,filaElegida-1,columnaElegida-1);
 				}
 			}
 		}
@@ -153,7 +189,58 @@ int Jugador::verificarJugada(unsigned int filaElegida, unsigned int columnaElegi
 	return tipoDeJugada;
 }
 
-bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
+void Jugador::revertirJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada){
+
+	Casilla* casillaAfectada= tablero->obtenerCasillero(jugadaRealizada.getFilaDescubierta(),
+							jugadaRealizada.getColumnaDescubierta());
+
+	int tipoJugada=jugadaRealizada.getTipoDeJugada();
+
+	if(tipoJugada==DESCUBRIR_CASILLA){
+		ocultarCasilleros(buscaminas, tablero, casillaAfectada->obtenerFila(), casillaAfectada->obtenerColumna());
+
+	}
+	else if(tipoJugada==COLOCAR_BANDERA){
+		casillaAfectada->quitarBandera();
+
+		buscaminas.imprimirJugada(casillaAfectada->obtenerFila()+1,casillaAfectada->obtenerColumna()+1,
+										casillaAfectada->mostrarCasilla());
+
+	}
+	else if(tipoJugada==QUITAR_BANDERA){
+		casillaAfectada->colocarBandera();
+
+		buscaminas.imprimirJugada(casillaAfectada->obtenerFila()+1,casillaAfectada->obtenerColumna()+1,
+										casillaAfectada->mostrarCasilla());
+
+	}
+}
+
+void Jugador::restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada){
+
+	Casilla* casillaAfectada= tablero->obtenerCasillero(jugadaRealizada.getFilaDescubierta(),
+							jugadaRealizada.getColumnaDescubierta());
+
+	int tipoJugada=jugadaRealizada.getTipoDeJugada();
+
+	if(tipoJugada==DESCUBRIR_CASILLA){
+		mostrarCasillero(buscaminas, tablero, casillaAfectada->obtenerFila(), casillaAfectada->obtenerColumna());
+	}
+	else if(tipoJugada==COLOCAR_BANDERA){
+		casillaAfectada->colocarBandera();
+
+		buscaminas.imprimirJugada(casillaAfectada->obtenerFila()+1,casillaAfectada->obtenerColumna()+1,
+										casillaAfectada->mostrarCasilla());
+	}
+	else if(tipoJugada==QUITAR_BANDERA){
+		casillaAfectada->quitarBandera();
+
+		buscaminas.imprimirJugada(casillaAfectada->obtenerFila()+1,casillaAfectada->obtenerColumna()+1,
+										casillaAfectada->mostrarCasilla());
+	}
+}
+
+bool Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
 
 	bool jugadaValida = false;
 	bool esJugadaNormal;
@@ -180,7 +267,7 @@ bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTi
 	}
 
 	if (jugadaElegida==1){
-		jugadaRealizada = jugada(tablero);
+		jugadaRealizada = jugada(buscaminas, tablero);
 		esJugadaNormal = true;
 		jugadaRealizada= this->getJugadaRealizada();
 		jugadas.nuevoTurno( (*jugadaRealizada) );
@@ -205,12 +292,14 @@ bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTi
 		}
 
 		if (jugadaElegida==1){
-			//Pasan cosas
-			// jugadaRealizada = deshacer() ?
+			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
+			jugadas.deshacerJugada();
+			revertirJugada(buscaminas, tablero, jugadaEspecial);
 		}
 		else{
-			//Pasan mas cosas
-			// jugadaRealizada = rehacer() ?
+			jugadas.rehacerJugada();
+			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
+			restaurarJugada(buscaminas, tablero, jugadaEspecial);
 		}
 
 		planillaJugador->sumarPuntos(-3);
@@ -219,7 +308,7 @@ bool Jugador::elegirJugada(Tablero* tablero, Jugada* jugadaRealizada, LineasDeTi
 	return esJugadaNormal;
 }
 
-Jugada* Jugador::jugada(Tablero* tablero){
+Jugada* Jugador::jugada(Graficador &buscaminas, Tablero* tablero){
 
     unsigned int filaElegida,columnaElegida;
     bool casilleroValido = false;
@@ -243,13 +332,17 @@ Jugada* Jugador::jugada(Tablero* tablero){
     int tipoDeJugada=verificarJugada(filaElegida,columnaElegida, casillaElegida);
 
     if (tipoDeJugada==DESCUBRIR_CASILLA){
-        mostrarCasillero(tablero,filaElegida,columnaElegida);
+        mostrarCasillero(buscaminas, tablero,filaElegida,columnaElegida);
     }
     else if (tipoDeJugada==COLOCAR_BANDERA){
-        casillaElegida->colocarBandera();
+	casillaElegida->colocarBandera();
+	    
+	buscaminas.imprimirJugada(filaElegida+1,columnaElegida+1,casillaElegida->mostrarCasilla());
     }
     else if (tipoDeJugada==QUITAR_BANDERA){
-        casillaElegida->quitarBandera();
+	casillaElegida->quitarBandera();
+	    
+	buscaminas.imprimirJugada(filaElegida+1,columnaElegida+1,casillaElegida->mostrarCasilla());
     }
 
     actualizarPuntaje(casillaElegida,tipoDeJugada);
