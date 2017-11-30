@@ -9,7 +9,7 @@
 #define REFERI_H_
 #include "ListaCircular.h"
 #include "Jugador.h"
-#include "jugada.h"
+#include "Jugada.h"
 
 const char FACIL='F';
 const char MEDIA= 'M';
