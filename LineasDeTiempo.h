@@ -133,6 +133,7 @@ template<class T> NodoBinario<T>* LineasDeTiempo<T>::regresarUnTurno() {
 	}
 
 	turnoActual = turnoActual->obtenerAnteriorTurno();
+
 	return turnoActual;
 }
 
@@ -145,7 +146,7 @@ template<class T> void LineasDeTiempo<T>::deshacerJugada() {
 
 template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 	int cantidadDeLineas = 0;
-	int eleccionLinea = 0;
+	int eleccionLinea = 1;
 	NodoBinario<T>* iteradorLineas = turnoActual;
 
 	//Cuenta las posibles lineas
@@ -166,7 +167,7 @@ template<class T> void LineasDeTiempo<T>::rehacerJugada() {
 	}
 
 	//posiciona el cursor de turnos en la linea elegida
-	while ((cantidadDeLineas-eleccionLinea) > 0) {
+	while ((cantidadDeLineas-eleccionLinea) > -1) {
 		turnoActual = turnoActual->obtenerAnteriorLinea();
 		cantidadDeLineas--;
 	}
