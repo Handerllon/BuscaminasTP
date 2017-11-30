@@ -134,6 +134,27 @@ void Referi::mostrarPuntajes(){
 	std::cout<<"+++++++++++++++++++++++++++++"<<std::endl;
 }
 
+void Referi::revertirJugada(){
+	Jugador* jugadorActual = this->obtenerJugadores()->obtenerCursor;
+	int identificadorActual = jugadorActual->getIdentificador();
+	//Nueva posicion estaria dos antes del que jugo
+	int nuevaPosicionDeCursor;
+	if (identificadorActual == 1){
+		nuevaPosicionDeCursor=(this->getJugadores()->contarElementos())-1;
+	}
+	else if (identificadorActual == 2){
+		nuevaPosicionDeCursor=this->getJugadores()->contarElementos();
+	}
+	else{
+		nuevaPosicionDelCursor = jugadorActual->getIdentificador()-2;
+	}
+	this->getJugadores()->iniciarCursor();
+	for (int i=1 ; i<nuevaPosicionDelCursor; i++){
+		this->getJugadores()->avanzarCursor();
+	}
+		
+		
+
 Referi::~Referi() {
 	delete[]arrayJugadores;
 	delete jugadores;
