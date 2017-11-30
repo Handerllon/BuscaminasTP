@@ -52,6 +52,12 @@ void Casilla::descubrirCasillero(){
 	}
 }
 
+void Casilla::ocultarCasillero(){
+	if(!this->estaOculta()){
+		this->estaEscondido=true;
+	}
+}
+
 void Casilla::colocarBandera(){
 
 	if(!this->tieneBandera() && this->estaOculta()){
