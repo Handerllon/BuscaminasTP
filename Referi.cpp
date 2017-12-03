@@ -62,17 +62,17 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			Casilla* casilla = pTablero->obtenerCasillero(jugadaActual->getFilaDescubierta(),
 								jugadaActual->getColumnaDescubierta());
 
-			if( (tipoDeJugadaElegida == 'N') && casilla->mostrarCasilla() == MINA){
+			if( (tipoDeJugadaElegida == JUGADA_NORMAL) && casilla->mostrarCasilla() == MINA){
 
 				jugadorDeTurno->cambiarJugadorAPerdido();
 
 				std::cout << "Ha perdido el jugador " << jugadorDeTurno->getIdentificador() <<
 					" !" <<std::endl;
 			}
-			else if(tipoDeJugadaElegida == 'D'){
+			else if(tipoDeJugadaElegida == JUGADA_DESHACER){
 				revertirJugada(pTablero, jugadaEspecial);
 			}
-			else if(tipoDeJugadaElegida == 'R'){
+			else if(tipoDeJugadaElegida == JUGADA_REHACER){
 				rehacerJugada(pTablero, jugadaEspecial);
 			}
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
