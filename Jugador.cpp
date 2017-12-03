@@ -272,7 +272,7 @@ char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 		esJugadaNormal = true;
 		jugadaRealizada= this->getJugadaRealizada();
 		jugadas.nuevoTurno( (*jugadaRealizada) );
-		tipoDeJugada = 'N';
+		tipoDeJugada = JUGADA_NORMAL;
 	}
 
 	else{
@@ -296,13 +296,13 @@ char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 			jugadaEspecial=jugadas.obtenerJugadaActual();
 			jugadas.deshacerJugada();
 			revertirJugada(buscaminas, tablero, jugadaEspecial);
-			tipoDeJugada = 'D';
+			tipoDeJugada = JUGADA_DESHACER;
 		}
 		else{
 			jugadas.rehacerJugada();
 			jugadaEspecial=jugadas.obtenerJugadaActual();
 			restaurarJugada(buscaminas, tablero, jugadaEspecial);
-			tipoDeJugada = 'R';
+			tipoDeJugada = JUGADA_REHACER;
 		}
 
 		planillaJugador->sumarPuntos(-3);
