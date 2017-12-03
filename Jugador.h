@@ -34,7 +34,7 @@ private:
         unsigned int verificarNumero(unsigned int numeroIngresado, unsigned int tope);
         
         /*
-        PRE: Recibe la fila y columna del casillero que se quiere abrir
+        PRE: Recibe el tablero, el graficador, la fila y columna del casillero que se quiere abrir
         POST: En el caso de que el casillero tenga el numero 0, descubre los casilleros de alrededor
         */
 
@@ -42,7 +42,7 @@ private:
                                                                         unsigned int columnaElegida);
         
         /*
-         * PRE:Recibe la fila y columna del casillero que se quiere ocultar
+         * PRE:Recibe el tablero, el graficador, la fila y columna del casillero que se quiere ocultar
          * POST:oculta la casilla deseada y, en caso de que tenga el numero 0,
          *  	tambien oculta los casilleros de alrededor
          */
@@ -55,7 +55,7 @@ private:
         
          /*
         POST: Realiza una jugada, haciendo que el usuario ingrese la posicion elegida, al
-        igual que el tipo de jugada a realizar. Interactua con tablero y casillero
+        igual que el tipo de jugada a realizar. Interactua con el graficador, el tablero y casillero
         */
         
         Jugada* jugada(Graficador &buscaminas, Tablero* tablero);
@@ -112,14 +112,16 @@ public:
         void revertirJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada);
         
         /*
-         * PRE:recibe el tablero, el graficador y la jugada que se sebe rehacer.
+         * PRE:recibe el tablero, el graficador y la jugada que se debe rehacer.
          * POST:se encarga de rehacer la jugada recibida.
          */
         void restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada);
 
         /*
         Pre: Debe tener el tablero para poder funcionar
-        Post: Consulta al jugador los diferentes tipos de jugadas a hacer y las realiza
+        Post: Consulta al jugador los diferentes tipos de jugadas a hacer y las realiza, si la jugada
+                es de tipo normal, jugadaRealizada queda cargado con los datos de la jugada. Si es especial
+                jugadaEspecial queda cargado con los datos de la jugada especial.
         */
         
         char elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada,
