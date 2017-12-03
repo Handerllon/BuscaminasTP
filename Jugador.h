@@ -122,8 +122,8 @@ public:
         Post: Consulta al jugador los diferentes tipos de jugadas a hacer y las realiza
         */
         
-        char elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, 
-                                                                LineasDeTiempo<Jugada> &jugadas);
+        char elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada,
+                                        LineasDeTiempo<Jugada> &jugadas, Jugada &jugadaEspecial);
 
         /*
         PRE: Es necesario que haya ocurrido una jugada
