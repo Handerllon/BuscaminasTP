@@ -120,10 +120,10 @@ public:
 
         /*
         Pre: Debe tener el tablero para poder funcionar
-        Post: Consulta al jugador los diverentes tipos de jugadas a hacer y las realiza
+        Post: Consulta al jugador los diferentes tipos de jugadas a hacer y las realiza
         */
         
-        bool elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, 
+        char elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, 
                                                                 LineasDeTiempo<Jugada> &jugadas);
 
         /*
@@ -131,7 +131,11 @@ public:
         POST: Actualiza la planilla del jugador, tomando datos de la jugada y el tablero
         */
         void actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegida);
-
+        
+        /*
+         * recibe los puntos a cambiar del jugador y los suma a su planilla.
+         */
+        void cambiarPuntaje(int puntos);
 
         /*
          * PRE:-
