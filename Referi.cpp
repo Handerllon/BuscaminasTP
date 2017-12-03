@@ -80,52 +80,6 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 	}
 }
 
-void Referi::graficarJugadaNormal(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla){
-	if(casilla->mostrarCasilla()== '0'){
-
-		for(int i=0; i < pTablero->obtenerCantidadFilas();i++){
-			for(int j=0; j < pTablero->obtenerCantidadColumnas();j++){
-
-				Casilla* casillaActual= pTablero->obtenerCasillero(i,j);
-
-				if(!casillaActual->estaOculta()){
-					buscaminas.imprimirJugada(i+1,j+1,casillaActual->mostrarCasilla());
-				}
-			}
-		}
-	}
-	else{
-		buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,
-					  jugadorDeTurno->obtenerCoordenadaXJugada()+1,
-					  casilla->mostrarCasilla());
-	}
-
-}
-
-
-
-void Referi::graficarJugadaEspecial(Graficador &buscaminas, Jugador* jugadorDeTurno, Tablero* pTablero, Casilla* casilla){
-	if(casilla->mostrarCasilla()== '0'){
-
-		for(int i=0; i < pTablero->obtenerCantidadFilas();i++){
-			for(int j=0; j < pTablero->obtenerCantidadColumnas();j++){
-
-				Casilla* casillaActual= pTablero->obtenerCasillero(i,j);
-
-				if(casillaActual->estaOculta()){
-					buscaminas.imprimirJugada(i+1,j+1,'Q');
-				}
-			}
-		}
-	}
-	else{
-		buscaminas.imprimirJugada(jugadorDeTurno->obtenerCoordenadaYJugada()+1,
-					  jugadorDeTurno->obtenerCoordenadaXJugada()+1,'Q');
-	}
-
-}
-
-
 void Referi::mostrarPuntajes(){
 
 	std::cout<<"+++++++++++++++++++++++++++++"<<std::endl;
