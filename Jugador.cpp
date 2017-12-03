@@ -214,8 +214,6 @@ void Jugador::revertirJugada(Graficador &buscaminas, Tablero* tablero, Jugada ju
 										casillaAfectada->mostrarCasilla());
 
 	}
-	//No creo que sea asi, no entendi bien lo del puntero
-	revertirJugada();
 }
 
 void Jugador::restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada jugadaRealizada){
@@ -242,10 +240,10 @@ void Jugador::restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada j
 	}
 }
 
-bool Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
+char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
 
 	bool jugadaValida = false;
-	bool esJugadaNormal;
+	char tipoDeJugada;
 	unsigned int jugadaElegida;
 
 	while (!jugadaValida){
@@ -273,12 +271,12 @@ bool Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 		esJugadaNormal = true;
 		jugadaRealizada= this->getJugadaRealizada();
 		jugadas.nuevoTurno( (*jugadaRealizada) );
+		tipoDeJugada = 'N';
 	}
 
 	else{
 
 		jugadaValida=false;
-		esJugadaNormal = false;
 
 		while (!jugadaValida){
 			cout<<"Por favor, elegir la jugada ingresando el numero correspondiente"<<endl;
@@ -297,17 +295,19 @@ bool Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
 			jugadas.deshacerJugada();
 			revertirJugada(buscaminas, tablero, jugadaEspecial);
+			tipoDeJugada = 'D';
 		}
 		else{
 			jugadas.rehacerJugada();
 			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
 			restaurarJugada(buscaminas, tablero, jugadaEspecial);
+			tipoDeJugada = 'R';
 		}
 
 		planillaJugador->sumarPuntos(-3);
 		
 	}
-	return esJugadaNormal;
+	return tipoDeJugada;
 }
 
 Jugada* Jugador::jugada(Graficador &buscaminas, Tablero* tablero){
@@ -387,6 +387,10 @@ void Jugador::actualizarPuntaje(Casilla* casillaJugada, unsigned int jugadaElegi
         else if (jugadaElegida==QUITAR_BANDERA && !casillaJugada->tieneMina()){
             planillaJugador->sumarPuntos(2);
         }
+}
+
+void Jugador::cambiarPuntaje(int puntos){
+	planillaJugador->sumarPuntos(puntos);
 }
 
 int Jugador::getPuntajeJugador(){
