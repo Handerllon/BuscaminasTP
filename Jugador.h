@@ -5,7 +5,6 @@
 #include "tablero.h"
 #include "Jugada.h"
 #include "LineasDeTiempo.h"
-#include "referi.h"
 
 const int DESCUBRIR_CASILLA=1;
 const int COLOCAR_BANDERA=2;
