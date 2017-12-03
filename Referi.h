@@ -49,10 +49,13 @@ class Referi {
 		 * muestra por pantalla el puntaje de cada uno de los jugadores.
 		 */
 		void mostrarPuntajes();
-		/*
-		Posiciona nuevamente los cursores cuando se revierte una jugada
-		*/
-		void revertirJugada();
+		
+		//Post: Luego de que se deshace un turno, actualiza los puntos correspondientes
+		void revertirJugada(Tablero* tablero);
+
+
+		//Post: Luego de que se rehace un turno, actualiza los puntos correspondientes
+		void rehacerJugada(Tablero* tablero);
 
 		virtual ~Referi();
 };
