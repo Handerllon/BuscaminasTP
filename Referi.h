@@ -51,11 +51,11 @@ class Referi {
 		void mostrarPuntajes();
 		
 		//Post: Luego de que se deshace un turno, actualiza los puntos correspondientes
-		void revertirJugada(Tablero* tablero);
+		void revertirJugada(Tablero* tablero, Jugada jugadaADeshacer);
 
 
 		//Post: Luego de que se rehace un turno, actualiza los puntos correspondientes
-		void rehacerJugada(Tablero* tablero);
+		void rehacerJugada(Tablero* tablero, Jugada jugadaARehacer);
 
 		virtual ~Referi();
 };
