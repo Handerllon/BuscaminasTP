@@ -240,7 +240,8 @@ void Jugador::restaurarJugada(Graficador &buscaminas, Tablero* tablero, Jugada j
 	}
 }
 
-char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada, LineasDeTiempo<Jugada> &jugadas){
+char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jugadaRealizada,
+					LineasDeTiempo<Jugada> &jugadas, Jugada &jugadaEspecial){
 
 	bool jugadaValida = false;
 	char tipoDeJugada;
@@ -292,14 +293,14 @@ char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 		}
 
 		if (jugadaElegida==1){
-			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
+			jugadaEspecial=jugadas.obtenerJugadaActual();
 			jugadas.deshacerJugada();
 			revertirJugada(buscaminas, tablero, jugadaEspecial);
 			tipoDeJugada = 'D';
 		}
 		else{
 			jugadas.rehacerJugada();
-			Jugada jugadaEspecial=jugadas.obtenerJugadaActual();
+			jugadaEspecial=jugadas.obtenerJugadaActual();
 			restaurarJugada(buscaminas, tablero, jugadaEspecial);
 			tipoDeJugada = 'R';
 		}
