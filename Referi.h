@@ -27,7 +27,9 @@ class Referi {
 		Referi();
 		//Crea al referi que manejara una cantidad n de jugadores.
 		Referi(unsigned int cantJugadores, char dificultad);
-
+		/*
+		 * Devuelve la lista de jugadores.
+		 */
 		Lista<Jugador*>* getJugadores();
 	
 		/*
