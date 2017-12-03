@@ -10,6 +10,10 @@ const int DESCUBRIR_CASILLA=1;
 const int COLOCAR_BANDERA=2;
 const int QUITAR_BANDERA=3;
 
+const char JUGADA_NORMAL = 'N';
+const char JUGADA_DESHACER = 'D';
+const char JUGADA_REHACER = 'R';
+
 class Jugador{
 
 private:
