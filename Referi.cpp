@@ -53,8 +53,9 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 			std::cout << "Turno del jugador " << jugadorDeTurno->getIdentificador() << std::endl;
 
 			Jugada* jugadaActual = NULL;
+			Jugada jugadaEspecial;
 
-			char tipoDeJugadaElegida= jugadorDeTurno->elegirJugada(buscaminas, pTablero, jugadaActual,jugadas);
+			char tipoDeJugadaElegida= jugadorDeTurno->elegirJugada(buscaminas, pTablero, jugadaActual,jugadas, jugadaEspecial);
 
 			jugadaActual=jugadorDeTurno->getJugadaRealizada();
 
@@ -69,10 +70,10 @@ void Referi::ejecutarRonda(Graficador &buscaminas, Tablero* pTablero, bool &qued
 					" !" <<std::endl;
 			}
 			else if(tipoDeJugadaElegida == 'D'){
-				revertirJugada(pTablero);
+				revertirJugada(pTablero, jugadaEspecial);
 			}
 			else if(tipoDeJugadaElegida == 'R'){
-				rehacerJugada(pTablero);
+				rehacerJugada(pTablero, jugadaEspecial);
 			}
 			quedanCasillas=pTablero->quedanCasillasPorDescubrir();
 		}
@@ -142,24 +143,15 @@ void Referi::mostrarPuntajes(){
 }
 
 //Agarra el jugador actual y busca al anterior, actualiza los puntos de ese jugador
-void Referi::revertirJugada(Tablero* tablero){
-	Jugador* jugadorActual = this->getJugadores()->obtenerCursor();
-	int identificadorJugadorActual = (int)jugadorActual->getIdentificador();
-	Jugador* jugadorAModificar;
-	if(identificadorJugadorActual == 1){
-		// Si el primero deshizo jugada, agarramos al ultimo del vector
-		jugadorAModificar = &arrayJugadores[cantJugadores - 1];
-	}
-	else{
-		//Si no fue el primero, agarramos al anterior, es menos dos por pasar de identificador a posicion de vector
-		jugadorAModificar = &arrayJugadores[identificadorJugadorActual -2];
-	}
-	Jugada* jugadaARevertir = jugadorAModificar->getJugadaRealizada();
+void Referi::revertirJugada(Tablero* tablero, Jugada jugadaADeshacer){
 
-	Casilla* casillaAfectada = tablero->obtenerCasillero(jugadaARevertir->getFilaDescubierta(),
-								jugadaARevertir->getColumnaDescubierta());
+	int inumeroJugadorAModificar = jugadaADeshacer.getJugadorDeLaJugada();
+	Jugador* jugadorAModificar = &arrayJugadores[numeroJugadorAModificar -1];
 
-	int jugadaRealizada = jugadaARevertir->getTipoDeJugada();
+	Casilla* casillaAfectada = tablero->obtenerCasillero(jugadaADeshacer.getFilaDescubierta(),
+								jugadaADeshacer.getColumnaDescubierta());
+
+	int jugadaRealizada = jugadaADeshacer.getTipoDeJugada();
 
 	if(jugadaRealizada == DESCUBRIR_CASILLA && !casillaAfectada->tieneMina()){
 		jugadorAModificar->cambiarPuntaje(-1);
@@ -172,26 +164,15 @@ void Referi::revertirJugada(Tablero* tablero){
 	}
 }
 
-void Referi::rehacerJugada(Tablero* tablero){
-	Jugador* jugadorActual = this->getJugadores()->obtenerCursor();
-	int identificadorJugadorActual = (int)jugadorActual->getIdentificador();
-	Jugador* jugadorAModificar;
+void Referi::rehacerJugada(Tablero* tablero, Jugada jugadaARehacer){
 
-	if(identificadorJugadorActual == cantJugadores){
-		// Si el utlimo rehizo jugada, agarramos al primero del vector
-		jugadorAModificar = &arrayJugadores[0];
-	}
-	else{
-		//Si no fue el ultimo, agarramos al siguiente, se deja el identificador ya que, pensando en posicion de vectores
-		//El siguiente al actual va a ser el mismo (en el vector)
-		jugadorAModificar = &arrayJugadores[identificadorJugadorActual];
-	}
-	Jugada* jugadaARevertir = jugadorAModificar->getJugadaRealizada();
+	int numeroJugadorAModificar = jugadaARehacer.getJugadorDeLaJugada();
+	Jugador* jugadorAModificar = &arrayJugadores[numeroJugadorAModificar-1];
 
-	Casilla* casillaAfectada = tablero->obtenerCasillero(jugadaARevertir->getFilaDescubierta(),
-								jugadaARevertir->getColumnaDescubierta());
+	Casilla* casillaAfectada = tablero->obtenerCasillero(jugadaARehacer.getFilaDescubierta(),
+								jugadaARehacer.getColumnaDescubierta());
 
-	int jugadaRealizada = jugadaARevertir->getTipoDeJugada();
+	int jugadaRealizada = jugadaARehacer.getTipoDeJugada();
 
 	jugadorAModificar->actualizarPuntaje(casillaAfectada,jugadaRealizada);
 
