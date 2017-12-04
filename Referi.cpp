@@ -99,7 +99,7 @@ void Referi::mostrarPuntajes(){
 //Agarra el jugador actual y busca al anterior, actualiza los puntos de ese jugador
 void Referi::revertirJugada(Tablero* tablero, Jugada jugadaADeshacer){
 
-	int inumeroJugadorAModificar = jugadaADeshacer.getJugadorDeLaJugada();
+	int numeroJugadorAModificar = jugadaADeshacer.getJugadorDeLaJugada();
 	Jugador* jugadorAModificar = &arrayJugadores[numeroJugadorAModificar -1];
 
 	Casilla* casillaAfectada = tablero->obtenerCasillero(jugadaADeshacer.getFilaDescubierta(),
