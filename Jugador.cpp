@@ -269,7 +269,6 @@ char Jugador::elegirJugada(Graficador &buscaminas, Tablero* tablero, Jugada* jug
 
 	if (jugadaElegida==1){
 		jugadaRealizada = jugada(buscaminas, tablero);
-		esJugadaNormal = true;
 		jugadaRealizada= this->getJugadaRealizada();
 		jugadas.nuevoTurno( (*jugadaRealizada) );
 		tipoDeJugada = JUGADA_NORMAL;
